@@ -73,7 +73,7 @@
 			<value name="StartType" type="hex" data="02"/>
 			<value name="CmdLine" type="string" data=""/>
 			<value name="StartTasksFile" type="string" data=""/>
-			<value name="StartTasksName" type="string" data="{cmd::Cmder}"/>
+			<value name="StartTasksName" type="string" data="{Shells::Projects 2x2}"/>
 			<value name="StartFarFolders" type="hex" data="00"/>
 			<value name="StartFarEditors" type="hex" data="00"/>
 			<value name="StoreTaskbarkTasks" type="hex" data="00"/>
@@ -484,7 +484,7 @@
 			<value name="DndRKey" type="hex" data="a2"/>
 			<value name="WndDragKey" type="dword" data="00121101"/>
 			<key name="Tasks" modified="2018-02-22 06:02:12" build="171109">
-				<value name="Count" type="long" data="9"/>
+				<value name="Count" type="long" data="10"/>
 				<key name="Task1" modified="2018-02-22 06:02:12" build="171109">
 					<value name="Name" type="string" data="{cmd::Cmder as Admin}"/>
 					<value name="GuiArgs" type="string" data=' /icon "%CMDER_ROOT%\icons\cmder.ico"'/>
@@ -567,6 +567,18 @@
 					<value name="Cmd1" type="string" data='set "PATH=%ConEmuBaseDirShort%\wsl;%PATH%" &amp; %ConEmuBaseDirShort%\conemu-cyg-64.exe --wsl -cur_console:pm:/mnt'/>
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
+				</key>
+				<key name="Task10" modified="2026-08-01 10:01:00" build="180318">
+					<value name="Name" type="string" data="{Shells::Projects 2x2}"/>
+					<value name="Flags" type="dword" data="00000000"/>
+					<value name="Hotkey" type="dword" data="00000000"/>
+					<value name="GuiArgs" type="string" data='/dir "C:\Projects" /icon "%CMDER_ROOT%\icons\cmder.ico"'/>
+					<value name="Cmd1" type="string" data='&gt;cmd /k ""%ConEmuDir%\..\init.bat" " -cur_console:n'/>
+					<value name="Cmd2" type="string" data='cmd /k ""%ConEmuDir%\..\init.bat" " -cur_console:s1TVn'/>
+					<value name="Cmd3" type="string" data='cmd /k ""%ConEmuDir%\..\init.bat" " -cur_console:s1THn'/>
+					<value name="Cmd4" type="string" data='cmd /k ""%ConEmuDir%\..\init.bat" " -cur_console:s2THn'/>
+					<value name="Active" type="long" data="0"/>
+					<value name="Count" type="long" data="4"/>
 				</key>
 			</key>
 			<key name="Apps" modified="2018-02-22 06:05:13" build="171109">

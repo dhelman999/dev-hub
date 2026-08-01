@@ -32,13 +32,17 @@ $configDir = Join-Path $CmderRoot 'config'
 $vendorXml = Join-Path $CmderRoot 'vendor\conemu-maximus5\ConEmu.xml'
 $userXml = Join-Path $configDir 'user-ConEmu.xml'
 
-if (Test-Path -LiteralPath $userXml) {
-    Copy-Item -LiteralPath $userXml -Destination (Join-Path $dstDir 'user-ConEmu.xml') -Force
-    Write-Host "Captured user-ConEmu.xml from config\"
-}
-elseif (Test-Path -LiteralPath $vendorXml) {
+# Prefer live vendor XML (what ConEmu actually uses). config\user-ConEmu.xml is a
+# launch-time backup and can lag behind recent Settings/Apply edits.
+if (Test-Path -LiteralPath $vendorXml) {
     Copy-Item -LiteralPath $vendorXml -Destination (Join-Path $dstDir 'user-ConEmu.xml') -Force
-    Write-Host "Captured ConEmu.xml from vendor\ (portable name user-ConEmu.xml)"
+    Write-Host "Captured live ConEmu.xml from vendor\ -> user-ConEmu.xml"
+    Copy-Item -LiteralPath $vendorXml -Destination $userXml -Force
+    Write-Host "Synced config\user-ConEmu.xml from vendor\"
+}
+elseif (Test-Path -LiteralPath $userXml) {
+    Copy-Item -LiteralPath $userXml -Destination (Join-Path $dstDir 'user-ConEmu.xml') -Force
+    Write-Host "Captured user-ConEmu.xml from config\ (vendor missing)"
 }
 else {
     Write-Warning 'No ConEmu XML found to capture'
