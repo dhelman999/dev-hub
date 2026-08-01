@@ -36,8 +36,11 @@ Disable auto-start: delete `%APPDATA%\Microsoft\Windows\Start Menu\Programs\Star
 
 - Settings: `Win+Alt+P` · Hotkeys: `Win+Alt+K` · Tasks: `Win+Alt+T`
 - Split down/right: `Ctrl+Shift+O` / `Ctrl+Shift+E`
-- Pane focus: `Apps`+Arrows (rebind to Alt+Arrows if no Apps key)
-- Pane maximize: `Apps`+Enter
+- **Pane focus:** `Alt`+Arrows (not Win+Arrow - that is Windows Snap)
+- **Cycle panes:** `Ctrl+]` next · `Ctrl+[` previous
+- Pane maximize: `Apps`+Enter (or rebind under Hotkeys if no Apps key)
+
+`Win`+Arrow is owned by Windows (snap/minimize). ConEmu's Win+Arrow resize is disabled in this config.
 
 ## After GUI tweaks
 
