@@ -53,21 +53,39 @@ function Ensure-ScoopPackage([string]$Name) {
     & scoop install $Name
 }
 
-function Ensure-WingetPackage([string]$Id) {
-    $winget = Get-Command winget -ErrorAction SilentlyContinue
+function Resolve-Winget {
+    $cmd = Get-Command winget -ErrorAction SilentlyContinue
+    if ($cmd) { return $cmd.Source }
+
+    $fallback = Join-Path $env:LOCALAPPDATA 'Microsoft\WindowsApps\winget.exe'
+    if (Test-Path -LiteralPath $fallback) { return $fallback }
+    return $null
+}
+
+function Ensure-WingetPackage {
+    param(
+        [Parameter(Mandatory)][string]$Id,
+        [string]$Location
+    )
+
+    $winget = Resolve-Winget
     if (-not $winget) {
         Write-Warning "winget missing; skip $Id"
         return
     }
 
-    $list = & winget list --id $Id --accept-source-agreements 2>$null
+    $list = & $winget list --id $Id --accept-source-agreements 2>$null | Out-String
     if ($list -match [regex]::Escape($Id)) {
         Write-Host "OK winget: $Id"
         return
     }
 
     Write-Step "winget install $Id"
-    & winget install --id $Id -e --accept-package-agreements --accept-source-agreements
+    $args = @('install', '--id', $Id, '-e', '--accept-package-agreements', '--accept-source-agreements')
+    if (-not [string]::IsNullOrWhiteSpace($Location)) {
+        $args += @('--location', $Location)
+    }
+    & $winget @args
 }
 
 function Apply-Packages([string]$Section) {
@@ -80,38 +98,91 @@ function Apply-Packages([string]$Section) {
     $lines = Get-Content -LiteralPath $yamlPath
     $inSection = $false
     $mode = $null
+    $pendingId = $null
+    $pendingLocation = $null
 
     foreach ($raw in $lines) {
         $line = $raw.TrimEnd()
         if ($line -match '^\s*#' -or [string]::IsNullOrWhiteSpace($line)) { continue }
 
         if ($line -match "^${Section}:\s*$") {
+            if ($pendingId) {
+                Ensure-WingetPackage -Id $pendingId -Location $pendingLocation
+                $pendingId = $null
+                $pendingLocation = $null
+            }
             $inSection = $true
             $mode = $null
             continue
         }
 
-        if ($inSection -and $line -match '^[a-zA-Z].*:') {
-            if ($line -notmatch '^\s') {
-                break
+        if ($inSection -and $line -match '^[a-zA-Z].*:' -and $line -notmatch '^\s') {
+            if ($pendingId) {
+                Ensure-WingetPackage -Id $pendingId -Location $pendingLocation
+                $pendingId = $null
+                $pendingLocation = $null
             }
+            break
         }
 
         if (-not $inSection) { continue }
 
-        if ($line -match '^\s+winget:\s*$') { $mode = 'winget'; continue }
-        if ($line -match '^\s+scoop:\s*$') { $mode = 'scoop'; continue }
-        if ($line -match '^\s+manual:\s*$') { $mode = 'manual'; continue }
+        if ($line -match '^\s+winget:\s*$') {
+            if ($pendingId) {
+                Ensure-WingetPackage -Id $pendingId -Location $pendingLocation
+                $pendingId = $null
+                $pendingLocation = $null
+            }
+            $mode = 'winget'
+            continue
+        }
+        if ($line -match '^\s+scoop:\s*$') {
+            if ($pendingId) {
+                Ensure-WingetPackage -Id $pendingId -Location $pendingLocation
+                $pendingId = $null
+                $pendingLocation = $null
+            }
+            $mode = 'scoop'
+            continue
+        }
+        if ($line -match '^\s+manual:\s*$') {
+            if ($pendingId) {
+                Ensure-WingetPackage -Id $pendingId -Location $pendingLocation
+                $pendingId = $null
+                $pendingLocation = $null
+            }
+            $mode = 'manual'
+            continue
+        }
 
         if ($mode -eq 'winget' -and $line -match '^\s+-\s+id:\s+(\S+)') {
-            Ensure-WingetPackage -Id $Matches[1]
+            if ($pendingId) {
+                Ensure-WingetPackage -Id $pendingId -Location $pendingLocation
+            }
+            $pendingId = $Matches[1]
+            $pendingLocation = $null
+            continue
         }
-        elseif ($mode -eq 'scoop' -and $line -match '^\s+-\s+name:\s+(\S+)') {
+
+        if ($mode -eq 'winget' -and $pendingId -and $line -match '^\s+location:\s+(.+)$') {
+            $pendingLocation = $Matches[1].Trim().Trim('"')
+            continue
+        }
+
+        if ($mode -eq 'winget' -and $pendingId -and ($line -match '^\s+notes:' -or $line -match '^\s+optional:')) {
+            continue
+        }
+
+        if ($mode -eq 'scoop' -and $line -match '^\s+-\s+name:\s+(\S+)') {
             Ensure-ScoopPackage -Name $Matches[1]
         }
         elseif ($mode -eq 'manual' -and $line -match '^\s+-\s+name:\s+(\S+)') {
-            Write-Host "Manual package (document/install yourself): $($Matches[1])"
+            Write-Host "Manual / scripted package note: $($Matches[1])"
         }
+    }
+
+    if ($pendingId) {
+        Ensure-WingetPackage -Id $pendingId -Location $pendingLocation
     }
 }
 
@@ -119,6 +190,8 @@ function Invoke-Dev {
     Write-Step 'Target Dev'
     if (-not $SkipPackages) {
         Apply-Packages -Section 'dev'
+        & (Join-Path $PSScriptRoot 'Install-Cmder.ps1')
+        & (Join-Path $PSScriptRoot 'Install-HackNerdFont.ps1')
     }
 
     $applyScript = Join-Path $PSScriptRoot 'Apply-Cmder.ps1'
@@ -129,6 +202,7 @@ function Invoke-Dev {
         & $applyScript -HubRoot $HubRoot
     }
 
+    & (Join-Path $PSScriptRoot 'Enable-ClassicContextMenu.ps1')
     & (Join-Path $PSScriptRoot 'link.ps1') -Target Dev -HubRoot $HubRoot -PersonalHubRoot $PersonalHubRoot
 }
 
@@ -137,6 +211,8 @@ function Invoke-Agent {
     if (-not $SkipPackages) {
         Apply-Packages -Section 'agent'
     }
+
+    & (Join-Path $PSScriptRoot 'Ensure-OpenWhispr.ps1') -HubRoot $HubRoot
     & (Join-Path $PSScriptRoot 'link.ps1') -Target Agent -HubRoot $HubRoot -PersonalHubRoot $PersonalHubRoot
 }
 

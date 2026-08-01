@@ -2,8 +2,8 @@
 
 ## Clean machine
 
-1. Install Git (and optionally GitHub CLI).
-2. Create roots:
+1. Install Git (and optionally GitHub CLI) if you do not already have them.
+2. Create roots (or let bootstrap do it):
    - `C:\Programs`
    - `C:\Projects`
 3. Clone this repo:
@@ -20,6 +20,13 @@ cd C:\Projects\dev-hub
 .\machine\rebuild.ps1 -Target All
 ```
 
+`rebuild -Target All` will:
+
+| Layer | Auto |
+|-------|------|
+| Dev | winget/scoop packages (incl. Notepad++ under `C:\Programs\Notepad++` when possible), **Cmder** download to `C:\Programs\cmder` if missing, **Hack Nerd Font**, Apply-Cmder configs + Startup shortcut, classic Win11 context menu, PowerShell profile |
+| Agent | skills junctions + `AGENTS.md` hardlinks, optional personal skills, Cursor settings/keybindings/rules from `dotfiles\cursor`, soft OpenWhispr check |
+
 5. Optional: clone private personal skills (skip if you do not have access):
 
 ```powershell
@@ -27,19 +34,18 @@ git clone https://github.com/dhelman999/dev-hub-personal.git C:\Projects\dev-hub
 .\machine\rebuild.ps1 -Target Agent -SkipPackages
 ```
 
-6. Install Cmder under `C:\Programs\cmder` if missing, then:
+6. Still manual:
 
-```powershell
-.\machine\Apply-Cmder.ps1
-```
-
-7. OpenWhispr / Cursor / IntelliJ: follow [PATHS.md](PATHS.md) and `agent\OPENWHISPR-SETUP.md`.
+- **OpenWhispr** — install yourself; rebuild only detects and points at `agent\OPENWHISPR-SETUP.md`
+- **IntelliJ / Toolbox** — install yourself; see [PATHS.md](PATHS.md)
+- **Cursor Attribution / Agent Review** — set once in Cursor Settings (not automated)
 
 ## Selective apply
 
 ```powershell
 .\machine\rebuild.ps1 -Target Dev     # machine/terminal only
 .\machine\rebuild.ps1 -Target Agent   # AI skills/memory only
+.\machine\rebuild.ps1 -Target Dev -SkipPackages   # configs/links only
 ```
 
 ## After editing skills or AGENTS.md

@@ -28,6 +28,7 @@ Captain + crew model (Kun Chen L8 workflow), adapted for Windows + Cursor. Detai
 | npx skills commands, security policy, hub skill list | `references/skills-policy.md` |
 | Phase 2 backlog (lavish, gnhf, treehouse, firstmate, Go no-mistakes) | `references/phase2-backlog.md` |
 | Pre-ship soft gate (Cursor) | Skill `no-mistakes` |
+| Deletes / wipes / force-push | Skill `destructive-actions` |
 | GitHub account, clone/commit/push habits | `references/github-dhelman999.md` |
 | Public README / description conventions | `references/github-public-polish.md` |
 
@@ -54,8 +55,9 @@ Never commit passwords, tokens, claim IDs, financials, medical data, or home/veh
 - Apply: `C:\Projects\dev-hub\machine\rebuild.ps1 -Target Dev|Agent|All`
 - Skills junctions: `~\.cursor\skills`, `~\.claude\skills`, `~\.agents\skills` → `dev-hub\agent\skills`
 - Memory: `dev-hub\agent\AGENTS.md` hard-linked as `~\AGENTS.md` and `~\.claude\CLAUDE.md`
-- Voice: OpenWhispr (local preferred); checklist in hub `agent\OPENWHISPR-SETUP.md`
-- Terminal: Cmder at `C:\Programs\cmder` (configs in `dotfiles\cmder`)
+- Cursor rules: `dotfiles\cursor\rules\*.mdc` → `~\.cursor\rules\` on Agent apply
+- Voice: OpenWhispr soft-checked (manual install if missing); checklist in `agent\OPENWHISPR-SETUP.md`
+- Terminal: Cmder auto-installed to `C:\Programs\cmder` + configs in `dotfiles\cmder`; Hack Nerd Font + classic context menu on Dev apply
 - Do **not** `npx skills add … --all` or install unevaluated “magic” skill packs
 
 ## External links

@@ -23,7 +23,9 @@
 | OpenWhispr | `%LOCALAPPDATA%\Programs\OpenWhispr\OpenWhispr.exe` | Electron / vendor installer |
 | Cursor | Typical user install under Local AppData / Program Files | Vendor installer |
 | IntelliJ / Toolbox | Often Program Files or Toolbox-managed paths | JetBrains layout |
-| Notepad++ | Prefer `C:\Programs\Notepad++` if custom path offered | Otherwise Program Files |
+| Notepad++ | `C:\Programs\Notepad++` via winget `--location` in rebuild | Falls back to Program Files if winget ignores location |
+| Cmder | `C:\Programs\cmder` via `Install-Cmder.ps1` | Full zip from GitHub releases |
+| Hack Nerd Font | `%LOCALAPPDATA%\Microsoft\Windows\Fonts` | `Install-HackNerdFont.ps1` |
 
 ## AI link targets (after Agent apply)
 
@@ -40,7 +42,13 @@
 
 | Item | Notes |
 |------|-------|
-| Classic full right-click menu | `machine\Enable-ClassicContextMenu.ps1 -RestartExplorer` — skips Win11 "Show more options" so shell extensions (e.g. Open with Notepad++) appear immediately |
+| Classic full right-click menu | Applied automatically on Dev rebuild (`Enable-ClassicContextMenu.ps1`). Re-run with `-RestartExplorer` if Explorer still shows the compact menu. |
+
+## Cursor rules
+
+| Item | Notes |
+|------|-------|
+| Always-on rules | Hub: `dotfiles\cursor\rules\*.mdc` → applied to `~\.cursor\rules\` on Agent rebuild |
 
 ## Deprecated
 

@@ -26,6 +26,7 @@ Canonical directory: `C:\Projects\dev-hub\agent\skills`
 - `java-coding-style`
 - `agentic-harness`
 - `no-mistakes` (Cursor soft gate; Go binary still Phase 2)
+- `destructive-actions` (delete/wipe/force-push permission tiers)
 - `skill-creator` (upstream; do not rewrite casually)
 
 ## Personal skills (private companion)

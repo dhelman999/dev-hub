@@ -12,7 +12,7 @@ Put procedural / conditional knowledge in skills under `C:\Projects\dev-hub\agen
 ## How to work with me
 
 - Prefer outcomes and the why over micro-instructions. Act like a capable engineer given a goal, not a typist given keystrokes.
-- In Agent mode: **never ask permission to edit files** — just do the work. Ask only for truly irreversible actions (permanent deletion, destructive DB schema changes, force push / hard reset the user did not request).
+- In Agent mode: **never ask permission to edit files** — just do the work. For deletes/wipes/history rewrite, follow skill `destructive-actions` (Tier C needs `yes authorize permanent deletion`).
 - When I correct a mistake, update the relevant project `AGENTS.md` or extract a skill so it does not repeat.
 - Do not take back control by doing work manually that an agent should retry with better guidance.
 
@@ -36,7 +36,8 @@ Never commit passwords, tokens, claim IDs, financial figures, medical data, home
 ## Project pointers
 
 - Default Agent-mode execution style: skill `agent-workflow`.
-- Java formatting: skill `java-coding-style` (Spring Framework Code Style + Helman tweaks: 4 spaces, blank before `if` after dense code).
-- java-interview-drills (`C:\Projects\java-interview-drills`; GitHub: https://github.com/dhelman999/java-interview-drills): never bare `javac` from `src/`; use `scripts\compile-and-run.ps1` or `javac -d out\classes`.
+- Java formatting / compile conventions: skill `java-coding-style`.
 - Hub layout and tooling: skill `agentic-harness` (canonical: `C:\Projects\dev-hub`).
+- Deletes / wipes / force-push: skill `destructive-actions`.
 - Personal GitHub: **dhelman999** (`gh` already authenticated). Clone/commit/push only when asked; see `agentic-harness` → `references/github-dhelman999.md`.
+- **Do not put project-specific rules here** (paths, compile recipes, repo quirks, one-off workflows). Keep this file global and short. Put those in the **local project's** `AGENTS.md` / docs, or in a **skill** that loads when that context is needed.

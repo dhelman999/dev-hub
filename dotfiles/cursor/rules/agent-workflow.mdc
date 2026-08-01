@@ -1,0 +1,37 @@
+---
+description: Agent mode — edit freely; destructive-actions tiers for deletes/wipes; Tier C needs authorize phrase
+alwaysApply: true
+---
+
+# Agent workflow
+
+When the user asks you to implement, build, create, add, tailor, fix, review, or otherwise do work in Agent mode:
+
+- **Never ask permission to edit or create files** — just do it
+- Include obvious follow-on files in the same task (tests, boilerplate, small related fixes)
+- **Do not** end with "want me to…?" for work already implied by the request
+- Prefer a sensible default over asking which approach to take when several are valid
+
+## Cursor Auto-review
+
+If a tool is blocked by Smart Mode / Auto-review, retry with approval for the UI card. Do not also ask in chat whether to continue.
+
+If the user says “stop asking to edit,” that means **stop prompting** — still edit and finish the work. It is not a refusal of the edits.
+
+## Destructive / irreversible actions
+
+Follow skill **`destructive-actions`** (tiers A/B/C). Tier C (repo delete, mass wipe, force-push default branch, etc.) requires the user to type exactly: `yes authorize permanent deletion`. Ordinary yes / ship it / no-mistakes green is not enough for Tier C.
+
+## Only ask when truly irreversible (summary)
+
+File edits, refactors, new projects, installs they asked for, and normal commits/pushes **they requested** are not "ask first" — execute them.
+
+Editing **skills**, **AGENTS.md**, and **Cursor rules** (including under `C:\Projects\dev-hub`) is ordinary in-scope work when conventions/workflow should change — never pause for chat permission. A Smart Mode / Auto-review card is a product gate, not a reason to ask in chat.
+
+Commits/pushes: only when the user asked for them (per git rules); if they asked, do not re-ask for permission.
+
+**Never** add `Co-authored-by: Cursor <cursoragent@cursor.com>` (or any agent co-author trailer) to commits.
+
+## java-interview-drills compile
+
+When working in that repo, use skill `java-coding-style` / project docs — never bare `javac` dumping into `src/`. Do not park project-specific compile recipes in global `AGENTS.md`.

@@ -8,6 +8,8 @@ dev:
       notes: Often installs under Program Files; acceptable exception
     - id: GitHub.cli
     - id: Microsoft.PowerShell
+    - id: Notepad++.Notepad++
+      location: C:\Programs\Notepad++
     - id: JesseDuffield.lazygit
       optional: true
   scoop:
@@ -19,16 +21,16 @@ dev:
   manual:
     - name: cmder
       path: C:\Programs\cmder
-      notes: Already installed; config managed via dotfiles/cmder
-    - name: notepadplusplus
-      notes: Prefer C:\Programs\Notepad++ when installer allows
+      notes: Auto-installed by machine/Install-Cmder.ps1 when missing; configs via Apply-Cmder.ps1
+    - name: hack-nerd-font
+      notes: Auto-installed by machine/Install-HackNerdFont.ps1
     - name: intellij
-      notes: JetBrains Toolbox often uses Program Files / user AppData — document in PATHS.md
+      notes: JetBrains Toolbox / manual - document in PATHS.md
 
 agent:
   manual:
     - name: OpenWhispr
       path: '%LOCALAPPDATA%\Programs\OpenWhispr\OpenWhispr.exe'
-      notes: Electron installer exception; see agent/OPENWHISPR-SETUP.md
+      notes: Soft check via Ensure-OpenWhispr.ps1; manual install if missing (OPENWHISPR-SETUP.md)
     - name: Cursor
-      notes: AI harness / agent UI; settings in dotfiles/cursor
+      notes: AI harness / agent UI; settings + rules applied from dotfiles/cursor when Cursor is present

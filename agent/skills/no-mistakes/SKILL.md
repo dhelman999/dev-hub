@@ -24,6 +24,10 @@ work, **run this gate** unless the user explicitly bypasses.
 David keeps that product setting **off** - quality control goes through this soft
 gate, not light mid-task/commit auto-reviews. Do not suggest enabling it.
 
+**Destructive ops:** orthogonal skill `destructive-actions`. Run an **early
+destructive plan scan** before long checks; Tier B/C must clear up front. Gate
+green never authorizes Tier C (`yes authorize permanent deletion` still required).
+
 ## Announce (required)
 
 First user-visible line when the skill runs:
@@ -68,14 +72,16 @@ The gate always runs first (auto-fix capped at **5** cycles). Ship action is cho
 Load `references/finding-classes.md`.
 
 - **auto-fix** — agent fixes and continues (tests, style, mechanical); **max 5** fix/re-check cycles per gate run, then block + ask-you.
-- **ask-you** — stop, quote finding, wait for approve / fix guidance / skip.
+- **ask-you** — stop, quote finding, wait for approve / fix guidance / skip (includes secrets **and** PII / personal identifying information — see `finding-classes.md`).
 - **no-op** — summary only.
 
 ## Soft gate steps
 
 Load `references/soft-gate.md`. **Run-then-report** (not a per-step wizard).
-Pause only for **ask-you** findings or when the **5-cycle** auto-fix cap is
-hit. Interactive step-by-step only if the user asks for that run.
+After intent: **early destructive plan scan** (`destructive-actions`) before
+build/test/review. Pause for **ask-you**, Tier B/C destructive permission, or
+the **5-cycle** auto-fix cap. Interactive step-by-step only if the user asks
+for that run.
 
 **Diff review** must use a **dedicated review subagent** (not this chat’s
 implementation context) — see soft-gate §5. Default model:
@@ -88,4 +94,5 @@ implementation context) — see soft-gate §5. Default model:
 |------|------|
 | Checklist, project test recipes, outcome format | `references/soft-gate.md` |
 | auto-fix vs ask-you vs no-op | `references/finding-classes.md` |
+| Deletes / wipes / force-push / history rewrite | Skill `destructive-actions` |
 | Kun binary install later | `references/upstream-tool.md` |

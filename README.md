@@ -6,8 +6,8 @@ One repo, two apply targets:
 
 | Target | What it does |
 |--------|----------------|
-| **Dev** | Cmder configs, Startup auto-start, PowerShell profile, package inventory |
-| **Agent** | Skills junctions, `AGENTS.md` hardlinks, Cursor settings |
+| **Dev** | Packages (incl. Notepad++), Cmder install+configs, Hack Nerd Font, classic context menu, Startup shortcut, PowerShell profile |
+| **Agent** | Skills junctions, `AGENTS.md` hardlinks, Cursor settings/rules, soft OpenWhispr check |
 | **All** | Dev then Agent (default for this machine) |
 
 Canonical paths:

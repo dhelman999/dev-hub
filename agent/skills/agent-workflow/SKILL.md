@@ -5,8 +5,9 @@ description: >-
   immediately with no conversational permission prompts. Use on every implement,
   build, create, add, tailor, fix, refactor, update, scaffold, or review/edit
   request — even if the user does not name this skill. Prefer this over any
-  "Want me to…?" / "Should I…?" pause. Only ask before truly irreversible
-  actions (permanent deletion, DB schema changes with lasting impact, etc.).
+  "Want me to…?" / "Should I…?" pause. For deletes/wipes/history rewrite, follow
+  skill destructive-actions (tiers A/B/C; Tier C needs yes authorize permanent
+  deletion).
 ---
 
 # Agent Workflow Preferences
@@ -39,15 +40,15 @@ Before push/PR after agent work, apply skill **`no-mistakes`** (soft gate) unles
 
 If the UI blocks a tool and shows Smart Mode / Auto-review, that is a product security gate. Retry with approval so the user can Approve in the card. Do **not** also ask in chat "want me to proceed?"
 
-## Only ask in chat when truly irreversible
+## Destructive / irreversible actions
 
-Ask first **only** for actions with profound, hard-to-undo effects, for example:
+Follow skill **`destructive-actions`** (tiers A/B/C). Do not invent a separate ad-hoc policy.
 
-- Permanent deletion of important data or mass wipe of files the user did not ask to remove
-- Database schema migrations / destructive DB changes with lasting production impact
-- Force push, hard reset, or similar history-destroying git ops the user did not explicitly request
+- **Tier A (minor):** obvious small deletes as part of requested work → proceed
+- **Tier B:** ambiguous / side-effect destruction → ask once in chat
+- **Tier C (major):** repo delete, mass wipe, force-push default branch, etc. → hard stop until the user types `yes authorize permanent deletion`
 
-Routine file edits, refactors, new files, installs the user requested, and normal repo work are **not** in this category — just do them.
+Routine file edits, refactors, new files, installs the user requested, and normal repo work are **not** destructive-gated — just do them.
 
 That includes editing **skills**, **AGENTS.md**, **Cursor rules**, and other `C:\Projects\dev-hub` config when the request implies updating conventions or workflow. Those are ordinary file edits - not "ask first," and not special-cased beyond Auto-review product cards.
 
@@ -64,3 +65,4 @@ That includes editing **skills**, **AGENTS.md**, **Cursor rules**, and other `C:
 | Writing/editing Java | Skill `java-coding-style` |
 | Compiling `java-interview-drills` (`C:\Projects\java-interview-drills`) | `references/testcode-compile.md` — never bare `javac` from `src/` |
 | Validate before push/PR | Skill `no-mistakes` (soft gate; default-on unless user says skip no-mistakes) |
+| Deletes / wipes / force-push / history rewrite | Skill `destructive-actions` (tiers A/B/C; Tier C phrase required) |

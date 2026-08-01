@@ -163,6 +163,18 @@ function Link-Agent {
         Copy-Item -LiteralPath $keySrc -Destination $keyDst -Force
         Write-Host "Copied Cursor keybindings -> $keyDst"
     }
+
+    $rulesSrcDir = Join-Path $HubRoot 'dotfiles\cursor\rules'
+    $rulesDstDir = Join-Path $env:USERPROFILE '.cursor\rules'
+    if (Test-Path -LiteralPath $rulesSrcDir) {
+        Write-Step 'Cursor rules (.mdc)'
+        Ensure-Dir $rulesDstDir
+        Get-ChildItem -LiteralPath $rulesSrcDir -File -Filter '*.mdc' | ForEach-Object {
+            $dst = Join-Path $rulesDstDir $_.Name
+            Copy-Item -LiteralPath $_.FullName -Destination $dst -Force
+            Write-Host "Copied Cursor rule -> $dst"
+        }
+    }
 }
 
 function Link-Dev {

@@ -19,9 +19,25 @@ Mirror Kun’s gate split for the Cursor soft gate.
 
 - Changing public API contracts or HTTP status semantics beyond the request
 - Deleting features, endpoints, or data paths the user did not ask to remove
-- Security: secrets in diff, auth bypass, weakening validation
+- Security: secrets in diff (passwords, API tokens, private keys), auth bypass, weakening validation
+- **Personal / identifying information (PII):** see below — never auto-fix by “just commit anyway”
 - “Is this the intended behavior?” / large refactors beyond the ask
-- Risky git: force push, hard reset, dumping unrelated WIP onto default branch
+- Risky git / mass delete: classify with skill `destructive-actions` (early scan). Tier B → ask-you style pause; Tier C → require `yes authorize permanent deletion` (not ordinary yes). Force push to default branch, repo delete, mass wipe are Tier C.
+
+## ask-you: personal / identifying information (PII)
+
+Treat as **ask-you** (and block ship to public remotes) when the diff or commit would expose personal data, especially into `dev-hub` or any public repo. Examples:
+
+- Home / mailing address, phone, personal email used as identity, full legal name in claimant/medical context
+- Government IDs, claim IDs, case numbers, SSN/tax IDs, driver’s license / VIN when tied to the person
+- Financial figures tied to a person (bank balances, benefit amounts, account numbers)
+- Medical / unemployment / legal narrative that identifies David or household members
+- Vehicle or property identifiers combined with personal context (e.g. maintenance notes with VIN + address)
+- Private skill content that belongs in `dev-hub-personal` (or similar) leaking into a public hub
+
+**Correct handling:** stop, quote the finding, do **not** push/PR. Prefer moving the content to `C:\Projects\dev-hub-personal` (or redacting) after user direction. Aligns with hub `AGENTS.md` Privacy hard rule.
+
+This is separate from **secrets** (credentials/tokens): both are ask-you; PII is about identity/personal life, secrets are about auth/access.
 
 ## Auto-fix iteration cap
 

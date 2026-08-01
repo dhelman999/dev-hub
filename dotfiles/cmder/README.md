@@ -21,14 +21,9 @@ Install root: `C:\Programs\cmder`
 - **Login auto-start:** Startup-folder `Cmder.lnk` (created by `Apply-Cmder.ps1`)
 - **Aliases:** `proj`, `programs`, `hub`, plus Cmder defaults
 
-### Font install (new machine)
+### Font install
 
-```powershell
-# Hack Nerd Font: https://github.com/ryanoasis/nerd-fonts/releases (Hack.zip)
-# Install Regular/Bold/Italic/BoldItalic into %LOCALAPPDATA%\Microsoft\Windows\Fonts
-# and register under HKCU:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts
-# Then Apply-Cmder.ps1 (FontName + FontBold are already set in user-ConEmu.xml).
-```
+`machine\Install-HackNerdFont.ps1` runs on Dev rebuild. Manual fallback: Hack.zip from nerd-fonts releases → user Fonts + HKCU Fonts registry, then `Apply-Cmder.ps1`.
 
 ## Capture / apply
 
