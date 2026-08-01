@@ -4,7 +4,7 @@ Mirror Kun’s gate split for the Cursor soft gate.
 
 | Class | Meaning | Agent behavior |
 |-------|---------|----------------|
-| **auto-fix** | Mechanical, low-risk, does not change product intent | Fix, re-run the relevant check, continue — no pause |
+| **auto-fix** | Mechanical, low-risk, does not change product intent | Fix, re-run the relevant check, continue — no pause. **Cap: 5** auto-fix cycles per gate run (see below) |
 | **no-op** | Informational; already fine | Mention in outcome summary only |
 | **ask-you** | Challenges intent, product behavior, or safety | **Stop**; quote `id`/file/description plainly; wait for approve, fix guidance, or skip |
 
@@ -22,6 +22,13 @@ Mirror Kun’s gate split for the Cursor soft gate.
 - Security: secrets in diff, auth bypass, weakening validation
 - “Is this the intended behavior?” / large refactors beyond the ask
 - Risky git: force push, hard reset, dumping unrelated WIP onto default branch
+
+## Auto-fix iteration cap
+
+- **Max 5** auto-fix cycles per no-mistakes gate run (a cycle = apply fix(es) + re-run the relevant check: build/test, style, or a follow-up review pass).
+- If still not green after 5 cycles → **stop**, report `no-mistakes: BLOCKED` with what remains, and **ask-you** (do not keep burning tokens).
+- Distinct auto-fix items in the *same* pass can be batched into one cycle; do not count each tiny edit as its own cycle when they ship together before one re-check.
+- ask-you findings do not consume the auto-fix budget — they pause immediately.
 
 ## Rules
 

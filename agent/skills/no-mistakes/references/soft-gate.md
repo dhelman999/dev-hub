@@ -3,9 +3,9 @@
 ## UX: run-then-report
 
 1. Announce skill + mode (+ bypass hint) — see `SKILL.md`.
-2. Run mechanical steps back-to-back; apply **auto-fix** without pausing.
-3. Pause **only** on **ask-you** findings.
-4. Emit an **outcome summary**, then ship only if green (or user bypassed).
+2. Run mechanical steps back-to-back; apply **auto-fix** without pausing (**max 5** fix/re-check cycles — see `finding-classes.md`).
+3. Pause **only** on **ask-you** findings (or when the auto-fix cap is hit).
+4. Emit an **outcome summary**, then apply **ship posture** (`push` / `pr` / `hold`) only if green (or user bypassed). **hold** means stop with no push/PR.
 
 Do **not** wait for approve after each step unless the user said “gate step by step” for this run.
 
@@ -63,18 +63,22 @@ Prefer Grok or Composer for normal no-mistakes runs (cost/quota). Do not default
 
 **Parent agent then:**
 
-1. Applies **auto-fix** findings itself (or a follow-up non-readonly pass)
+1. Applies **auto-fix** findings itself (or a follow-up non-readonly pass), within the **5-cycle** cap
 2. Escalates **ask-you** findings to the user
 3. Re-runs build/test if auto-fixes landed
+4. If still red after 5 auto-fix cycles → block ship and ask-you with remaining failures
 
 If Task/subagents are unavailable, fall back to parent review but **say so** in the outcome summary (`diff review: parent-fallback`).
 
 ### 6. Ship
 
-Only if gate is green (or bypassed):
+Gate first (max **5** auto-fix cycles). Only if green (or bypassed), resolve **ship posture** from `SKILL.md`:
 
-- Commit only when the user asked (git rules)
-- Push / `gh pr create` when that was requested
+| Posture | Triggers | Action |
+|---------|----------|--------|
+| **push** | “push”, “ship it” | Commit if needed → push. No PR unless also requested. Blocked gate → no push. |
+| **pr** | “create the PR”, “open a PR” | Commit if needed → push → `gh pr create`. Blocked gate → no push/PR. |
+| **hold** | “ready for review”, “gate”, “don’t push yet”; bare `/no-mistakes` / “run the gate” | No push, no PR. Summarize and wait. |
 
 ## Outcome summary (required)
 
@@ -83,11 +87,12 @@ End with a compact block, for example:
 ```
 no-mistakes: PASS | FIXED | BLOCKED | BYPASSED
 Mode: validate-only | task-first
+Ship posture: push | pr | hold
 Intent: <one line>
 Checks:
   - build/test: pass | fail (detail)
   - style: pass | fixed | n/a
   - diff review: pass | N auto-fix | N ask-you (subagent:<model> | parent-fallback)
 Ask-you: <none | list>
-Ship: pushed/PR <url> | not shipped (reason)
+Ship: pushed <ref> | PR <url> | held for your review | not shipped (reason)
 ```
