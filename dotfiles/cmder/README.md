@@ -16,8 +16,19 @@ Install root: `C:\Programs\cmder`
 - **Startup task:** `{Shells::Projects 2x2}` - four Cmder consoles in a 2x2 grid
 - **Working directory:** `C:\Projects` (task GuiArgs `/dir`)
 - **Opacity:** fully opaque (`AlphaValue` / `AlphaValueInactive` = `FF`)
+- **Theme:** Rose Pine Moon active (ColorTable + Palette4); also saved: Monokai (Palette1 in XML), Tokyo Night, Dracula (`themes/*.xml`)
+- **Font:** Hack Nerd Font, Bold on (`FontName` = `Hack Nerd Font`, `FontBold` = `01`)
 - **Login auto-start:** Startup-folder `Cmder.lnk` (created by `Apply-Cmder.ps1`)
 - **Aliases:** `proj`, `programs`, `hub`, plus Cmder defaults
+
+### Font install (new machine)
+
+```powershell
+# Hack Nerd Font: https://github.com/ryanoasis/nerd-fonts/releases (Hack.zip)
+# Install Regular/Bold/Italic/BoldItalic into %LOCALAPPDATA%\Microsoft\Windows\Fonts
+# and register under HKCU:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts
+# Then Apply-Cmder.ps1 (FontName + FontBold are already set in user-ConEmu.xml).
+```
 
 ## Capture / apply
 

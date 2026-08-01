@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Tokyo Night (Night) for ConEmu
+  Colors: folke/tokyonight.nvim extras (night)
+  ColorTable dword format: 00BBGGRR
+-->
+<key name="Palette2">
+	<value name="Name" type="string" data="Tokyo Night"/>
+	<value name="ExtendColors" type="hex" data="00"/>
+	<value name="ExtendColorIdx" type="hex" data="0e"/>
+	<value name="TextColorIdx" type="hex" data="10"/>
+	<value name="BackColorIdx" type="hex" data="10"/>
+	<value name="PopTextColorIdx" type="hex" data="10"/>
+	<value name="PopBackColorIdx" type="hex" data="10"/>
+	<value name="ColorTable00" type="dword" data="00261b1a"/> <!-- #1a1b26 -->
+	<value name="ColorTable01" type="dword" data="008e76f7"/> <!-- #f7768e -->
+	<value name="ColorTable02" type="dword" data="006ace9e"/> <!-- #9ece6a -->
+	<value name="ColorTable03" type="dword" data="0068afe0"/> <!-- #e0af68 -->
+	<value name="ColorTable04" type="dword" data="00f7a27a"/> <!-- #7aa2f7 -->
+	<value name="ColorTable05" type="dword" data="00f79abb"/> <!-- #bb9af7 -->
+	<value name="ColorTable06" type="dword" data="00ffcf7d"/> <!-- #7dcfff -->
+	<value name="ColorTable07" type="dword" data="00d6b1a9"/> <!-- #a9b1d6 -->
+	<value name="ColorTable08" type="dword" data="00684841"/> <!-- #414868 -->
+	<value name="ColorTable09" type="dword" data="009d89ff"/> <!-- #ff899d -->
+	<value name="ColorTable10" type="dword" data="0044e09f"/> <!-- #9fe044 -->
+	<value name="ColorTable11" type="dword" data="004abafa"/> <!-- #faba4a -->
+	<value name="ColorTable12" type="dword" data="00ffb08d"/> <!-- #8db0ff -->
+	<value name="ColorTable13" type="dword" data="00ffa9c7"/> <!-- #c7a9ff -->
+	<value name="ColorTable14" type="dword" data="00ffdaa4"/> <!-- #a4daff -->
+	<value name="ColorTable15" type="dword" data="00f5cac0"/> <!-- #c0caf5 -->
+	<value name="ColorTable16" type="dword" data="00261b1a"/>
+	<value name="ColorTable17" type="dword" data="008e76f7"/>
+	<value name="ColorTable18" type="dword" data="006ace9e"/>
+	<value name="ColorTable19" type="dword" data="0068afe0"/>
+	<value name="ColorTable20" type="dword" data="00f7a27a"/>
+	<value name="ColorTable21" type="dword" data="00f79abb"/>
+	<value name="ColorTable22" type="dword" data="00ffcf7d"/>
+	<value name="ColorTable23" type="dword" data="00d6b1a9"/>
+	<value name="ColorTable24" type="dword" data="00684841"/>
+	<value name="ColorTable25" type="dword" data="009d89ff"/>
+	<value name="ColorTable26" type="dword" data="0044e09f"/>
+	<value name="ColorTable27" type="dword" data="004abafa"/>
+	<value name="ColorTable28" type="dword" data="00ffb08d"/>
+	<value name="ColorTable29" type="dword" data="00ffa9c7"/>
+	<value name="ColorTable30" type="dword" data="00ffdaa4"/>
+	<value name="ColorTable31" type="dword" data="00f5cac0"/>
+</key>
