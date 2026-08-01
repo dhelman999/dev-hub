@@ -10,8 +10,8 @@ Workflow writeup: https://blog.bytebytego.com/p/an-ex-meta-l8s-agentic-engineeri
 |-------------|----------|
 | Nix + nix-darwin + Home Manager | `machine\*.ps1` + `packages.yaml` (winget/Scoop) |
 | Homebrew | winget (apps) + Scoop (CLIs) |
-| WezTerm | Cmder at `C:\Programs\cmder` |
-| zsh + Starship | PowerShell (+ optional Starship) |
+| WezTerm | Cmder at `C:\Programs\cmder` (+ `Update-Clink.ps1` for bundled Clink) |
+| zsh + Starship | PowerShell 7+ profile (+ optional Scoop Starship) |
 | Neovim | IntelliJ (dev) + Notepad++ (text); Cursor = AI UI |
 | Shared AGENTS.md / skills symlinks | `agent\` + junctions/hardlinks via `link.ps1` |
 

@@ -1,8 +1,12 @@
 ﻿# OpenWhispr setup checklist (Phase 1)
 
-Installed: OpenWhispr 1.7.5
-Exe: C:\Users\dhelm\AppData\Local\Programs\OpenWhispr\OpenWhispr.exe
-Installer: previously under agent-hub\downloads (not kept in git). Re-download from upstream if needed.
+Manual install (not automated by rebuild). Soft-checked by `machine\Ensure-OpenWhispr.ps1`.
+
+Typical exe path after the vendor installer:
+
+`%LOCALAPPDATA%\Programs\OpenWhispr\OpenWhispr.exe`
+
+Download from the OpenWhispr upstream release/installer if missing. Do not commit the installer into git.
 
 ## Do this once in the Control Panel
 
@@ -20,5 +24,5 @@ Installer: previously under agent-hub\downloads (not kept in git). Re-download f
 
 ## Fallback
 
-If Electron feels heavy or you want strict offline-only: Whisper Local
+If Electron feels heavy or you want strict offline-only: Whisper Local  
 https://github.com/mggarofalo/whisper-local

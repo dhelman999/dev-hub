@@ -2,6 +2,17 @@
 
 Install root: `C:\Programs\cmder`
 
+## Clink update (on regenerate)
+
+`Install-Cmder.ps1` runs `machine\Update-Clink.ps1` after ensuring Cmder exists (fresh install **or** already present). That script:
+
+1. Clears stale `%LOCALAPPDATA%\Temp\clink\updater` (avoids `Temp path ... already exists`)
+2. Runs `clink update` (Cmder ships older Clink; first pass may error on `themes\`)
+3. Runs a second update pass, then copies `themes\` from the expand dir if still missing
+4. Clears updater temp again
+
+`rebuild -SkipPackages` skips `Install-Cmder` / Update-Clink. Standalone: `.\machine\Update-Clink.ps1`
+
 ## Files in this folder
 
 | File | Purpose |

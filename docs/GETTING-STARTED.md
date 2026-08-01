@@ -2,7 +2,7 @@
 
 ## Clean machine
 
-1. Install Git (and optionally GitHub CLI) if you do not already have them.
+1. Install Git (and optionally [GitHub CLI](https://cli.github.com/)) if you do not already have them.
 2. Create roots (or let bootstrap do it):
    - `C:\Programs`
    - `C:\Projects`
@@ -20,12 +20,14 @@ cd C:\Projects\dev-hub
 .\machine\rebuild.ps1 -Target All
 ```
 
-`rebuild -Target All` will:
+`bootstrap.ps1` creates the roots, checks for winget, and prints an optional Scoop install tip. Scoop is **not** required for Cmder / Cursor / skills.
+
+`rebuild -Target All` (without `-SkipPackages`) will:
 
 | Layer | Auto |
 |-------|------|
-| Dev | winget/scoop packages (incl. Notepad++ under `C:\Programs\Notepad++` when possible), **Cmder** download to `C:\Programs\cmder` if missing, **Hack Nerd Font**, Apply-Cmder configs + Startup shortcut, classic Win11 context menu, PowerShell profile |
-| Agent | skills junctions + `AGENTS.md` hardlinks, optional personal skills, Cursor settings/keybindings/rules from `dotfiles\cursor`, soft OpenWhispr check |
+| Dev | winget packages from `packages.yaml` (Notepad++ prefers `C:\Programs\Notepad++`, often falls back to Program Files); Scoop CLIs if Scoop is installed; **Cmder** to `C:\Programs\cmder` if missing; **Update-Clink** (latest Clink + `themes\`); **Hack Nerd Font**; Apply-Cmder configs + Startup shortcut; classic Win11 context menu; PowerShell 7+ profile copy |
+| Agent | skills junctions + `AGENTS.md` hardlinks; optional personal skill junctions; Cursor `settings.json` + `rules\*.mdc` (and `keybindings.json` if present in the hub); soft OpenWhispr check |
 
 5. Optional: clone private personal skills (skip if you do not have access):
 
@@ -34,26 +36,45 @@ git clone https://github.com/dhelman999/dev-hub-personal.git C:\Projects\dev-hub
 .\machine\rebuild.ps1 -Target Agent -SkipPackages
 ```
 
+Details: [PERSONAL-HUB.md](PERSONAL-HUB.md).
+
 6. Still manual:
 
-- **OpenWhispr** — install yourself; rebuild only detects and points at `agent\OPENWHISPR-SETUP.md`
-- **IntelliJ / Toolbox** — install yourself; see [PATHS.md](PATHS.md)
-- **Cursor Attribution / Agent Review** — set once in Cursor Settings (not automated)
+| Item | Notes |
+|------|--------|
+| **OpenWhispr** | Install yourself; rebuild only detects and points at `agent\OPENWHISPR-SETUP.md` |
+| **IntelliJ / Toolbox** | Install yourself; see [PATHS.md](PATHS.md) |
+| **Cursor Attribution / Agent Review** | Set once in Cursor Settings (not automated) |
+| **Scoop** | Optional; `irm get.scoop.sh \| iex` then re-run Dev without `-SkipPackages` for ripgrep/fd/jq/… |
 
 ## Selective apply
 
 ```powershell
-.\machine\rebuild.ps1 -Target Dev     # machine/terminal only
-.\machine\rebuild.ps1 -Target Agent   # AI skills/memory only
-.\machine\rebuild.ps1 -Target Dev -SkipPackages   # configs/links only
+.\machine\rebuild.ps1 -Target Dev     # machine/terminal (packages + Cmder + font + configs)
+.\machine\rebuild.ps1 -Target Agent   # AI skills/memory + Cursor files
+.\machine\rebuild.ps1 -Target Dev -SkipPackages   # Apply-Cmder + profile/links only
+.\machine\rebuild.ps1 -Target Agent -SkipPackages # junctions/hardlinks/Cursor copy only
 ```
+
+`-SkipPackages` skips winget, scoop, `Install-Cmder` (and therefore **Update-Clink**), and Hack Nerd Font. To refresh Clink without a full package pass:
+
+```powershell
+.\machine\Update-Clink.ps1
+```
+
+## Where to edit what
+
+| Change | Edit here | Then |
+|--------|-----------|------|
+| Public skill or `AGENTS.md` | `dev-hub\agent\` | Usually live via junctions/hardlinks; re-run Agent apply if links were never created |
+| Personal / PII skill | `dev-hub-personal\skills\<name>\` | Live via junction; re-run Agent apply only when **adding a new skill folder** |
+| Cmder look / aliases | tweak live Cmder, then `Capture-Cmder.ps1` | Commit `dotfiles\cmder` |
+| Cursor always-on rules | `dotfiles\cursor\rules\` | `rebuild -Target Agent -SkipPackages` |
 
 ## After editing skills or AGENTS.md
 
-Edit files under `agent\` in this repo, then:
+Edit under `agent\` in this repo. Junctions already point here after the first Agent apply, so skill body edits are live immediately.
 
 ```powershell
-.\machine\rebuild.ps1 -Target Agent -SkipPackages
+.\machine\rebuild.ps1 -Target Agent -SkipPackages   # repair links / re-copy Cursor files
 ```
-
-Junctions already point here after the first Agent apply, so skill edits are live immediately.

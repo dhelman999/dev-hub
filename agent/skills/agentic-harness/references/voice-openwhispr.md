@@ -1,8 +1,8 @@
 # Voice — OpenWhispr
 
-- Installed: OpenWhispr 1.7.5
-- Exe: `C:\Users\dhelm\AppData\Local\Programs\OpenWhispr\OpenWhispr.exe`
-- Autostart: HKCU `Run` value `OpenWhispr`
+- Soft-checked on Agent rebuild (`Ensure-OpenWhispr.ps1`); install is manual
+- Typical exe: `%LOCALAPPDATA%\Programs\OpenWhispr\OpenWhispr.exe`
+- Autostart: often HKCU `Run` value `OpenWhispr` (set by the app installer)
 - Checklist: `C:\Projects\dev-hub\agent\OPENWHISPR-SETUP.md`
 
 Prefer **local** Whisper/Parakeet; hotkey + auto-paste into Cursor chat.

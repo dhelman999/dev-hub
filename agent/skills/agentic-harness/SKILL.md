@@ -52,12 +52,13 @@ Never commit passwords, tokens, claim IDs, financials, medical data, or home/veh
 
 ## Quick facts
 
-- Apply: `C:\Projects\dev-hub\machine\rebuild.ps1 -Target Dev|Agent|All`
+- Apply: `C:\Projects\dev-hub\machine\rebuild.ps1 -Target Dev|Agent|All` (see `docs\GETTING-STARTED.md`)
+- Personal PII skills: optional `C:\Projects\dev-hub-personal` → per-skill junctions into `agent\skills` (`docs\PERSONAL-HUB.md`)
 - Skills junctions: `~\.cursor\skills`, `~\.claude\skills`, `~\.agents\skills` → `dev-hub\agent\skills`
 - Memory: `dev-hub\agent\AGENTS.md` hard-linked as `~\AGENTS.md` and `~\.claude\CLAUDE.md`
 - Cursor rules: `dotfiles\cursor\rules\*.mdc` → `~\.cursor\rules\` on Agent apply
 - Voice: OpenWhispr soft-checked (manual install if missing); checklist in `agent\OPENWHISPR-SETUP.md`
-- Terminal: Cmder auto-installed to `C:\Programs\cmder` + configs in `dotfiles\cmder`; Hack Nerd Font + classic context menu on Dev apply
+- Terminal: Cmder via `Install-Cmder.ps1` + configs in `dotfiles\cmder`; `Update-Clink.ps1` on that path (not on `-SkipPackages`); Hack Nerd Font + classic context menu on Dev apply
 - Do **not** `npx skills add … --all` or install unevaluated “magic” skill packs
 
 ## External links

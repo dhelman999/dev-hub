@@ -21,7 +21,7 @@ dev:
   manual:
     - name: cmder
       path: C:\Programs\cmder
-      notes: Auto-installed by machine/Install-Cmder.ps1 when missing; configs via Apply-Cmder.ps1
+      notes: Auto-installed by machine/Install-Cmder.ps1 when missing; Update-Clink.ps1 refreshes bundled Clink + themes; configs via Apply-Cmder.ps1
     - name: hack-nerd-font
       notes: Auto-installed by machine/Install-HackNerdFont.ps1
     - name: intellij
