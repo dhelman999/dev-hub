@@ -1,0 +1,35 @@
+# OS / editor junk
+Thumbs.db
+Desktop.ini
+.DS_Store
+*.swp
+*~
+
+# Secrets and local credentials
+.env
+.env.*
+*.pem
+*.key
+credentials.json
+**/secrets/**
+
+# Cmder runtime (never commit histories/logs)
+**/clink_history*
+**/clink.log
+**/clink_errorlevel*
+
+# Large installers / downloads
+*.exe
+*.msi
+*.zip
+downloads/
+
+# Local scratch
+*.backup
+*.bak
+.local/
+
+# Optional personal skill junctions (content lives only in private dev-hub-personal).
+# Git on Windows follows junctions, so these names must stay ignored.
+agent/skills/sc-unemployment-help/
+agent/skills/honda-accord-2008-maintenance/

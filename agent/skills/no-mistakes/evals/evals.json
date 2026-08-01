@@ -1,0 +1,36 @@
+{
+  "skill_name": "no-mistakes",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Create a PR for my McWendyQueen branch.",
+      "expected_output": "Announces no-mistakes soft gate, runs validate-only (or task-first if work unfinished), runs mvn test, summarizes outcome, then creates PR if green.",
+      "files": [],
+      "expectations": [
+        "Announces running no-mistakes with mode and bypass hint",
+        "Does not wizard each checklist step",
+        "Runs or attempts project tests before PR"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Push this branch — skip no-mistakes.",
+      "expected_output": "Acks bypass in one line and pushes without the soft-gate checklist.",
+      "files": [],
+      "expectations": [
+        "Recognizes skip/bypass",
+        "Does not run full soft-gate checklist"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "/no-mistakes add a null-check to OrderServiceImpl.createOrder and ship it",
+      "expected_output": "Task-first: implements change, then soft gate, auto-fixes mechanical issues, escalates ask-you only if needed.",
+      "files": [],
+      "expectations": [
+        "Chooses task-first mode",
+        "Distinguishes auto-fix vs ask-you"
+      ]
+    }
+  ]
+}

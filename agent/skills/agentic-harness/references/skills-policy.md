@@ -1,0 +1,38 @@
+# Skills install policy
+
+## Commands
+
+```powershell
+npx skills find <query>
+npx skills add <owner/repo> --list
+npx skills add <owner/repo> --skill <name> -g -a cursor -a claude-code --copy -y
+npx skills list -g
+```
+
+Discover: https://skills.sh
+
+## Policy (why)
+
+- Skills run with full agent permissions — treat third-party skills as code execution
+- Do **not** `npx skills add … --all`
+- Do **not** install viral “make agents better” packs without published evals
+- Curated install already present: `skill-creator` (`anthropics/skills`)
+
+## Skills in the public hub
+
+Canonical directory: `C:\Projects\dev-hub\agent\skills`
+
+- `agent-workflow`
+- `java-coding-style`
+- `agentic-harness`
+- `no-mistakes` (Cursor soft gate; Go binary still Phase 2)
+- `skill-creator` (upstream; do not rewrite casually)
+
+## Personal skills (private companion)
+
+Canonical directory: `C:\Projects\dev-hub-personal\skills` (optional)
+
+- `sc-unemployment-help`
+- `honda-accord-2008-maintenance`
+
+Linked into the public skills folder by `link.ps1` only when the personal hub is present. Never commit these into `dev-hub`.

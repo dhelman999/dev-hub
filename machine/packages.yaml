@@ -1,0 +1,34 @@
+# Declarative package inventory for rebuild.ps1
+# Prefer C:\Programs when the installer allows a custom root.
+# Exceptions (Program Files / Local\Programs) are documented in docs/PATHS.md.
+
+dev:
+  winget:
+    - id: Git.Git
+      notes: Often installs under Program Files; acceptable exception
+    - id: GitHub.cli
+    - id: Microsoft.PowerShell
+    - id: JesseDuffield.lazygit
+      optional: true
+  scoop:
+    - name: ripgrep
+    - name: fd
+    - name: jq
+    - name: starship
+      optional: true
+  manual:
+    - name: cmder
+      path: C:\Programs\cmder
+      notes: Already installed; config managed via dotfiles/cmder
+    - name: notepadplusplus
+      notes: Prefer C:\Programs\Notepad++ when installer allows
+    - name: intellij
+      notes: JetBrains Toolbox often uses Program Files / user AppData — document in PATHS.md
+
+agent:
+  manual:
+    - name: OpenWhispr
+      path: '%LOCALAPPDATA%\Programs\OpenWhispr\OpenWhispr.exe'
+      notes: Electron installer exception; see agent/OPENWHISPR-SETUP.md
+    - name: Cursor
+      notes: AI harness / agent UI; settings in dotfiles/cursor

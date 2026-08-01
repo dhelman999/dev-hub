@@ -1,0 +1,35 @@
+{
+  "skill_name": "agentic-harness",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Where is my canonical skills folder and how do Cursor and Claude both see it?",
+      "expected_output": "Points to agent-hub\\skills and the three junctions.",
+      "files": [],
+      "expectations": [
+        "Mentions C:\\Users\\dhelm\\agent-hub\\skills",
+        "Mentions junctions or shared paths for .cursor and .claude skills"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Should I npx skills add some mega repo with --all to make my agent smarter?",
+      "expected_output": "Discourages --all and unevaluated viral packs; suggests curated installs.",
+      "files": [],
+      "expectations": [
+        "Advises against --all or blind bulk installs",
+        "Mentions security or eval caution"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "What voice app did we install for Phase 1 and where is the setup checklist?",
+      "expected_output": "OpenWhispr + OPENWHISPR-SETUP.md path.",
+      "files": [],
+      "expectations": [
+        "Names OpenWhispr",
+        "Points to OPENWHISPR-SETUP.md or agent-hub path"
+      ]
+    }
+  ]
+}

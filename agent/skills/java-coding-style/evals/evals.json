@@ -1,0 +1,50 @@
+{
+  "skill_name": "java-coding-style",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Rewrite to our Spring-aligned style: if (x == null) { return; } else { doThing(x); }",
+      "expected_output": "else on its own line; 4 spaces; K&R braces.",
+      "files": [],
+      "expectations": [
+        "Uses else on its own line (not } else {)",
+        "Uses 4-space indentation",
+        "Does not introduce unrelated logic changes"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Several assignment lines then if (size > capacity) evict — apply Helman blank-line rules and Spring this. field rules.",
+      "expected_output": "Blank line before if; fields referenced with this. if shown.",
+      "files": [],
+      "expectations": [
+        "Blank line before if after dense code",
+        "Uses 4-space indent",
+        "Does not use Google } else { form"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "In production Java for our style, may I use var? Should I write this.doWork() or doWork()? Tabs or spaces?",
+      "expected_output": "No var in production; no this. on methods; 4 spaces (Helman tweak vs Spring tabs).",
+      "files": [],
+      "expectations": [
+        "Disallows var in production/main code",
+        "Says not to prefix instance methods with this.",
+        "Recommends 4 spaces rather than tabs"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Order these imports for a Spring-style file: org.springframework.util.Assert, java.util.List, static org.assertj.core.api.Assertions.assertThat, jakarta.annotation.Nullable",
+      "expected_output": "java, then jakarta, then other, then org.springframework, then static — with blank lines per Spring import groups.",
+      "files": [],
+      "expectations": [
+        "Places java imports before jakarta",
+        "Places org.springframework after other third-party imports",
+        "Places static imports last",
+        "Mentions blank lines between import groups or Spring import order"
+      ]
+    }
+  ]
+}
