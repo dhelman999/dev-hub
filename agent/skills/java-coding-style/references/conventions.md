@@ -17,6 +17,13 @@ These **override** the Spring wiki where they conflict:
 3. **Blank line before an `if` block** when dense / non-trivial code sits above it (assignments, calls, or a finished `if`/`else` block).
 4. **License header / `@since` / JSpecify / `Assert`:** required when contributing Spring-style libraries or real Spring apps; optional for personal interview/leetcode files unless the user asks.
 
+### Helman engineering conventions
+
+1. Keep methods/functions **under ~50 lines** unless there is a strong reason; otherwise split into smaller helpers.
+2. **Search for existing** helpers, patterns, static utility classes, and related workflows before inventing new code in the file under edit — prefer extending shared helpers.
+3. **Complex PRs** need a thorough review body (description, expected behavior, change summary, other reviewer context). Small PRs can be brief.
+4. **Never** add `Co-authored-by: Cursor <cursoragent@cursor.com>` (or other Cursor/agent co-author trailers) to commits.
+
 Everything else below follows Spring.
 
 ---

@@ -3,11 +3,14 @@ name: java-coding-style
 description: >-
   Spring Framework Code Style for David Helman (official wiki rules) with Helman
   tweaks: 4-space indent, blank line before if after dense code, blank after
-  locals. Use whenever writing, editing, reformatting, or reviewing Java —
-  especially java-interview-drills (C:\Projects\java-interview-drills), interview drills, Spring apps, or reference
-  solutions — even if the user only says "fix this Java," "match my style,"
-  "Spring style," or "like the LRU sentinel." Prefer this over Google 2-space
-  style when Helman Java is in scope.
+  locals, ~50-line functions, prefer existing helpers, no Cursor Co-authored-by
+  trailers, rich PR bodies for complex changes. Use whenever writing, editing,
+  reformatting, or reviewing Java — especially java-interview-drills
+  (C:\Projects\java-interview-drills), interview drills, Spring apps, or
+  reference solutions — even if the user only says "fix this Java," "match my
+  style," "Spring style," "coding style," "like the LRU sentinel," or asks about
+  commit trailers / PR description depth. Prefer this over Google 2-space style
+  when Helman Java or Helman engineering conventions are in scope.
 ---
 
 # Java Coding Style — Spring Framework (+ Helman tweaks)
@@ -30,6 +33,15 @@ Full digest: `references/conventions.md`.
 | (general blank-line rules) | Also: blank line **after local declarations**; blank line **before `if` after dense code** |
 | Apache license on every file | Required for Spring/OSS contributions; **optional** for personal interview drills |
 | `@since`, JSpecify, `Assert.*` | Apply for Spring libraries/apps; **lighten** for pure algorithm drills unless useful |
+
+## Helman engineering conventions (always)
+
+These apply to Helman code work and shipping (Java first; same intent for non-Java when this skill is in play):
+
+1. **Function size:** Methods/functions should generally stay **under ~50 lines**. If longer, split into smaller focused helpers unless there is a clear reason not to (e.g. a single tight algorithm that is harder to follow when scattered).
+2. **Prefer existing code:** Before adding new helpers, styles, or designs, **search the repo** for similar functions, workflows, helper classes, static utility classes, or shared libraries. Prefer extending those over inventing parallel code in the file you are editing.
+3. **PR descriptions:** For **complex** PRs, write a thorough body for reviewers: description, expected behavior, summary of changes, and any other context a reviewer needs. For small/obvious PRs, a short description/summary is enough.
+4. **Never Cursor Co-authored-by:** Do **not** add `Co-authored-by: Cursor <cursoragent@cursor.com>` (or any Cursor/agent co-author trailer) to commits. Commit messages stay human-authored only. Also avoid enabling Cursor "attribute commits to agent" / Attribution features that inject that trailer.
 
 ## Non-negotiables (every Java edit)
 
@@ -56,6 +68,7 @@ Full digest: `references/conventions.md`.
 - Do not reformat unrelated files or rewrite logic for style alone
 - Do not use Google 2-space indent or `} else {`
 - Do not invent blank lines inside tiny one-liner helpers the reference would not use
+- Do not add Cursor/agent `Co-authored-by` trailers to commits
 
 ## Compile java-interview-drills
 

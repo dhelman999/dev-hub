@@ -7,6 +7,7 @@ Put procedural / conditional knowledge in skills under `C:\Projects\dev-hub\agen
 
 - Prefer plain ASCII dashes (`-`) over em dashes in prose you write for me (PR descriptions, commit messages, docs).
 - Be direct and concise. Do not pad responses.
+- Never add `Co-authored-by: Cursor <cursoragent@cursor.com>` (or any agent co-author trailer) to commits. See skill `java-coding-style`.
 
 ## How to work with me
 

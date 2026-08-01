@@ -36,6 +36,12 @@
 | `~\.claude\CLAUDE.md` | same hardlink |
 | `~\.claude\AGENTS.md` | same hardlink |
 
+## Windows QoL
+
+| Item | Notes |
+|------|-------|
+| Classic full right-click menu | `machine\Enable-ClassicContextMenu.ps1 -RestartExplorer` — skips Win11 "Show more options" so shell extensions (e.g. Open with Notepad++) appear immediately |
+
 ## Deprecated
 
 `C:\Users\dhelm\agent-hub` — superseded by `C:\Projects\dev-hub\agent`. Stub README only after migration.

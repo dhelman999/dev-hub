@@ -30,6 +30,11 @@ Also: do **not** ask whether to commit/push unless the user already asked for th
 
 Before push/PR after agent work, apply skill **`no-mistakes`** (soft gate) unless the user said **skip no-mistakes** / **bypass gate**.
 
+## Commits and PRs
+
+- **Never** add `Co-authored-by: Cursor <cursoragent@cursor.com>` (or any Cursor/agent co-author trailer). See skill `java-coding-style` → Helman engineering conventions.
+- When creating a **complex** PR, include comprehensive sections (description, expected behavior, summary of changes, plus other reviewer context). Small PRs can stay brief. Details in `java-coding-style`.
+
 ## Cursor Auto-review cards
 
 If the UI blocks a tool and shows Smart Mode / Auto-review, that is a product security gate. Retry with approval so the user can Approve in the card. Do **not** also ask in chat "want me to proceed?"
