@@ -73,7 +73,7 @@ Follow skill `context-engineering`: stable model for the captain phase; cheaper 
 ## What this is not
 
 - Not Firstmate’s event-driven bash watcher or secondmates.
-- Not Lavish (HTML annotate UI) — that is Phase 1.
+- Not Lavish (HTML annotate UI) — that is skill **`lavish`** (`npx -y lavish-axi`).
 - Not a replacement for `no-mistakes` at ship time.
 - Not “you must pick Multitask in the mode picker” — that is optional product parallel.
 
@@ -81,6 +81,6 @@ Follow skill `context-engineering`: stable model for the captain phase; cheaper 
 
 - Hub / Phase 2 status: skill `agentic-harness` → `references/phase2-backlog.md`
 - Parallel isolation later: treehouse (Phase 3)
-- Visual feedback later: lavish-axi (Phase 1)
+- Visual feedback: skill `lavish` (Phase 1 — live)
 
 More detail: `references/cursor-parallel.md`.

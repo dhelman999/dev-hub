@@ -70,9 +70,17 @@ Details: [PERSONAL-HUB.md](PERSONAL-HUB.md).
 | Personal / PII skill | `dev-hub-personal\skills\<name>\` | Live via junction; re-run Agent apply only when **adding a new skill folder** |
 | Context / cost playbook | skill `context-engineering` | Live under `agent\skills\` |
 | Parallel captain/crew | skill `captain-crew` | Live; full Firstmate deferred |
+| Interactive HTML review (Lavish) | skill `lavish` + `npx -y lavish-axi` | Soft-checked by `Ensure-Lavish.ps1` on Agent rebuild |
 | Cmder look / aliases | tweak live Cmder, then `Capture-Cmder.ps1` | Commit `dotfiles\cmder` |
 | Cursor always-on rules | `dotfiles\cursor\rules\` | `rebuild -Target Agent -SkipPackages` |
 | Cursor slash commands (`/skills`, `/list`) | `dotfiles\cursor\commands\` | same Agent rebuild; also skill `skills` |
+
+### Lavish vs Cursor Canvas
+
+| Surface | Use for |
+|---------|---------|
+| **Lavish** | Plans, UX mocks, comparisons you want to **click/annotate** and send feedback to the agent (`npx -y lavish-axi`) |
+| **Cursor Canvas** | Analytical chat artifacts (tables, inventories, dashboards beside the thread) - not a click-to-comment product loop |
 
 ## After editing skills or AGENTS.md
 

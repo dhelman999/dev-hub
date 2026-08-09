@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>dev-hub Lavish smoke test v3</title>
+  <style>
+    :root { --bg: #14201a; --fg: #e6f0ea; --accent: #7dcea0; --muted: #8aa396; }
+    body { font-family: Georgia, "Times New Roman", serif; background: var(--bg); color: var(--fg); margin: 0; padding: 2rem; line-height: 1.5; }
+    h1 { font-size: 1.75rem; color: var(--accent); margin-top: 0; }
+    .card { max-width: 40rem; border: 1px solid #2f463a; border-radius: 8px; padding: 1.25rem 1.5rem; background: #1c2c24; }
+    p { color: var(--muted); }
+    strong { color: var(--fg); }
+    ol { color: var(--fg); }
+    .ghost-panel {
+      max-width: 40rem;
+      margin-top: 1.25rem;
+      border: 1px solid rgba(135, 206, 250, 0.35);
+      border-radius: 8px;
+      padding: 1.25rem 1.5rem;
+      background: rgba(30, 60, 90, 0.12);
+      color: lightblue;
+      opacity: 0.35;
+    }
+    .ghost-panel p { color: lightblue; margin: 0; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Lavish smoke test v3</h1>
+    <p>Second pass for <strong>dev-hub</strong>. Fresh checklist after the first session ended.</p>
+    <ol>
+      <li><strong>Open this page in Lavish Editor.</strong></li>
+      <li>Annotate any element with a concrete change request.</li>
+      <li>Send feedback and confirm the agent applies the edit.</li>
+      <li>End the session when the loop feels solid.</li>
+    </ol>
+  </div>
+  <div class="ghost-panel">
+    <p>Nearly transparent light-blue test paragraph. Read this to confirm the secondary panel rendered as requested.</p>
+  </div>
+</body>
+</html>

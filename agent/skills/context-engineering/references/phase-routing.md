@@ -16,7 +16,7 @@ Adjust to whatever is on your plan; names change — the *roles* matter.
 | Explore | Map files, answer narrow questions | Built-in explore / cheap subagent |
 | Implement | Edit, tests, refactors | Composer (prefer non-fast when subtle) |
 | Review / ship | `no-mistakes` soft gate | Per that skill’s cost guidance |
-| Visual plan review | Human marks up HTML | Lavish (Phase 1 — not installed yet) |
+| Visual plan review | Human marks up HTML | Skill `lavish` / `npx -y lavish-axi` |
 
 ## When the user should switch models
 
