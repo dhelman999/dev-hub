@@ -24,6 +24,10 @@ Put procedural / conditional knowledge in skills under `C:\Projects\dev-hub\agen
 - Optional private personal skills → `C:\Projects\dev-hub-personal` (may be absent). Never commit PII into `dev-hub`.
 - Installer exceptions (Program Files / Local\Programs) → document in `dev-hub\docs\PATHS.md`.
 
+## Reproducibility (hard rule)
+
+Anything that changes the **dev environment**, **agent harness**, or **agentic engineering** workflow must be checked for hub inclusion: land it under `C:\Projects\dev-hub` (skills, `dotfiles\`, `machine\*.ps1`, `packages.yaml`, docs) so `bootstrap` / `rebuild` can regenerate another machine. Do not leave one-off machine-only tweaks undocumented. Details: skill `agentic-harness`. If there is a good reason to not do this rule, say an extremely specific tool/program that isn't really necessary (such as OpenWhispr), make sure to document/state that this was excluded.
+
 ## Privacy (hard rule)
 
 Never commit passwords, tokens, claim IDs, financial figures, medical data, home address, or other PII into `dev-hub` or any public repo. Personal skills belong in `dev-hub-personal` only.
@@ -36,6 +40,9 @@ Never commit passwords, tokens, claim IDs, financial figures, medical data, home
 ## Project pointers
 
 - Default Agent-mode execution style: skill `agent-workflow`.
+- Cost / context / model phases: skill `context-engineering`.
+- Parallel agents (Cursor captain/crew): skill `captain-crew`.
+- Skill catalog reminder: `/skills` or `/list` (skill `skills`).
 - Java formatting / compile conventions: skill `java-coding-style`.
 - Hub layout and tooling: skill `agentic-harness` (canonical: `C:\Projects\dev-hub`).
 - Deletes / wipes / force-push: skill `destructive-actions`.

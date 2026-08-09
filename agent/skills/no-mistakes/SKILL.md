@@ -34,8 +34,10 @@ First user-visible line when the skill runs:
 
 > Running **no-mistakes** soft gate (**validate-only** | **task-first**). Say **skip no-mistakes** / **bypass gate** to ship without the full checklist.
 
-Proceed immediately after that line (not a permission prompt). End with an
-outcome summary (see `references/soft-gate.md`).
+Proceed immediately after that line (not a permission prompt). **Always** end with
+the outcome summary in `references/soft-gate.md` (status, mode, ship posture,
+**auto-fix cycles used/5**, **issues auto-fixed**, ask-you count, checks, ship
+result) so it is obvious the gate ran and what it did.
 
 ## Bypass
 

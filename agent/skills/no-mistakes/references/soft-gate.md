@@ -98,18 +98,37 @@ When a ship or auto-fix step **executes** a delete/wipe/force/history rewrite, f
 
 ## Outcome summary (required)
 
-End with a compact block, for example:
+Always end a no-mistakes run with a compact block so the captain can see that the
+gate ran and what it did. Fill every field (use `0` / `n/a` / `none` when empty).
 
 ```
 no-mistakes: PASS | FIXED | BLOCKED | BYPASSED
 Mode: validate-only | task-first
 Ship posture: push | pr | hold
+Auto-fix cycles: <used>/<max 5>
+Issues auto-fixed: <count>  (tests / style / review mechanical — brief list OK)
+Ask-you raised: <count>  (none | N — listed below)
 Destructive plan: none | Tier A (N) | waiting Tier B/C | cleared
+Diff review: subagent:<model> | parent-fallback
 Intent: <one line>
 Checks:
   - build/test: pass | fail (detail)
   - style: pass | fixed | n/a
-  - diff review: pass | N auto-fix | N ask-you (subagent:<model> | parent-fallback)
-Ask-you: <none | list>
+  - diff review: pass | N auto-fix | N ask-you
+Ask-you: <none | short list>
 Ship: pushed <ref> | PR <url> | held for your review | not shipped (reason)
 ```
+
+### Field notes
+
+| Field | Meaning |
+|-------|---------|
+| **PASS** | Green with no auto-fixes needed |
+| **FIXED** | Green after one or more auto-fixes (still ship-eligible) |
+| **BLOCKED** | Red, ask-you pending, or hit the **5-cycle** auto-fix cap |
+| **BYPASSED** | User skipped the gate |
+| **Auto-fix cycles** | How many fix→re-check loops ran, out of **5**. Example: `2/5`. Cap hit → `5/5` and usually **BLOCKED** |
+| **Issues auto-fixed** | Count of distinct mechanical findings actually fixed this run (not cycles). Optional one-line examples: `3 (2 style, 1 test)` |
+| **Ask-you raised** | Count of findings that paused for the user |
+
+Keep the block short — scannable in chat, not a second review essay.

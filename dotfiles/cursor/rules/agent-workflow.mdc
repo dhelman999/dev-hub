@@ -1,5 +1,5 @@
 ---
-description: Agent mode — edit freely; destructive-actions tiers for deletes/wipes; Tier C needs authorize phrase
+description: Agent mode — edit freely; destructive-actions tiers; phase-stable models; captain/crew when parallel
 alwaysApply: true
 ---
 
@@ -11,6 +11,30 @@ When the user asks you to implement, build, create, add, tailor, fix, review, or
 - Include obvious follow-on files in the same task (tests, boilerplate, small related fixes)
 - **Do not** end with "want me to…?" for work already implied by the request
 - Prefer a sensible default over asking which approach to take when several are valid
+
+## Context and models
+
+Follow skill **`context-engineering`** when cost, tokens, caching, or model choice matter:
+
+- Prefer **phase-stable** models (plan vs implement); avoid thrashing models mid-task
+- Keep retrieval narrow (targeted search/read, not dumping the repo)
+- Keep global memory short; put procedures in skills
+
+## Parallel work
+
+When the user wants multiple agents or Firstmate-like orchestration, follow skill **`captain-crew`** (Cursor Plan / multitask / Task tool). Do not install full Firstmate unless they explicitly leave Cursor as the primary harness.
+
+Visual HTML annotate loops (Lavish) are Phase 1 — not installed yet; do not invent a fake substitute unless asked.
+
+## Reproducible harness (required)
+
+If the work changes the **dev environment**, **agent harness**, or **agentic** setup (skills, Cursor rules/commands, Cmder, packages, rebuild scripts, global memory):
+
+1. Put it in **`C:\Projects\dev-hub`** (or personal hub for PII) — not only on this machine.
+2. Wire `machine\*.ps1` / `packages.yaml` / `link.ps1` / docs so **`rebuild.ps1`** can recreate it.
+3. Follow skill **`agentic-harness`** reproducibility checklist.
+
+One-off local tweaks without hub + scripts are a miss.
 
 ## Cursor Auto-review
 

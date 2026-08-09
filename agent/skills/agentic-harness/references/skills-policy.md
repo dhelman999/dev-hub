@@ -25,7 +25,10 @@ Canonical directory: `C:\Projects\dev-hub\agent\skills`
 - `agent-workflow`
 - `java-coding-style`
 - `agentic-harness`
-- `no-mistakes` (Cursor soft gate; Go binary still Phase 2)
+- `context-engineering` (cost / cache / retrieval / phase routing)
+- `captain-crew` (Cursor-native parallel captain/crew)
+- `skills` (human `/skills` or `/list` — one-line catalog)
+- `no-mistakes` (Cursor soft gate; Go binary still deferred)
 - `destructive-actions` (delete/wipe/force-push permission tiers)
 - `skill-creator` (upstream; do not rewrite casually)
 

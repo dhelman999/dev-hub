@@ -1,7 +1,13 @@
 # Kun Chen tool map → Windows (dev-hub)
 
-Source video: https://www.youtube.com/watch?v=5N-okeDdIuI  
-Dotfiles: https://github.com/kunchenguid/dotfiles  
+Source videos:
+
+- Harness from scratch: https://www.youtube.com/watch?v=5N-okeDdIuI
+- Cost / context engineering themes: https://www.youtube.com/watch?v=2TgYw9wXv5s
+- Full-stack agent workflow: https://www.youtube.com/watch?v=kPN564Kol14
+- Kun linktree: https://linktr.ee/kunchenguid · GitHub: https://github.com/kunchenguid
+
+Dotfiles inspiration: https://github.com/kunchenguid/dotfiles  
 Workflow writeup: https://blog.bytebytego.com/p/an-ex-meta-l8s-agentic-engineering
 
 ## Machine layer
@@ -15,9 +21,20 @@ Workflow writeup: https://blog.bytebytego.com/p/an-ex-meta-l8s-agentic-engineeri
 | Neovim | IntelliJ (dev) + Notepad++ (text); Cursor = AI UI |
 | Shared AGENTS.md / skills symlinks | `agent\` + junctions/hardlinks via `link.ps1` |
 
-## Workflow layer (Phase 2 backlog — not installed yet)
+## Workflow layer
 
-Lavish, gnhf, treehouse, firstmate, Go `no-mistakes` binary — see `agent\skills\agentic-harness\references\phase2-backlog.md`.
+| Kun | This hub |
+|-----|----------|
+| Context / cost discipline | Skill `context-engineering` (**live**) |
+| firstmate (captain + crew) | Skill `captain-crew` on Cursor (**live**); full Firstmate distro deferred |
+| lavish-axi | Phase 1 — not installed yet |
+| quota-axi / usage UI | Phase 2 — not installed yet |
+| treehouse | Phase 3 — not installed yet |
+| no-mistakes | Soft gate skill **live**; Go binary deferred |
+| gnhf | Phase 4 — deferred |
+| AXI principles | https://axi.md — adopt with tools in later phases |
+
+Details: `agent\skills\agentic-harness\references\phase2-backlog.md`.
 
 Out of scope for this machine: tmux, WezTerm, Neovim.
 

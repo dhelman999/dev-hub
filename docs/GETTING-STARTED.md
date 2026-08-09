@@ -68,8 +68,11 @@ Details: [PERSONAL-HUB.md](PERSONAL-HUB.md).
 |--------|-----------|------|
 | Public skill or `AGENTS.md` | `dev-hub\agent\` | Usually live via junctions/hardlinks; re-run Agent apply if links were never created |
 | Personal / PII skill | `dev-hub-personal\skills\<name>\` | Live via junction; re-run Agent apply only when **adding a new skill folder** |
+| Context / cost playbook | skill `context-engineering` | Live under `agent\skills\` |
+| Parallel captain/crew | skill `captain-crew` | Live; full Firstmate deferred |
 | Cmder look / aliases | tweak live Cmder, then `Capture-Cmder.ps1` | Commit `dotfiles\cmder` |
 | Cursor always-on rules | `dotfiles\cursor\rules\` | `rebuild -Target Agent -SkipPackages` |
+| Cursor slash commands (`/skills`, `/list`) | `dotfiles\cursor\commands\` | same Agent rebuild; also skill `skills` |
 
 ## After editing skills or AGENTS.md
 

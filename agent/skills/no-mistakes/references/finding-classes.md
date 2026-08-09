@@ -45,6 +45,7 @@ This is separate from **secrets** (credentials/tokens): both are ask-you; PII is
 - If still not green after 5 cycles → **stop**, report `no-mistakes: BLOCKED` with what remains, and **ask-you** (do not keep burning tokens).
 - Distinct auto-fix items in the *same* pass can be batched into one cycle; do not count each tiny edit as its own cycle when they ship together before one re-check.
 - ask-you findings do not consume the auto-fix budget — they pause immediately.
+- Outcome summary must report **Auto-fix cycles: used/5** and **Issues auto-fixed: N** (see `soft-gate.md`).
 
 ## Rules
 

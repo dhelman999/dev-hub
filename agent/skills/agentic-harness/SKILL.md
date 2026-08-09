@@ -3,11 +3,13 @@ name: agentic-harness
 description: >-
   David Helman's agentic engineering hub on Windows: C:\Projects\dev-hub layout,
   Dev/Agent rebuild targets, shared AGENTS.md memory, OpenWhispr voice, npx skills
-  install policy, and Phase 2 backlog (lavish, gnhf, treehouse, firstmate, Go
-  no-mistakes). Use when the user asks about agent setup, skills folders,
-  junctions/symlinks, global memory, voice dictation, installing skills, Cmder
-  hub configs, or the L8/Kun-style harness — even if they only say "where are my
-  skills" or "how do I add a skill." Prefer this over inventing a new skills layout.
+  install policy, reproducibility (hub + scripts for wipe/regenerate), context-engineering /
+  captain-crew skills, and Phase 2+ backlog (lavish, quota-axi, treehouse, firstmate,
+  gnhf, Go no-mistakes). Use when the user asks about agent setup, skills folders,
+  junctions/symlinks, global memory, voice dictation, installing skills, Cmder hub
+  configs, regenerating the environment, or the L8/Kun-style harness — even if they
+  only say "where are my skills" or "how do I add a skill." Prefer this over inventing
+  a new skills layout.
 ---
 
 # Agentic Harness (dev-hub)
@@ -26,9 +28,12 @@ Captain + crew model (Kun Chen L8 workflow), adapted for Windows + Cursor. Detai
 | Paths, junctions, hard links, Developer Mode | `references/layout-and-linking.md` |
 | OpenWhispr install / hotkey / local models | `references/voice-openwhispr.md` |
 | npx skills commands, security policy, hub skill list | `references/skills-policy.md` |
-| Phase 2 backlog (lavish, gnhf, treehouse, firstmate, Go no-mistakes) | `references/phase2-backlog.md` |
+| Phase 2+ backlog (lavish, quota, treehouse, firstmate, …) | `references/phase2-backlog.md` |
+| Cost / cache / retrieval / model phases | Skill `context-engineering` |
+| Parallel agents / Firstmate-on-Cursor | Skill `captain-crew` |
 | Pre-ship soft gate (Cursor) | Skill `no-mistakes` |
 | Deletes / wipes / force-push | Skill `destructive-actions` |
+| Reproducible hub / regenerate checklist | `references/reproducibility.md` |
 | GitHub account, clone/commit/push habits | `references/github-dhelman999.md` |
 | Public README / description conventions | `references/github-public-polish.md` |
 
@@ -49,6 +54,10 @@ Captain + crew model (Kun Chen L8 workflow), adapted for Windows + Cursor. Detai
 ## Privacy
 
 Never commit passwords, tokens, claim IDs, financials, medical data, or home/vehicle PII into public `dev-hub`. See `docs\PERSONAL-HUB.md`.
+
+## Reproducibility (hard rule)
+
+Any change to the machine/agent harness must be hub-backed so `bootstrap` / `rebuild` can regenerate it. Checklist: `references/reproducibility.md`.
 
 ## Quick facts
 

@@ -175,6 +175,18 @@ function Link-Agent {
             Write-Host "Copied Cursor rule -> $dst"
         }
     }
+
+    $cmdSrcDir = Join-Path $HubRoot 'dotfiles\cursor\commands'
+    $cmdDstDir = Join-Path $env:USERPROFILE '.cursor\commands'
+    if (Test-Path -LiteralPath $cmdSrcDir) {
+        Write-Step 'Cursor slash commands'
+        Ensure-Dir $cmdDstDir
+        Get-ChildItem -LiteralPath $cmdSrcDir -File -Filter '*.md' | ForEach-Object {
+            $dst = Join-Path $cmdDstDir $_.Name
+            Copy-Item -LiteralPath $_.FullName -Destination $dst -Force
+            Write-Host "Copied Cursor command -> $dst"
+        }
+    }
 }
 
 function Link-Dev {

@@ -52,6 +52,10 @@ Routine file edits, refactors, new files, installs the user requested, and norma
 
 That includes editing **skills**, **AGENTS.md**, **Cursor rules**, and other `C:\Projects\dev-hub` config when the request implies updating conventions or workflow. Those are ordinary file edits - not "ask first," and not special-cased beyond Auto-review product cards.
 
+## Reproducible harness
+
+Whenever a change affects the **dev environment**, **agent harness**, or **agentic engineering** setup: land it in `C:\Projects\dev-hub` (skills / `dotfiles\` / `machine\` / docs) and update apply scripts (`rebuild`, `link`, `Ensure-*`, `packages.yaml`) so another machine can regenerate. Do not leave machine-only one-offs. See skill **`agentic-harness`**.
+
 ## Execution style
 
 - Investigate and run commands yourself
@@ -66,3 +70,4 @@ That includes editing **skills**, **AGENTS.md**, **Cursor rules**, and other `C:
 | Compiling `java-interview-drills` (`C:\Projects\java-interview-drills`) | `references/testcode-compile.md` — never bare `javac` from `src/` |
 | Validate before push/PR | Skill `no-mistakes` (soft gate; default-on unless user says skip no-mistakes) |
 | Deletes / wipes / force-push / history rewrite | Skill `destructive-actions` (tiers A/B/C; Tier C phrase required) |
+| Hub / regenerate / environment changes | Skill `agentic-harness` (reproducibility checklist) |
