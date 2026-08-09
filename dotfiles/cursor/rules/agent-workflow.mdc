@@ -24,7 +24,7 @@ Follow skill **`context-engineering`** when cost, tokens, caching, or model choi
 
 When the user wants multiple agents or Firstmate-like orchestration, follow skill **`captain-crew`** (Cursor Plan / multitask / Task tool). Do not install full Firstmate unless they explicitly leave Cursor as the primary harness.
 
-Visual HTML annotate loops: follow skill **`lavish`** (`npx -y lavish-axi`). Prefer Lavish for click-to-comment plans/mocks; use Cursor Canvas for analytical chat artifacts.
+Visual HTML annotate loops: follow skill **`lavish`** (`npx -y lavish-axi`). Prefer Lavish for click-to-comment plans/mocks; use Cursor Canvas for analytical chat artifacts. Cursor quota meters: skill **`usage-canvas`** or `/usage` (`npx -y quota-axi --provider cursor --json`).
 
 ## Reproducible harness (required)
 

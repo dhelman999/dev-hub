@@ -28,6 +28,7 @@ Canonical directory: `C:\Projects\dev-hub\agent\skills`
 - `context-engineering` (cost / cache / retrieval / phase routing)
 - `captain-crew` (Cursor-native parallel captain/crew)
 - `lavish` (HTML annotate review via lavish-axi; upstream kunchenguid)
+- `usage-canvas` (Cursor quota meters via quota-axi + `/usage`)
 - `skills` (human `/skills` or `/list` — one-line catalog)
 - `no-mistakes` (Cursor soft gate; Go binary still deferred)
 - `destructive-actions` (delete/wipe/force-push permission tiers)

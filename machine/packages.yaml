@@ -12,6 +12,8 @@ dev:
       location: C:\Programs\Notepad++
     - id: JesseDuffield.lazygit
       optional: true
+    - id: SQLite.SQLite
+      notes: sqlite3 CLI; required for quota-axi Cursor provider (state.vscdb read)
   scoop:
     - name: ripgrep
     - name: fd
@@ -34,5 +36,10 @@ agent:
       notes: Soft check via Ensure-OpenWhispr.ps1; manual install if missing (OPENWHISPR-SETUP.md)
     - name: lavish-axi
       notes: Soft check via Ensure-Lavish.ps1; skill agent/skills/lavish; runtime npx -y lavish-axi (Node required)
+    - name: quota-axi
+      notes: Soft check via Ensure-QuotaAxi.ps1; skill usage-canvas; runtime npx -y quota-axi (Node + sqlite3 for Cursor)
     - name: Cursor
       notes: AI harness / agent UI; settings + rules applied from dotfiles/cursor when Cursor is present
+  winget:
+    - id: SQLite.SQLite
+      notes: Also listed under dev; Agent Ensure-QuotaAxi soft-installs if missing

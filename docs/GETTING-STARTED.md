@@ -71,16 +71,23 @@ Details: [PERSONAL-HUB.md](PERSONAL-HUB.md).
 | Context / cost playbook | skill `context-engineering` | Live under `agent\skills\` |
 | Parallel captain/crew | skill `captain-crew` | Live; full Firstmate deferred |
 | Interactive HTML review (Lavish) | skill `lavish` + `npx -y lavish-axi` | Soft-checked by `Ensure-Lavish.ps1` on Agent rebuild |
+| Cursor usage canvas | skill `usage-canvas` + `/usage` | Soft-checked by `Ensure-QuotaAxi.ps1`; needs Node + sqlite3 |
 | Cmder look / aliases | tweak live Cmder, then `Capture-Cmder.ps1` | Commit `dotfiles\cmder` |
 | Cursor always-on rules | `dotfiles\cursor\rules\` | `rebuild -Target Agent -SkipPackages` |
-| Cursor slash commands (`/skills`, `/list`) | `dotfiles\cursor\commands\` | same Agent rebuild; also skill `skills` |
+| Cursor slash commands (`/skills`, `/list`, `/usage`) | `dotfiles\cursor\commands\` | same Agent rebuild; also skill `skills` |
 
 ### Lavish vs Cursor Canvas
 
 | Surface | Use for |
 |---------|---------|
 | **Lavish** | Plans, UX mocks, comparisons you want to **click/annotate** and send feedback to the agent (`npx -y lavish-axi`) |
-| **Cursor Canvas** | Analytical chat artifacts (tables, inventories, dashboards beside the thread) - not a click-to-comment product loop |
+| **Cursor Canvas** | Analytical chat artifacts (tables, inventories, **usage dashboard**) beside the thread - not a click-to-comment product loop |
+
+### Usage canvas (Phase 2)
+
+- Live meters: `/usage` or skill `usage-canvas` → `npx -y quota-axi --provider cursor --json` → `cursor-usage.canvas.tsx` in the workspace canvases folder
+- Opens as an **editor tab** beside Agents (close tab to hide). Not dockable above/below the chat input.
+- Content: three **stacked** bars (included / auto / API). No fake dollar costs.
 
 ## After editing skills or AGENTS.md
 

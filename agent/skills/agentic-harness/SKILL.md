@@ -4,8 +4,8 @@ description: >-
   David Helman's agentic engineering hub on Windows: C:\Projects\dev-hub layout,
   Dev/Agent rebuild targets, shared AGENTS.md memory, OpenWhispr voice, npx skills
   install policy, reproducibility (hub + scripts for wipe/regenerate), context-engineering /
-  captain-crew skills, and Phase 2+ backlog (lavish, quota-axi, treehouse, firstmate,
-  gnhf, Go no-mistakes). Use when the user asks about agent setup, skills folders,
+  captain-crew skills, and Phase 2+ backlog (lavish live, quota-axi/usage-canvas live,
+  treehouse, firstmate, gnhf, Go no-mistakes). Use when the user asks about agent setup, skills folders,
   junctions/symlinks, global memory, voice dictation, installing skills, Cmder hub
   configs, regenerating the environment, or the L8/Kun-style harness — even if they
   only say "where are my skills" or "how do I add a skill." Prefer this over inventing
@@ -29,6 +29,7 @@ Captain + crew model (Kun Chen L8 workflow), adapted for Windows + Cursor. Detai
 | OpenWhispr install / hotkey / local models | `references/voice-openwhispr.md` |
 | npx skills commands, security policy, hub skill list | `references/skills-policy.md` |
 | Phase 2+ backlog (lavish, quota, treehouse, firstmate, …) | `references/phase2-backlog.md` |
+| Cursor usage / quota canvas | Skill `usage-canvas` (`/usage`) |
 | Cost / cache / retrieval / model phases | Skill `context-engineering` |
 | Parallel agents / Firstmate-on-Cursor | Skill `captain-crew` |
 | Pre-ship soft gate (Cursor) | Skill `no-mistakes` |
