@@ -215,6 +215,7 @@ function Invoke-Agent {
     & (Join-Path $PSScriptRoot 'Ensure-OpenWhispr.ps1') -HubRoot $HubRoot
     & (Join-Path $PSScriptRoot 'Ensure-Lavish.ps1') -HubRoot $HubRoot
     & (Join-Path $PSScriptRoot 'Ensure-QuotaAxi.ps1') -HubRoot $HubRoot
+    & (Join-Path $PSScriptRoot 'Ensure-Treehouse.ps1') -HubRoot $HubRoot
     & (Join-Path $PSScriptRoot 'link.ps1') -Target Agent -HubRoot $HubRoot -PersonalHubRoot $PersonalHubRoot
 }
 

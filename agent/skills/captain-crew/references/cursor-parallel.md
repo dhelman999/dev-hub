@@ -70,14 +70,14 @@ There is **no separate Cursor mode toggle** named “captain.” The skill is a 
 | **Build in Parallel** | Optional plan-card button only; may be absent — not required |
 | **Task tool / subagents** | Parent spawns explore/shell/general workers; results return to parent |
 | **Agents Window** | Sidebar to manage parent + any surfaced parallel/cloud agents |
-| **Worktrees** (Cursor / later treehouse) | File isolation when two writers would collide |
+| **Worktrees** (Cursor / **treehouse**) | File isolation when two writers would collide — `treehouse get --lease` (see `treehouse-lease.md`) |
 
 ## Dispatch tips
 
 - One crewmate = one clear outcome + path scope.
 - Prefer **read-only explore** crewmates before many writers.
-- Avoid two writers on the same file without isolation.
-- When treehouse is installed (Phase 3), lease a worktree per writer.
+- Avoid two writers on the same file without isolation **or** serialization.
+- **Treehouse only when needed:** lease a worktree per colliding writer (`treehouse-lease.md`). Do not lease by default for every crewmate.
 - **Default non-blocking:** background/async crew unless the captain says wait/block or a step depends on another crew result (see `SKILL.md` → Blocking default).
 
 ## Reporting

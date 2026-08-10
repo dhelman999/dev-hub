@@ -26,6 +26,7 @@
 | Lavish CLI | `npx -y lavish-axi` (Node) | Soft-checked by `Ensure-Lavish.ps1`; skill in `agent\skills\lavish` |
 | quota-axi | `npx -y quota-axi` (Node) | Soft-checked by `Ensure-QuotaAxi.ps1`; skill `usage-canvas` |
 | sqlite3 | WinGet `SQLite.SQLite` | Required for Cursor quota via quota-axi |
+| treehouse | `%LOCALAPPDATA%\treehouse\treehouse.exe` | Soft-installed by `Ensure-Treehouse.ps1`; pool under `~\.treehouse\` |
 | Cursor | Typical user install under Local AppData / Program Files | Vendor installer |
 | IntelliJ / Toolbox | Often Program Files or Toolbox-managed paths | JetBrains layout |
 

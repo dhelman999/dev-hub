@@ -31,13 +31,13 @@ This is the Windows/Cursor substitute for [firstmate](https://github.com/kunchen
 | Single coherent change, shared context | Solo parent agent |
 | Independent workstreams (unrelated fixes, scout + implement) | Crew / parallel (Agent + ask, or Multitask) |
 | Long plan with independent steps | Plan first; then Multitask / `/multitask`, or plan-card **Build in Parallel** *if shown* |
-| Conflicting edits on same files | Serialize, or isolate with worktrees (treehouse — Phase 3) |
+| Conflicting edits on same files | **Only then** isolate with treehouse leases (`references/treehouse-lease.md`), or serialize. Default: **no** lease — see treehouse-lease “When to lease”. |
 
 ## Captain loop
 
 1. **Intake** — clarify outcome; if large/ambiguous, switch to Plan mode.
 2. **Decompose** — list crew tasks with non-overlapping ownership when possible.
-3. **Dispatch** — spawn parallel subagents (Task tool; Multitask / `/multitask` when the product should fan out). Give each a crisp goal, repo path, and done definition. Prefer **background / async** so this chat stays free (see Blocking default below).
+3. **Dispatch** — spawn parallel subagents (Task tool; Multitask / `/multitask` when the product should fan out). Give each a crisp goal, repo path, and done definition. Prefer **background / async** so this chat stays free (see Blocking default below). **Treehouse:** default is the main checkout. Lease a worktree per writer **only** when two+ writers may collide on the same files (`references/treehouse-lease.md`). Do not lease explore/read-only crew or non-overlapping writers.
 4. **Supervise** — wait or poll only as needed; do not spam the captain with noise.
 5. **Reconcile** — merge findings into a short briefing: what shipped, what failed, what needs a decision.
 6. **Escalate** — only real decisions (product tradeoffs, Tier B/C destruction, secrets/PII). Follow `destructive-actions` and `no-mistakes` as usual.
@@ -79,8 +79,9 @@ Follow skill `context-engineering`: stable model for the captain phase; cheaper 
 
 ## Related
 
-- Hub / Phase 2 status: skill `agentic-harness` → `references/phase2-backlog.md`
-- Parallel isolation later: treehouse (Phase 3)
+- Hub / Phase status: skill `agentic-harness` → `references/phase2-backlog.md`
+- Parallel file isolation: **treehouse** — `references/treehouse-lease.md` (Phase 3 — live)
 - Visual feedback: skill `lavish` (Phase 1 — live)
+- Usage meters: skill `usage-canvas` / `/usage` (Phase 2 — live)
 
 More detail: `references/cursor-parallel.md`.

@@ -28,6 +28,14 @@ gate, not light mid-task/commit auto-reviews. Do not suggest enabling it.
 destructive plan scan** before long checks; Tier B/C must clear up front. Gate
 green never authorizes Tier C (`yes authorize permanent deletion` still required).
 
+**Security review (planned, not implemented):** optional step, **default OFF**.
+When implemented: run only on **risk heuristics** (auth/crypto/network/secrets/
+permissions/PII stores) or **explicit user ask**; allow `skip security review`.
+Do not enable for every drill/hub ship. Full policy: plan
+`context_and_phase2` → Optional later → Security scan policy. Until then, use
+`/review-security` manually when needed; secrets/PII remain ask-you in the
+normal diff review.
+
 ## Announce (required)
 
 First user-visible line when the skill runs:

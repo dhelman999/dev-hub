@@ -72,6 +72,7 @@ Details: [PERSONAL-HUB.md](PERSONAL-HUB.md).
 | Parallel captain/crew | skill `captain-crew` | Live; full Firstmate deferred |
 | Interactive HTML review (Lavish) | skill `lavish` + `npx -y lavish-axi` | Soft-checked by `Ensure-Lavish.ps1` on Agent rebuild |
 | Cursor usage canvas | skill `usage-canvas` + `/usage` | Soft-checked by `Ensure-QuotaAxi.ps1`; needs Node + sqlite3 |
+| Parallel worktrees (treehouse) | `treehouse get --lease` | Soft-installed by `Ensure-Treehouse.ps1`; playbook in captain-crew |
 | Cmder look / aliases | tweak live Cmder, then `Capture-Cmder.ps1` | Commit `dotfiles\cmder` |
 | Cursor always-on rules | `dotfiles\cursor\rules\` | `rebuild -Target Agent -SkipPackages` |
 | Cursor slash commands (`/skills`, `/list`, `/usage`) | `dotfiles\cursor\commands\` | same Agent rebuild; also skill `skills` |

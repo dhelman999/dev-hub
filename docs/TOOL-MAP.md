@@ -29,7 +29,7 @@ Workflow writeup: https://blog.bytebytego.com/p/an-ex-meta-l8s-agentic-engineeri
 | firstmate (captain + crew) | Skill `captain-crew` on Cursor (**live**); full Firstmate distro deferred |
 | lavish-axi | Skill `lavish` + `Ensure-Lavish.ps1` (**live**); runtime `npx -y lavish-axi` |
 | quota-axi / usage canvas | Skill `usage-canvas` + `/usage` + `Ensure-QuotaAxi.ps1` (**live**); needs sqlite3 for Cursor |
-| treehouse | Phase 3 — not installed yet |
+| treehouse | `Ensure-Treehouse.ps1` (**live**); captain-crew leases; `%LOCALAPPDATA%\treehouse` |
 | no-mistakes | Soft gate skill **live**; Go binary deferred |
 | gnhf | Phase 4 — deferred |
 | AXI principles | https://axi.md — adopt with tools in later phases |

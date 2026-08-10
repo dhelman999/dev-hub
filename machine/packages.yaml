@@ -38,6 +38,9 @@ agent:
       notes: Soft check via Ensure-Lavish.ps1; skill agent/skills/lavish; runtime npx -y lavish-axi (Node required)
     - name: quota-axi
       notes: Soft check via Ensure-QuotaAxi.ps1; skill usage-canvas; runtime npx -y quota-axi (Node + sqlite3 for Cursor)
+    - name: treehouse
+      path: '%LOCALAPPDATA%\treehouse\treehouse.exe'
+      notes: Soft install via Ensure-Treehouse.ps1 (official Windows zip); captain-crew worktree leases
     - name: Cursor
       notes: AI harness / agent UI; settings + rules applied from dotfiles/cursor when Cursor is present
   winget:
