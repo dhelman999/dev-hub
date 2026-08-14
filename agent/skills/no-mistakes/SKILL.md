@@ -106,3 +106,4 @@ implementation context) — see soft-gate §5. Default model:
 | auto-fix vs ask-you vs no-op | `references/finding-classes.md` |
 | Deletes / wipes / force-push / history rewrite | Skill `destructive-actions` |
 | Kun binary install later | `references/upstream-tool.md` |
+| Gate diagram (REVIEW zoom) | `C:\Projects\dev-hub\docs\diagrams\no-mistakes-soft-gate.excalidraw` |

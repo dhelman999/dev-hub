@@ -78,6 +78,7 @@ Details: [PERSONAL-HUB.md](PERSONAL-HUB.md).
 | Cursor always-on rules | `dotfiles\cursor\rules\` | `rebuild -Target Agent -SkipPackages` |
 | Cursor slash commands (`/skills`, `/list`, `/usage`, `/production-planning`, `/prd`, `/spec`, `/tickets`, `/prime`, `/validation-tdd`) | `dotfiles\cursor\commands\` | same Agent rebuild; also skill `skills` |
 | Production planning (opt-in) | skills `prd`, `spec`, `slice-tickets`, `prime`, `validation-tdd`, `production-planning` | Explicit invoke only; default is solo Plan → implement → no-mistakes |
+| Harness Excalidraw (two-loop, no-mistakes) | `docs\diagrams\` | Public; work/interview boards stay in `dev-hub-personal\diagrams\` |
 
 ### Lavish vs Cursor Canvas
 

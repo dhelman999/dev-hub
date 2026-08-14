@@ -67,6 +67,7 @@ or `.\machine\Apply-Cmder.ps1 -SkipAutostart` after removing the shortcut.
 | [docs/PATHS.md](docs/PATHS.md) | Path conventions and known exceptions |
 | [docs/TOOL-MAP.md](docs/TOOL-MAP.md) | Kun / macOS map → this hub |
 | [docs/PERSONAL-HUB.md](docs/PERSONAL-HUB.md) | Private `dev-hub-personal` companion |
+| [docs/diagrams/](docs/diagrams/README.md) | Harness Excalidraw (two-loop, no-mistakes gate) |
 
 ## Credits
 

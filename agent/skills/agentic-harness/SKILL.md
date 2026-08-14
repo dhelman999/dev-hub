@@ -36,6 +36,7 @@ Captain + crew model (Kun Chen L8 workflow), adapted for Windows + Cursor. Detai
 | Parallel agents / Firstmate-on-Cursor | Skill `captain-crew` |
 | Pre-ship soft gate (Cursor) | Skill `no-mistakes` |
 | Production planning (opt-in PRD/spec/tickets) | Skills `production-planning`, `prd`, `spec`, `slice-tickets`, `prime`, `validation-tdd` (`/production-planning`) |
+| Harness diagrams (two-loop, no-mistakes) | `docs/diagrams/` |
 | Deletes / wipes / force-push | Skill `destructive-actions` |
 | Reproducible hub / regenerate checklist | `references/reproducibility.md` |
 | GitHub account, clone/commit/push habits | `references/github-dhelman999.md` |

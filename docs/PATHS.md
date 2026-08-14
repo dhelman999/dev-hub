@@ -7,7 +7,7 @@
 | `C:\Programs` | User/custom **dev tools** and portable apps (not games; not forced OS installs) |
 | `C:\Projects` | All **git clones / project repos** |
 | `C:\Projects\dev-hub` | Public hub (machine + shared agent layers) |
-| `C:\Projects\dev-hub-personal` | Optional **private** personal skills (PII); may be absent |
+| `C:\Projects\dev-hub-personal` | Optional **private** personal skills (PII) and work/interview/personal diagrams; may be absent |
 
 ## Rules for agents
 

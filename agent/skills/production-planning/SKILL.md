@@ -39,3 +39,5 @@ Stop after tickets unless they explicitly asked to implement.
 ## After tickets exist
 
 Paths, ticket count, dependency waves. Next opt-in: `/prime` and `/validation-tdd` on a ticket, then implement. Ship with `no-mistakes`. Optional: skill `lavish` on the spec.
+
+Diagram: `C:\Projects\dev-hub\docs\diagrams\production-two-loop.excalidraw` (REVIEW zoom: `no-mistakes-soft-gate.excalidraw`).
