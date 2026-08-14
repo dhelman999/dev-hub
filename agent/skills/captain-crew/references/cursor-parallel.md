@@ -44,6 +44,17 @@ Captain/crew is a **skill**, not a Cursor mode toggle.
 
 **Captain-crew design goal:** you talk to **one** chat; the mate dispatches crew and gives a short briefing. You *can* open a crew entry to peek, but you should not *have* to.
 
+**Honest spinner (Cursor 2026):** the Agents Window spinner is on the **parent session** (this first-mate chat is generating). Nested Task crewmates usually do **not** get their own sidebar rows or a “3 running” badge. When crew is backgrounded and the parent goes idle, **that parent spinner stops** even though worktrees/subagents are still going. So the sidebar is a weak in-progress signal — fine as a peek, not the source of truth.
+
+| You want to know | Use |
+|------------------|-----|
+| How many crewmates, doing what? | The **launch ping** in this chat (then silence) |
+| What each one shipped | The **finish briefing** (per-crewmate status + summary) |
+| Mid-flight check | Ask the first mate; they peek once and stop again |
+| Extra detail / transcripts | Ask, or open Agents Window nested/related entries *if* Cursor surfaced them |
+
+Do not poll on a timer to fake a spinner (token burn, no extra signal). Do not promise Kun Firstmate tmux panes or `/calm`.
+
 This is **not** Kun Firstmate (each crewmate in its own tmux/herdr window by default).
 
 ## First-mate session vs solo — how it starts
@@ -82,4 +93,6 @@ There is **no separate Cursor mode toggle** named “captain.” The skill is a 
 
 ## Reporting
 
-Summarize diffs and decisions. Link PR URLs or file paths. Do not require the captain to open every crew transcript.
+1. **Launch ping, then stop** — count + one line per crewmate. Do not keep chatting.
+2. **Finish briefing** — per-crewmate outcome; that is the summary. Link paths/PRs.
+3. Extra transcripts only if asked. The captain can also peek in the Agents Window.
