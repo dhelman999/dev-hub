@@ -14,6 +14,7 @@ Document only for deferred installs — Phase 0–3 items below marked **Live** 
 | gnhf | Phase 4 — deferred | Overnight long-running loops / batch lane |
 | WezTerm / tmux / Neovim | Rejected for this machine | Cmder + IntelliJ + Notepad++ instead |
 | Claude Design (claude.ai/design) | Optional manual | Design-system studio outside Cursor; not in rebuild |
+| production-planning (PRD/spec/tickets/prime/TDD) | **Live** (opt-in) | Explicit invoke only (`/production-planning`, `/prd`, `/spec`, `/tickets`, `/prime`, `/validation-tdd`); default remains solo Plan → implement → no-mistakes |
 | Quality-gate deepeners | Optional later | Solo/drills vs prod/OSS bars; CI wait; security scan off-by-default + risk/ask; mid-task smoke; Sonar/Go binary deferred — plan `context_and_phase2` |
 | Upstream CLI vendor/pin | Optional later | Backup if kunchenguid/npm goes dark: pin lavish-axi, quota-axi, treehouse; soft no-mistakes already hub-local |
 

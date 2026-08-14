@@ -31,6 +31,14 @@ Also: do **not** ask whether to commit/push unless the user already asked for th
 
 Before push/PR after agent work, apply skill **`no-mistakes`** (soft gate) unless the user said **skip no-mistakes** / **bypass gate**.
 
+## Solo vs production planning
+
+**Default is the solo lane:** Plan or Agent → implement → **no-mistakes**. Do **not** volunteer a PRD / spec / ticket chain because the work looks large. Interview drills, hub tweaks, and one-person features stay on that loop.
+
+The production-planning skills (`prd`, `spec`, `slice-tickets`, `prime`, `validation-tdd`, orchestrator `production-planning`) are **explicit-invoke only** (`disable-model-invocation`). Run them only for `/production-planning`, `/prd`, `/spec`, `/tickets`, `/prime`, `/validation-tdd`, or clear phrases: “production planning,” “sprint plan,” “write a PRD,” “slice this epic,” “team planning.”
+
+When those skills **are** invoked: follow **`prd` GATE phases** (stop the turn after each question cluster). Do not write PRD/spec/tickets from agent assumptions. After they accept a stage, **offer** the next skill; do not auto-pipeline. “Prefer a sensible default” applies to solo implementation, not to product intent or architecture calls.
+
 ## Commits and PRs
 
 - **Never** add `Co-authored-by: Cursor <cursoragent@cursor.com>` (or any Cursor/agent co-author trailer). See skill `java-coding-style` → Helman engineering conventions.
@@ -71,3 +79,4 @@ Whenever a change affects the **dev environment**, **agent harness**, or **agent
 | Validate before push/PR | Skill `no-mistakes` (soft gate; default-on unless user says skip no-mistakes) |
 | Deletes / wipes / force-push / history rewrite | Skill `destructive-actions` (tiers A/B/C; Tier C phrase required) |
 | Hub / regenerate / environment changes | Skill `agentic-harness` (reproducibility checklist) |
+| Production planning (PRD/spec/tickets, opt-in) | `/production-planning` or skills `prd`, `spec`, `slice-tickets`, `prime`, `validation-tdd` |

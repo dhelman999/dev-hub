@@ -75,7 +75,8 @@ Details: [PERSONAL-HUB.md](PERSONAL-HUB.md).
 | Parallel worktrees (treehouse) | `treehouse get --lease` | Soft-installed by `Ensure-Treehouse.ps1`; playbook in captain-crew |
 | Cmder look / aliases | tweak live Cmder, then `Capture-Cmder.ps1` | Commit `dotfiles\cmder` |
 | Cursor always-on rules | `dotfiles\cursor\rules\` | `rebuild -Target Agent -SkipPackages` |
-| Cursor slash commands (`/skills`, `/list`, `/usage`) | `dotfiles\cursor\commands\` | same Agent rebuild; also skill `skills` |
+| Cursor slash commands (`/skills`, `/list`, `/usage`, `/production-planning`, `/prd`, `/spec`, `/tickets`, `/prime`, `/validation-tdd`) | `dotfiles\cursor\commands\` | same Agent rebuild; also skill `skills` |
+| Production planning (opt-in) | skills `prd`, `spec`, `slice-tickets`, `prime`, `validation-tdd`, `production-planning` | Explicit invoke only; default is solo Plan → implement → no-mistakes |
 
 ### Lavish vs Cursor Canvas
 

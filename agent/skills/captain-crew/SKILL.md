@@ -70,12 +70,17 @@ No paste of full subagent transcripts unless asked.
 
 Follow skill `context-engineering`: stable model for the captain phase; cheaper models for explore/implement crew when appropriate. Do not thrash models mid-phase.
 
+## Tickets vs ad-hoc decompose
+
+When the captain already has production-planning tickets (`/production-planning` or `/tickets`), use those as crew task boundaries. Do **not** invent a PRD or ticket files in the middle of ordinary solo work; captain-crew decompose-in-chat is enough there.
+
 ## What this is not
 
 - Not Firstmate’s event-driven bash watcher or secondmates.
 - Not Lavish (HTML annotate UI) — that is skill **`lavish`** (`npx -y lavish-axi`).
 - Not a replacement for `no-mistakes` at ship time.
 - Not “you must pick Multitask in the mode picker” — that is optional product parallel.
+- Not an auto-PRD factory — durable tickets come from opt-in **`production-planning`**.
 
 ## Related
 
@@ -83,5 +88,6 @@ Follow skill `context-engineering`: stable model for the captain phase; cheaper 
 - Parallel file isolation: **treehouse** — `references/treehouse-lease.md` (Phase 3 — live)
 - Visual feedback: skill `lavish` (Phase 1 — live)
 - Usage meters: skill `usage-canvas` / `/usage` (Phase 2 — live)
+- Production planning tickets: skill `production-planning` / `/tickets` (opt-in; not the solo default)
 
 More detail: `references/cursor-parallel.md`.

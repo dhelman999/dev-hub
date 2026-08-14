@@ -33,6 +33,8 @@ Canonical directory: `C:\Projects\dev-hub\agent\skills`
 - `no-mistakes` (Cursor soft gate; Go binary still deferred)
 - `destructive-actions` (delete/wipe/force-push permission tiers)
 - `skill-creator` (upstream; do not rewrite casually)
+- `production-planning` (opt-in orchestrator: PRD → spec → tickets; `/production-planning`)
+- `prd`, `spec`, `slice-tickets`, `prime`, `validation-tdd` (standalone; explicit invoke / slash only)
 
 ## Personal skills (private companion)
 

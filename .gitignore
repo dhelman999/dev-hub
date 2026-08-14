@@ -29,6 +29,9 @@ downloads/
 *.bak
 .local/
 
+# Lavish review sessions (scratch; committed smoke pages live under agent/skills/lavish/)
+.lavish/
+
 # Optional personal skill junctions (content lives only in private dev-hub-personal).
 # Git on Windows follows junctions, so these names must stay ignored.
 agent/skills/sc-unemployment-help/
