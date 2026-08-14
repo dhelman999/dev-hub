@@ -20,6 +20,8 @@ Follow skill **`context-engineering`** when cost, tokens, caching, or model choi
 - Keep retrieval narrow (targeted search/read, not dumping the repo)
 - Keep global memory short; put procedures in skills
 
+Follow skill **`grounding`** when a claim might come from training data: look up repo/hub/official docs if risk is high or a wrong answer would lock a design. If docs cannot be found, state the assumption and continue (not a hard gate).
+
 ## Solo vs production planning
 
 **Default is the solo lane:** Cursor Plan or Agent → implement → **no-mistakes**. Do **not** start a PRD, spec, slice-tickets, prime, or validation-tdd interview because a task looks large or “like a feature.” Interview drills, hub tweaks, and one-person work stay on that loop.

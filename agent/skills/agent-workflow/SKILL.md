@@ -79,4 +79,5 @@ Whenever a change affects the **dev environment**, **agent harness**, or **agent
 | Validate before push/PR | Skill `no-mistakes` (soft gate; default-on unless user says skip no-mistakes) |
 | Deletes / wipes / force-push / history rewrite | Skill `destructive-actions` (tiers A/B/C; Tier C phrase required) |
 | Hub / regenerate / environment changes | Skill `agentic-harness` (reproducibility checklist) |
+| High-risk / design-locking claims from memory | Skill `grounding` (RAG or assumption trail; not a hard gate) |
 | Production planning (PRD/spec/tickets, opt-in) | `/production-planning` or skills `prd`, `spec`, `slice-tickets`, `prime`, `validation-tdd` |

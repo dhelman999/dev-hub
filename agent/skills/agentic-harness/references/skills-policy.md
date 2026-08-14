@@ -26,6 +26,7 @@ Canonical directory: `C:\Projects\dev-hub\agent\skills`
 - `java-coding-style`
 - `agentic-harness`
 - `context-engineering` (cost / cache / retrieval / phase routing)
+- `grounding` (risk-based RAG / assumption trail; not a hard gate)
 - `captain-crew` (Cursor-native parallel captain/crew)
 - `lavish` (HTML annotate review via lavish-axi; upstream kunchenguid)
 - `usage-canvas` (Cursor quota meters via quota-axi + `/usage`)

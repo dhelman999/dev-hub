@@ -5,6 +5,7 @@ Document only for deferred installs — Phase 0–3 items below marked **Live** 
 | Tool / lane | Status | Why |
 |-------------|--------|-----|
 | context-engineering (skill) | **Live** | Cost/cache/retrieval playbook |
+| grounding (skill) | **Live** | Risk-based RAG; assumption trail if unverified |
 | captain-crew (skill) | **Live** | Cursor-native Firstmate bridge |
 | lavish / lavish-axi | **Live** (Phase 1) | Interactive HTML annotate + agent feedback; `Ensure-Lavish.ps1` |
 | quota-axi + usage canvas | **Live** (Phase 2) | `Ensure-QuotaAxi.ps1`, skill `usage-canvas`, `/usage`; editor-tab canvas, stacked meters |

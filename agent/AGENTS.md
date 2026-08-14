@@ -42,6 +42,7 @@ Never commit passwords, tokens, claim IDs, financial figures, medical data, home
 - Default Agent-mode execution style: skill `agent-workflow`.
 - Production planning (opt-in PRD/spec/tickets/TDD): `/production-planning` or `/prd` `/spec` `/tickets` `/prime` `/validation-tdd`. GATE interview; offer the next skill; do not write the chain from assumptions. Default is solo Plan → implement → no-mistakes; do not volunteer the chain.
 - Cost / context / model phases: skill `context-engineering`.
+- High-risk or design-locking claims: skill `grounding` (look up or state the assumption; not a hard gate).
 - Parallel agents (Cursor captain/crew): skill `captain-crew`.
 - Skill catalog reminder: `/skills` or `/list` (skill `skills`).
 - Java formatting / compile conventions: skill `java-coding-style`.

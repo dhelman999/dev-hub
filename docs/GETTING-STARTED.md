@@ -69,6 +69,7 @@ Details: [PERSONAL-HUB.md](PERSONAL-HUB.md).
 | Public skill or `AGENTS.md` | `dev-hub\agent\` | Usually live via junctions/hardlinks; re-run Agent apply if links were never created |
 | Personal / PII skill | `dev-hub-personal\skills\<name>\` | Live via junction; re-run Agent apply only when **adding a new skill folder** |
 | Context / cost playbook | skill `context-engineering` | Live under `agent\skills\` |
+| Risk-based RAG / assumptions | skill `grounding` | Live under `agent\skills\` |
 | Parallel captain/crew | skill `captain-crew` | Live; full Firstmate deferred |
 | Interactive HTML review (Lavish) | skill `lavish` + `npx -y lavish-axi` | Soft-checked by `Ensure-Lavish.ps1` on Agent rebuild |
 | Cursor usage canvas | skill `usage-canvas` + `/usage` | Soft-checked by `Ensure-QuotaAxi.ps1`; needs Node + sqlite3 |

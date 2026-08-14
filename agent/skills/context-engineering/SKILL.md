@@ -65,6 +65,8 @@ Default posture: **narrow then widen**.
 
 Anti-patterns: whole-repo `@` dumps, reading every matcher “just in case,” expanding archives into chat.
 
+**When** to retrieve at all is skill **`grounding`** (risk-based RAG, assumption trail if docs are missing). This section is **how narrow** once you have decided to look.
+
 ## Usage visibility (not fake $/task)
 
 **(Cursor Pro+)** Exact cost-per-solved-task is usually unavailable. Prefer:
