@@ -3,8 +3,8 @@
 .SYNOPSIS
   Apply Dev and/or Agent layers from this hub.
 .PARAMETER Target
-  Dev = packages notes + Cmder/dotfiles
-  Agent = skills/memory/Cursor links
+  Dev = machine/terminal: packages, Cmder, font, PowerShell profile
+  Agent = AI playbooks: skills/memory/Cursor links (not a second IDE)
   All = Dev then Agent
 .PARAMETER SkipPackages
   Skip winget/scoop ensure (links only)

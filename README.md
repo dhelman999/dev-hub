@@ -4,11 +4,17 @@ Reproducible Windows development + agentic engineering hub for [dhelman999](http
 
 One public repo, two apply **layers** (plus `All`):
 
-| Target | What it does |
-|--------|----------------|
-| **Dev** | winget/scoop packages, Cmder install + Clink update + configs, Hack Nerd Font, classic context menu, Startup shortcut, PowerShell profile |
-| **Agent** | Skills junctions, `AGENTS.md` hardlinks, optional personal skills, Cursor settings/rules, soft OpenWhispr check |
-| **All** | Dev then Agent (default) |
+| Target | Harness | What it does |
+|--------|---------|----------------|
+| **Dev** | Machine / terminal | winget/scoop packages, Cmder install + Clink update + configs, Hack Nerd Font, classic context menu, Startup shortcut, PowerShell profile |
+| **Agent** | AI playbooks | Skills junctions, `AGENTS.md` hardlinks, optional personal skills, Cursor settings/rules/commands, soft OpenWhispr check |
+| **All** | Both | Dev then Agent (default) |
+
+**Dev harness** regenerates this Windows machine from scripts (`C:\Programs` tools, `C:\Projects` repos, Cmder, packages). Wipe and `rebuild` should get you back.
+
+**Agent harness** is not a second IDE and not Kun Firstmate’s tmux distro. It is the skill + memory layer so Cursor (and Claude Code, if linked) follow the same playbooks: default **solo** Plan or Agent → implement → **no-mistakes** before push. Parallel work uses **captain-crew** on Cursor. PRD / spec / tickets (`/production-planning`) are **opt-in**, not the default. High-risk claims use **grounding** (look up or state the assumption).
+
+Live playbooks sit under `agent\skills\`. Catalog: `/skills` in Cursor, or [docs/GETTING-STARTED.md](docs/GETTING-STARTED.md) “Where to edit what”. Kun/macOS map: [docs/TOOL-MAP.md](docs/TOOL-MAP.md). Deferred: full Firstmate, overnight `gnhf`, Go `no-mistakes` binary.
 
 Canonical paths:
 

@@ -2,6 +2,8 @@
 
 Public `dev-hub` must not contain PII, passwords, claim IDs, financials, medical data, or home/vehicle specifics.
 
+The **Dev** (machine) and **Agent** (playbook) harnesses both live in public `dev-hub`. This companion is only the private overlay: PII skills and diagrams, junctioned in on Agent apply. It is not a second `rebuild.ps1`.
+
 Personal skills live in a **private** companion repo:
 
 | | |

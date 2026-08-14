@@ -27,6 +27,8 @@ Workflow writeup: https://blog.bytebytego.com/p/an-ex-meta-l8s-agentic-engineeri
 |-----|----------|
 | Context / cost discipline | Skill `context-engineering` (**live**) |
 | firstmate (captain + crew) | Skill `captain-crew` on Cursor (**live**); full Firstmate distro deferred |
+| (no Kun equivalent) | Skill `grounding` (**live**) — look up high-risk claims or state the assumption |
+| (no Kun equivalent) | Skills `production-planning` / `prd` / `spec` / tickets (**live**, opt-in slash only) |
 | lavish-axi | Skill `lavish` + `Ensure-Lavish.ps1` (**live**); runtime `npx -y lavish-axi` |
 | quota-axi / usage canvas | Skill `usage-canvas` + `/usage` + `Ensure-QuotaAxi.ps1` (**live**); needs sqlite3 for Cursor |
 | treehouse | `Ensure-Treehouse.ps1` (**live**); captain-crew leases; `%LOCALAPPDATA%\treehouse` |
