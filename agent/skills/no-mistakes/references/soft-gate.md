@@ -60,10 +60,12 @@ Launch a **Task** subagent for review:
 
 | Setting | Value |
 |---------|--------|
-| `subagent_type` | `generalPurpose` |
-| `readonly` | `true` |
-| `model` | **Default:** `cursor-grok-4.5-high-fast`. **Alternate:** `composer-2.5-fast` (either is fine on Pro / first-party pool). **Escalation only:** `claude-opus-4-8-thinking-high` when the diff is large, cross-cutting, security-sensitive, or the user asks for a deep/complicated review — do **not** use Opus for routine gates |
+| `subagent_type` | `generalPurpose` (or `explore`) |
+| review-only | No `readonly` parameter exists — say it in the prompt: **read and report, do not edit files**. Parent applies fixes |
+| `model` | **Default:** fastest available Grok/Composer tier (currently `cursor-grok-4.6-high-fast`, else `composer-2.5-fast`). **Escalation only:** top Claude thinking tier (currently `claude-opus-5-thinking-high`) when the diff is large, cross-cutting, or security-sensitive, or the user asks for a deep review — not for routine gates |
 | `run_in_background` | `false` unless the user wants async |
+
+Model slugs drift. Check the Task tool's current allowed list before dispatching and pick the nearest tier rather than passing a stale slug.
 
 Prefer Grok or Composer for normal no-mistakes runs (cost/quota). Do not default to Claude Sonnet/Opus or OpenAI models for the review subagent unless the user asks or the escalation bar above is met.
 
@@ -73,6 +75,7 @@ Prefer Grok or Composer for normal no-mistakes runs (cost/quota). Do not default
 - User **intent** (from step 1)
 - How to get the diff (`git diff` / `git diff base...HEAD` / PR range)
 - Finding classes from `finding-classes.md` (auto-fix / ask-you / no-op) — explicitly scan for **secrets** and **PII / personal identifying information** (ask-you; see finding-classes)
+- **False-green test scan** (required): for every new/changed test, judge whether it would still pass if the production change were reverted or the expected value inverted. Report weak assertions, mock-asserting-mock, tautologies, swallowed failures, over-mocked units, skipped/empty tests (`finding-classes.md` → False-green tests)
 - Required return format: a list of findings `{class, severity, file, line?, description}` plus a one-line overall verdict
 
 **Parent agent then:**
@@ -91,7 +94,7 @@ Gate first (max **5** auto-fix cycles). Only if green (or bypassed), resolve **s
 | Posture | Triggers | Action |
 |---------|----------|--------|
 | **push** | “push”, “ship it” | Commit if needed → push. No PR unless also requested. Blocked gate → no push. |
-| **pr** | “create the PR”, “open a PR” | Commit if needed → push → `gh pr create`. Blocked gate → no push/PR. |
+| **pr** | “create the PR”, “open a PR” | Commit if needed → push → `gh pr create`. **Paste the outcome summary block into the PR body** so the gate record outlives the chat. Blocked gate → no push/PR. |
 | **hold** | “ready for review”, “gate”, “don’t push yet”; bare `/no-mistakes` / “run the gate” | No push, no PR. Summarize and wait. |
 
 When a ship or auto-fix step **executes** a delete/wipe/force/history rewrite, follow skill `destructive-actions` (permission should already be cleared by the early scan when predictable).
@@ -100,6 +103,10 @@ When a ship or auto-fix step **executes** a delete/wipe/force/history rewrite, f
 
 Always end a no-mistakes run with a compact block so the captain can see that the
 gate ran and what it did. Fill every field (use `0` / `n/a` / `none` when empty).
+
+**Durability:** chat is not a record. On ship posture **pr**, include this block in
+the PR body. On **push** to a shared branch, include it in the commit body or the
+follow-up PR. On **hold**, leave it in chat until the captain decides.
 
 ```
 no-mistakes: PASS | FIXED | BLOCKED | BYPASSED

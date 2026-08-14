@@ -14,6 +14,7 @@ Mirror Kun’s gate split for the Cursor soft gate.
 - Java style: braces/`else` layout, Spring injected-collaborator `this.`, related-constant blank lines, import order, trailing whitespace
 - Unused imports, obvious compile errors from the edit
 - Test mocks missing a new constructor dependency the agent introduced
+- **False-green tests** (see below) where tightening the assertion is mechanical
 
 ## ask-you examples
 
@@ -38,6 +39,21 @@ Treat as **ask-you** (and block ship to public remotes) when the diff or commit 
 **Correct handling:** stop, quote the finding, do **not** push/PR. Prefer moving the content to `C:\Projects\dev-hub-personal` (or redacting) after user direction. Aligns with hub `AGENTS.md` Privacy hard rule.
 
 This is separate from **secrets** (credentials/tokens): both are ask-you; PII is about identity/personal life, secrets are about auth/access.
+
+## False-green tests (always scanned)
+
+Agent-written tests fail most often by **passing no matter what the code does**. Every diff review must scan new/changed tests for:
+
+- No assertion, or asserting only that no exception was thrown
+- Asserting on a mock/stub instead of the behavior under test (mock returns X, test asserts X)
+- Tautologies: `assertEquals(actual, actual)`, comparing a value to itself, re-deriving expected from the same production call
+- Try/catch that swallows the failure, or `assertTrue(true)` fallbacks
+- Over-mocking the unit under test so the real code path never runs
+- Asserting implementation details (call order, internals) instead of the contract, so the test passes while behavior regresses
+- Skipped / disabled / empty tests added with the change
+- Test that still passes when the production change is reverted or the value is inverted
+
+**Handling:** tightening a weak assertion is **auto-fix**. Deleting coverage, or a test that only passes because the contract itself is wrong, is **ask-you**. Cheapest proof: invert the expected value (or revert the production line) and confirm the test actually fails.
 
 ## Auto-fix iteration cap
 
