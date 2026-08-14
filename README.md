@@ -68,6 +68,30 @@ or `.\machine\Apply-Cmder.ps1 -SkipAutostart` after removing the shortcut.
 | [docs/TOOL-MAP.md](docs/TOOL-MAP.md) | Kun / macOS map → this hub |
 | [docs/PERSONAL-HUB.md](docs/PERSONAL-HUB.md) | Private `dev-hub-personal` companion |
 
+## Credits
+
+This hub is a Windows + Cursor port of [Kun Chen](https://github.com/kunchenguid)’s agentic-engineering setup, not a fork of his macOS/Nix tree.
+
+**We run his tools (npx / installer, not reimplemented):**
+
+| Tool | Upstream |
+|------|----------|
+| Lavish (HTML annotate review) | [kunchenguid/lavish-axi](https://github.com/kunchenguid/lavish-axi) (`npx -y lavish-axi`) |
+| Quota meters | [kunchenguid/quota-axi](https://github.com/kunchenguid/quota-axi) |
+| Worktree leases | [kunchenguid/treehouse](https://github.com/kunchenguid/treehouse) |
+
+**We adapted the ideas; the Cursor playbooks here are ours:**
+
+| Idea | His artifact | This hub |
+|------|----------------|----------|
+| Captain + crew | [kunchenguid/firstmate](https://github.com/kunchenguid/firstmate) | Skill `captain-crew` (tmux Firstmate not installed) |
+| Pre-ship gate | [kunchenguid/no-mistakes](https://github.com/kunchenguid/no-mistakes) | Cursor skill `no-mistakes` (Go git-proxy not installed) |
+| Skills + always-on memory | [dotfiles](https://github.com/kunchenguid/dotfiles), [AXI](https://axi.md/) | `agent\skills`, `AGENTS.md`, `rebuild.ps1` |
+
+Talks that shaped the layout: [harness from scratch](https://www.youtube.com/watch?v=5N-okeDdIuI), [context engineering](https://www.youtube.com/watch?v=2TgYw9wXv5s), [full-stack agent workflow](https://www.youtube.com/watch?v=kPN564Kol14), [ByteByteGo writeup](https://blog.bytebytego.com/p/an-ex-meta-l8s-agentic-engineering). Line-by-line Windows map: [docs/TOOL-MAP.md](docs/TOOL-MAP.md).
+
+Helman-only playbooks (not from Kun): `grounding`, opt-in `production-planning` / PRD / spec / tickets.
+
 ## Author
 
 David Helman ([dhelman999](https://github.com/dhelman999))
