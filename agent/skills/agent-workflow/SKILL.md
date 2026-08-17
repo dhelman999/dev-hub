@@ -1,12 +1,12 @@
 ---
 name: agent-workflow
 description: >-
-  Default Agent-mode execution for David Helman: edit files and run tools
-  immediately with no conversational permission prompts. Use on every implement,
-  build, create, add, tailor, fix, refactor, update, scaffold, or review/edit
-  request — even if the user does not name this skill. Prefer this over any
-  "Want me to…?" / "Should I…?" pause. For deletes/wipes/history rewrite, follow
-  skill destructive-actions (tiers A/B/C; Tier C needs yes authorize permanent
+  Default Agent-mode execution: edit files and run tools immediately with no
+  conversational permission prompts. Use on every implement, build, create,
+  add, tailor, fix, refactor, update, scaffold, or review/edit request — even
+  if the user does not name this skill. Prefer this over any "Want me to…?" /
+  "Should I…?" pause. For deletes/wipes/history rewrite, follow skill
+  destructive-actions (tiers A/B/C; Tier C needs yes authorize permanent
   deletion).
 ---
 
@@ -33,7 +33,7 @@ Before push/PR after agent work, apply skill **`no-mistakes`** (soft gate) unles
 
 ## Solo vs production planning
 
-**Default is the solo lane:** Plan or Agent → implement → **no-mistakes**. Do **not** volunteer a PRD / spec / ticket chain because the work looks large. Interview drills, hub tweaks, and one-person features stay on that loop.
+**Default is the solo lane:** Plan or Agent → implement → **no-mistakes**. Do **not** volunteer a PRD / spec / ticket chain because the work looks large. One-person features stay on that loop.
 
 The production-planning skills (`prd`, `spec`, `slice-tickets`, `prime`, `validation-tdd`, orchestrator `production-planning`) are **explicit-invoke only** (`disable-model-invocation`). Run them only for `/production-planning`, `/prd`, `/spec`, `/tickets`, `/prime`, `/validation-tdd`, or clear phrases: “production planning,” “sprint plan,” “write a PRD,” “slice this epic,” “team planning.”
 
@@ -41,7 +41,7 @@ When those skills **are** invoked: follow **`prd` GATE phases** (stop the turn a
 
 ## Commits and PRs
 
-- **Never** add `Co-authored-by: Cursor <cursoragent@cursor.com>` (or any Cursor/agent co-author trailer). See skill `java-coding-style` → Helman engineering conventions.
+- **Never** add `Co-authored-by: Cursor <cursoragent@cursor.com>` (or any Cursor/agent co-author trailer). See skill `java-coding-style`.
 - When creating a **complex** PR, include comprehensive sections (description, expected behavior, summary of changes, plus other reviewer context). Small PRs can stay brief. Details in `java-coding-style`.
 
 ## Cursor Auto-review cards
@@ -58,11 +58,11 @@ Follow skill **`destructive-actions`** (tiers A/B/C). Do not invent a separate a
 
 Routine file edits, refactors, new files, installs the user requested, and normal repo work are **not** destructive-gated — just do them.
 
-That includes editing **skills**, **AGENTS.md**, **Cursor rules**, and other `C:\Projects\dev-hub` config when the request implies updating conventions or workflow. Those are ordinary file edits - not "ask first," and not special-cased beyond Auto-review product cards.
+That includes editing **skills**, **AGENTS.md**, **Cursor rules**, and other harness/config files when the request implies updating conventions or workflow. Those are ordinary file edits - not "ask first," and not special-cased beyond Auto-review product cards.
 
 ## Reproducible harness
 
-Whenever a change affects the **dev environment**, **agent harness**, or **agentic engineering** setup: land it in `C:\Projects\dev-hub` (skills / `dotfiles\` / `machine\` / docs) and update apply scripts (`rebuild`, `link`, `Ensure-*`, `packages.yaml`) so another machine can regenerate. Do not leave machine-only one-offs. See skill **`agentic-harness`**.
+Whenever a change affects the **dev environment**, **agent harness**, or **agentic engineering** setup: land it in the version-controlled hub (skills, dotfiles, machine scripts, docs) so another machine can regenerate. Do not leave machine-only one-offs. See skill **`agentic-harness`**.
 
 ## Execution style
 
@@ -75,7 +75,7 @@ Whenever a change affects the **dev environment**, **agent harness**, or **agent
 | Topic | Action |
 |-------|--------|
 | Writing/editing Java | Skill `java-coding-style` |
-| Compiling `java-interview-drills` (`C:\Projects\java-interview-drills`) | `references/testcode-compile.md` — never bare `javac` from `src/` |
+| Build/test for the current repo | Project docs (`README`, `AGENTS.md`, `scripts/`) — never invent a compile that dumps artifacts into `src/` |
 | Validate before push/PR | Skill `no-mistakes` (soft gate; default-on unless user says skip no-mistakes) |
 | Deletes / wipes / force-push / history rewrite | Skill `destructive-actions` (tiers A/B/C; Tier C phrase required) |
 | Hub / regenerate / environment changes | Skill `agentic-harness` (reproducibility checklist) |

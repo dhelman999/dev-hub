@@ -17,7 +17,7 @@ Staged conversation. **Offer** the next skill after each accept. Do **not** auto
 
 ## Sequence
 
-Repo: current project, or `C:\Projects\<name>` for a new product. Artifacts: `docs/planning/<slug>/`.
+Repo: current project, or a new product directory the user names. Artifacts: `docs/planning/<slug>/`.
 
 1. **PRD** — follow skill **`prd`** (GATE phases). Write `prd.md` only at Phase 6. Wait for accept.
 2. **Offer spec** — after they accept the PRD, tell them `/spec` is next. Start skill `spec` only if they say continue / run spec.
@@ -34,10 +34,8 @@ Stop after tickets unless they explicitly asked to implement.
 - Implement in this pass
 - Open Jira/GitHub issues unless asked
 - Prime the whole repo (`/prime` is per ticket)
-- Use this on interview drills or hub one-offs
+- Use this on one-off personal drills unless they asked for the formal lane
 
 ## After tickets exist
 
 Paths, ticket count, dependency waves. Next opt-in: `/prime` and `/validation-tdd` on a ticket, then implement. Ship with `no-mistakes`. Optional: skill `lavish` on the spec.
-
-Diagram: `C:\Projects\dev-hub\docs\diagrams\production-two-loop.excalidraw` (REVIEW zoom: `no-mistakes-soft-gate.excalidraw`).

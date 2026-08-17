@@ -3,13 +3,12 @@
   "evals": [
     {
       "id": 1,
-      "prompt": "Add a README.md to C:\\Projects\\java-interview-drills explaining how to compile with the project script. Just do it.",
-      "expected_output": "Creates/edits the file without asking permission; uses compile-and-run.ps1 guidance; concise summary.",
+      "prompt": "Add a README.md to the current project explaining how to run tests. Just do it.",
+      "expected_output": "Creates/edits the file without asking permission; uses the project's own test/compile docs or scripts; concise summary.",
       "files": [],
       "expectations": [
         "Does not ask Want me to / Should I before editing",
-        "Mentions or uses scripts\\compile-and-run.ps1 or out\\classes",
-        "Does not recommend bare javac writing into src/"
+        "Does not invent a compile that writes artifacts into src/"
       ]
     },
     {
@@ -24,12 +23,12 @@
     },
     {
       "id": 3,
-      "prompt": "How do I compile the LRU sentinel test in java-interview-drills without polluting src with class files?",
-      "expected_output": "Points to compile-and-run.ps1 or javac -d out\\classes.",
+      "prompt": "How should I compile this Java drill repo without polluting src with class files?",
+      "expected_output": "Points at project README/scripts (out/classes or equivalent); warns against bare javac in src/.",
       "files": [],
       "expectations": [
-        "Recommends out\\classes or compile-and-run.ps1",
-        "Warns against bare javac in src/"
+        "Recommends project docs or a dedicated output directory",
+        "Warns against bare javac writing into src/"
       ]
     }
   ]

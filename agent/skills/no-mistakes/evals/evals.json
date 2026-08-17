@@ -3,8 +3,8 @@
   "evals": [
     {
       "id": 1,
-      "prompt": "Create a PR for my McWendyQueen branch.",
-      "expected_output": "Announces no-mistakes soft gate, runs validate-only (or task-first if work unfinished), runs mvn test, summarizes outcome, then creates PR if green.",
+      "prompt": "Create a PR for my feature branch.",
+      "expected_output": "Announces no-mistakes soft gate, runs validate-only (or task-first if work unfinished), runs the repo's tests if discoverable, summarizes outcome, then creates PR if green.",
       "files": [],
       "expectations": [
         "Announces running no-mistakes with mode and bypass hint",
@@ -24,7 +24,7 @@
     },
     {
       "id": 3,
-      "prompt": "/no-mistakes add a null-check to OrderServiceImpl.createOrder and ship it",
+      "prompt": "/no-mistakes add a null-check to the create method and ship it",
       "expected_output": "Task-first: implements change, then soft gate, auto-fixes mechanical issues, escalates ask-you only if needed.",
       "files": [],
       "expectations": [

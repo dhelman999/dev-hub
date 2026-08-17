@@ -7,7 +7,8 @@ description: >-
   Firstmate-like orchestration, a crew, captain mode, multitask, or not to
   babysit several chats — even if they only say "run these in parallel" or
   "don't make me track agents." Prefer this over inventing a tmux Firstmate
-  fork. Full Kun Firstmate remains deferred on this Windows/Cursor machine.
+  fork. Full Kun Firstmate remains deferred unless the user explicitly leaves
+  Cursor as the primary harness.
 ---
 
 # Captain / crew (Cursor-native)
@@ -96,10 +97,10 @@ When the captain already has production-planning tickets (`/production-planning`
 
 ## Related
 
-- Hub / Phase status: skill `agentic-harness` → `references/phase2-backlog.md`
-- Parallel file isolation: **treehouse** — `references/treehouse-lease.md` (Phase 3 — live)
-- Visual feedback: skill `lavish` (Phase 1 — live)
-- Usage meters: skill `usage-canvas` / `/usage` (Phase 2 — live)
+- Hub / Phase status: skill `agentic-harness` (machine-specific)
+- Parallel file isolation: **treehouse** — `references/treehouse-lease.md`
+- Visual feedback: skill `lavish`
+- Usage meters: skill `usage-canvas` / `/usage`
 - Production planning tickets: skill `production-planning` / `/tickets` (opt-in; not the solo default)
 
 More detail: `references/cursor-parallel.md`.

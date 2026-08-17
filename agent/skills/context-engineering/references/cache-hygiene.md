@@ -16,8 +16,8 @@ Providers cache **exact prefixes**. One early changing byte can invalidate the w
 - Paste megabytes of logs into the always-on memory file.
 - Switch models every turn and expect cache benefits.
 
-## Hub-specific
+## Hub / harness specifics
 
-- Global memory: `C:\Projects\dev-hub\agent\AGENTS.md` (hardlinked to `~\AGENTS.md`).
-- Procedures belong in `C:\Projects\dev-hub\agent\skills\`, not AGENTS.md.
-- Cursor always-on rule: `dotfiles\cursor\rules\agent-workflow.mdc` — keep short; heavy playbooks stay in skills.
+When this machine uses a version-controlled agent hub, keep global `AGENTS.md`
+short and put procedures in skills. Cursor always-on rules should stay short;
+heavy playbooks stay in skills. Layout details live in skill `agentic-harness`.

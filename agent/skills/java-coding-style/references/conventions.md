@@ -1,14 +1,12 @@
-# Spring Framework Code Style — digest (+ Helman tweaks)
+# Spring Framework Code Style — digest (local tweaks)
 
 Official source: https://github.com/spring-projects/spring-framework/wiki/Code-Style  
-Local mirror: `C:\Projects\dev-hub\agent\skills\java-coding-style\references\Code-Style.md`  
-CONTRIBUTING summary: `C:\Projects\dev-hub\agent\skills\java-coding-style\references\CONTRIBUTING.md`
-
-Helman reference: `C:\Projects\java-interview-drills\src\leetcode\lru\LruCacheSentinelSolution.java`
+Local mirror: `references/Code-Style.md`  
+CONTRIBUTING summary: `references/CONTRIBUTING.md`
 
 ---
 
-## Helman tweaks (read first)
+## Local tweaks (read first)
 
 These **override** the Spring wiki where they conflict:
 
@@ -17,7 +15,7 @@ These **override** the Spring wiki where they conflict:
 3. **Blank line before an `if` block** when dense / non-trivial code sits above it (assignments, calls, or a finished `if`/`else` block).
 4. **License header / `@since` / JSpecify / `Assert`:** required when contributing Spring-style libraries or real Spring apps; optional for personal interview/leetcode files unless the user asks.
 
-### Helman engineering conventions
+### Engineering conventions
 
 1. Keep methods/functions **under ~50 lines** unless there is a strong reason; otherwise split into smaller helpers.
 2. **Search for existing** helpers, patterns, static utility classes, and related workflows before inventing new code in the file under edit — prefer extending shared helpers.
@@ -32,7 +30,7 @@ Everything else below follows Spring.
 
 - Encoding: **UTF-8**
 - Line endings: prefer **LF** (Unix); eliminate trailing whitespace
-- Indent: **4 spaces** (Helman) — Spring wiki says tabs
+- Indent: **4 spaces** (local tweak) — Spring wiki says tabs
 
 ### File structure (exact order)
 
@@ -78,7 +76,7 @@ Organization should still feel natural.
 
 Spring blank-line extras: **two blank lines** before `static {}` blocks, fields, constructors, and inner classes (inner classes that are tiny may skip the extra field/ctor blanks). **One blank line** after a multiline method signature before the body.
 
-Helman note: for small leetcode classes, prefer readability over forcing double blanks everywhere; match the LRU reference when unsure.
+Local note: for small algorithm/drill classes, prefer readability over forcing double blanks everywhere.
 
 ---
 
@@ -120,7 +118,7 @@ if (thisLengthyMethodCall(param1, param2) && anotherCheck() &&
 }
 ```
 
-### Helman blank lines (in addition to Spring)
+### Local blank lines (in addition to Spring)
 
 **After locals:**
 

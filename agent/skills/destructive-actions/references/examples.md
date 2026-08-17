@@ -4,9 +4,9 @@
 
 - Delete one obsolete file the user asked to remove
 - `git restore` / discard a single uncommitted edit the user asked to undo
-- Overwrite `settings.json` as part of Apply from hub (requested rebuild)
+- Overwrite editor/user settings as part of an explicit apply/rebuild the user requested
 - Delete stray `.class` files under `src/` while fixing a bad `javac`
-- Harness wipe-test: remove `C:\Programs\cmder` when the user clearly asked to delete Cmder for regenerate testing
+- Harness wipe-test: remove a local tool install when the user clearly asked to delete it for regenerate testing
 
 ## Tier B (soft ask)
 
@@ -18,8 +18,8 @@
 
 ## Tier C (exact phrase required)
 
-- `gh repo delete dhelman999/some-repo`
-- `Remove-Item -Recurse C:\Projects\dev-hub` or wipe all of `C:\Projects`
+- `gh repo delete <owner>/<repo>`
+- Recursively delete a whole projects/hub tree or wipe a user profile
 - `git push --force` / `--force-with-lease` to `main` / `master` / `develop`
 - `git filter-branch` / history rewrite already pushed to default branch
 - Drop production database / wipe prod data

@@ -22,5 +22,3 @@ PR → CI). Agents drive it via `no-mistakes axi …` (TOON output). Official sk
 2. Per repo: `no-mistakes init`
 3. Prefer their official skill for `axi` commands over reinventing them here
 4. Keep this soft-gate skill as the Cursor fallback when the binary is unavailable
-
-Tracked in `agentic-harness` → `references/phase2-backlog.md`.
