@@ -37,9 +37,14 @@ Treat as **ask-you** (and block ship to public remotes) when the diff or commit 
 - Vehicle or property identifiers combined with personal context
 - Private notes or skills that belong in a personal/private repo leaking into a public one
 
-**Correct handling:** stop, quote the finding, do **not** push/PR. Redact or move the content to a private location after user direction.
+**Correct handling:** stop, quote the finding, do **not** push/PR. If confirmed
+**before** the dedicated review subagent (soft-gate §5), **skip §5** — do not
+launch it for a second look. Redact or move the content to a private location
+after user direction.
 
-This is separate from **secrets** (credentials/tokens): both are ask-you; PII is about identity/personal life, secrets are about auth/access.
+This is separate from **secrets** (credentials/tokens): both are ask-you; PII is about identity/personal life, secrets are about auth/access. The same
+early skip applies to **confirmed secrets** (passwords, API tokens, private
+keys). Other ask-you classes (intent, API contract) do **not** skip §5.
 
 ## False-green tests (always scanned)
 
@@ -68,4 +73,5 @@ Agent-written tests fail most often by **passing no matter what the code does**.
 
 - Never treat an **ask-you** finding as auto-fix.
 - Never use **auto-fix** to expand scope or reinterpret the user’s goal.
+- Confirmed secrets/PII before §5 → skip the review subagent; never launch it “for completeness.”
 - Under explicit user bypass (`skip no-mistakes`), skip the checklist entirely — do not reclassify findings to sneak past.

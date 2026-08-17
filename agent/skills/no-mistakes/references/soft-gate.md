@@ -5,7 +5,7 @@
 1. Announce skill + mode (+ bypass hint) — see `SKILL.md`.
 2. **Early destructive plan scan** (skill `destructive-actions`) — before long build/test/review.
 3. Run mechanical steps back-to-back; apply **auto-fix** without pausing (**max 5** fix/re-check cycles — see `finding-classes.md`).
-4. Pause **only** on **ask-you** findings, Tier B/C destructive permission waits, or when the auto-fix cap is hit.
+4. Pause **only** on **ask-you** findings, Tier B/C destructive permission waits, or when the auto-fix cap is hit. Confirmed **secrets** or **PII** before §5 → skip the dedicated review subagent (do not launch it).
 5. Emit an **outcome summary**, then apply **ship posture** (`push` / `pr` / `hold`) only if green (or user bypassed). **hold** means stop with no push/PR.
 
 Do **not** wait for approve after each step unless the user said “gate step by step” for this run — **except** Tier B/C from `destructive-actions` (must clear up front).
@@ -35,6 +35,29 @@ Load skill **`destructive-actions`**. Before build/test/review:
 - **ask-you** if about to force large WIP onto `main`/`master`/`develop` in an unusual way, push secrets, or push **PII / personal identifying information**.
 - History rewrite / force-push / mass delete → skill `destructive-actions` (early scan + execute-time).
 
+### 2b. Early safety skip (secrets / PII)
+
+Before launching §5, glance at the working-tree / PR diff for **secrets**
+(passwords, API tokens, private keys) and **PII** (see `finding-classes.md`).
+If either is **confirmed**:
+
+1. **Stop.** Quote the finding. Do not push/PR.
+2. **Do not launch** the dedicated review subagent (§5). Independent
+   confirmation is not worth the tokens once ship is already blocked.
+3. Emit the outcome summary as **BLOCKED** with
+   `Diff review: skipped-early-safety`.
+4. Wait for approve / fix guidance / skip.
+
+Do **not** skip §5 for other ask-you (intent, public API contract, “is this
+the intended behavior?”). Those still need the unbiased reviewer.
+
+On confirmed secrets/PII, §5 is the mandatory skip. Build/test/style may be
+omitted (`n/a`) or finished if already cheap / in flight; do not start new
+expensive work.
+
+If secrets/PII are first found **by** the §5 subagent, treat as ask-you as
+usual (that spend already happened).
+
 ### 3. Build and test
 
 Discover how **this repo** proves the change. Do not keep a project-name
@@ -56,6 +79,9 @@ Failing tests from this change → **auto-fix** → re-run. Cannot fix → **ask
 - Parent agent may apply style; do not rely on this for deep review.
 
 ### 5. Diff review (dedicated subagent)
+
+**Skip this step** when §2b already confirmed secrets or PII
+(`skipped-early-safety`). Do not launch a reviewer “for completeness.”
 
 **Do not** have this chat’s implementation context be the sole reviewer. The same
 agent that wrote the code is biased and context-diluted.
@@ -120,12 +146,12 @@ Auto-fix cycles: <used>/<max 5>
 Issues auto-fixed: <count>  (tests / style / review mechanical — brief list OK)
 Ask-you raised: <count>  (none | N — listed below)
 Destructive plan: none | Tier A (N) | waiting Tier B/C | cleared
-Diff review: subagent:<model> | parent-fallback
+Diff review: subagent:<model> | parent-fallback | skipped-early-safety
 Intent: <one line>
 Checks:
   - build/test: pass | fail (detail)
   - style: pass | fixed | n/a
-  - diff review: pass | N auto-fix | N ask-you
+  - diff review: pass | N auto-fix | N ask-you | skipped-early-safety
 Ask-you: <none | short list>
 Ship: pushed <ref> | PR <url> | held for your review | not shipped (reason)
 ```
@@ -141,5 +167,6 @@ Ship: pushed <ref> | PR <url> | held for your review | not shipped (reason)
 | **Auto-fix cycles** | How many fix→re-check loops ran, out of **5**. Example: `2/5`. Cap hit → `5/5` and usually **BLOCKED** |
 | **Issues auto-fixed** | Count of distinct mechanical findings actually fixed this run (not cycles). Optional one-line examples: `3 (2 style, 1 test)` |
 | **Ask-you raised** | Count of findings that paused for the user |
+| **Diff review** | `subagent:<model>` when §5 ran; `parent-fallback` if Task was unavailable; `skipped-early-safety` when §2b confirmed secrets/PII and §5 was not launched |
 
 Keep the block short — scannable in chat, not a second review essay.

@@ -34,7 +34,8 @@ permissions/PII stores) or **explicit user ask**; allow `skip security review`.
 Do not enable for every ship by default. Until a dedicated security-scan
 step exists, use `/review-security` when the user asks or when the diff
 touches auth, crypto, network, secrets, or permissions. Secrets and PII
-remain **ask-you** in the normal diff review.
+remain **ask-you**. If the parent confirms either **before** §5, skip the
+dedicated review subagent (see `references/soft-gate.md`).
 
 ## Announce (required)
 
@@ -82,7 +83,7 @@ The gate always runs first (auto-fix capped at **5** cycles). Ship action is cho
 Load `references/finding-classes.md`.
 
 - **auto-fix** — agent fixes and continues (tests, style, mechanical); **max 5** fix/re-check cycles per gate run, then block + ask-you.
-- **ask-you** — stop, quote finding, wait for approve / fix guidance / skip (includes secrets **and** PII / personal identifying information — see `finding-classes.md`).
+- **ask-you** — stop, quote finding, wait for approve / fix guidance / skip (includes secrets **and** PII / personal identifying information — see `finding-classes.md`). Confirmed secrets or PII **before** §5 → skip the dedicated review subagent; emit BLOCKED; wait. Other ask-you (intent, API contract) still get §5 if it has not launched.
 - **no-op** — summary only.
 
 ## Soft gate steps
@@ -94,7 +95,9 @@ the **5-cycle** auto-fix cap. Interactive step-by-step only if the user asks
 for that run.
 
 **Diff review** must use a **dedicated review subagent** (not this chat’s
-implementation context) — see soft-gate §5. Default: **latest** fast
+implementation context) — see soft-gate §5 — **unless** the parent already
+confirmed secrets or PII. Then skip §5 (`Diff review: skipped-early-safety`);
+do not launch a reviewer for a second look. Default: **latest** fast
 Grok or Composer on the Task tool’s allowed list. Escalate to the **latest**
 Claude Opus thinking tier only for unusually hard reviews. Never pin a
 numeric slug in this skill — slugs go stale.
