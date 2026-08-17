@@ -31,7 +31,7 @@ Skipping `no-mistakes` also never satisfies Tier C.
 |------|------|------------|
 | **A — Minor** | Single file / small scoped delete, undo local uncommitted change, replace file as part of requested edit, remove obvious generated junk | If user already asked for that work or ship → **proceed**. If side-effect they likely did not foresee → treat as **B**. |
 | **B — Confirm** | Ambiguous or missing permission; agent-chosen cleanup; delete a directory / many paths; local history rewrite not clearly requested; force-with-lease to a **non-default** branch when they only said “push” | **Stop**, list targets, ask once. Normal yes is enough. |
-| **C — Major** | Delete a git repo (local or `gh repo delete`); mass wipe (many projects, hub, profile); force push / history rewrite to **main/master/develop**; destructive prod DB wipe; irreversible cloud destroy | **Hard stop**. Require the exact authorize phrase. Re-state targets before executing. |
+| **C — Major** | Delete a git repo (local or `gh repo delete`); mass wipe (many projects, a whole hub, user profile); force push / history rewrite to **main/master/develop**; destructive prod DB wipe; irreversible cloud destroy | **Hard stop**. Require the exact authorize phrase. Re-state targets before executing. |
 
 Examples: `references/examples.md`.
 

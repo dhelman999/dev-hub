@@ -2,10 +2,10 @@
 
 [treehouse](https://github.com/kunchenguid/treehouse) pools git worktrees so parallel crew can edit without colliding on the same checkout.
 
-## Install (hub)
+## Install
 
-- Soft-checked / soft-installed by `machine/Ensure-Treehouse.ps1` on Agent rebuild
-- Binary: `%LOCALAPPDATA%\treehouse\treehouse.exe` (official Windows layout; PATHS exception vs `C:\Programs`)
+- Soft-checked / soft-installed by the hub Agent rebuild if that script exists
+- Binary: `%LOCALAPPDATA%\treehouse\treehouse.exe` (official Windows layout)
 - Manual: `irm https://kunchenguid.github.io/treehouse/install.ps1 | iex`
 
 ## When to lease (default: **do not**)
@@ -38,11 +38,7 @@ treehouse status --json
 treehouse return C:\Users\<you>\.treehouse\<pool>\N\<repo>
 ```
 
-**Windows / Cmder:** `treehouse status` may print `~\.treehouse\...`. That tilde is **not** expanded. Passing it to `return` becomes a bogus relative path under the repo (e.g. `C:\Projects\foo\~\.treehouse\...`) and fails with “not managed by treehouse.” Always use the absolute `path` from `--json`, or expand yourself:
-
-```powershell
-treehouse return "$env:USERPROFILE\.treehouse\java-interview-drills-c51b71\1\java-interview-drills"
-```
+**Windows:** `treehouse status` may print `~\.treehouse\...`. That tilde is **not** expanded. Passing it to `return` becomes a bogus relative path under the repo and fails with “not managed by treehouse.” Always use the absolute `path` from `--json`, or expand `$env:USERPROFILE` yourself.
 
 PowerShell tip: capture JSON cleanly:
 

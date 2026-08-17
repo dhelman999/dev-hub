@@ -25,11 +25,12 @@ Open or refresh a **Cursor Canvas** with live Cursor quota windows from `quota-a
 ## Workflow
 
 1. Ensure CLI path: `npx -y quota-axi --provider cursor --json`
-   - Needs **Node** + **sqlite3** on PATH (Cursor auth reads `state.vscdb`). Soft-checked by `machine/Ensure-QuotaAxi.ps1`.
+   - Needs **Node** + **sqlite3** on PATH (Cursor auth reads `state.vscdb`).
+     Soft-checked by the hub Ensure script when that harness is present.
 2. Parse JSON: for provider `cursor`, read each window’s `id`, `label`, `percentUsed`, `percentRemaining`, `resetsAt`.
-3. Write/update canvas at the **workspace** canvases dir (IDE-managed):
-   - `C:\Users\<user>\.cursor\projects\<workspace-id>\canvases\cursor-usage.canvas.tsx`
-   - Prefer that stable name for the live dashboard (not the placement-smoke files).
+3. Write/update canvas at the **workspace** canvases dir (IDE-managed), e.g.
+   `~/.cursor/projects/<workspace-id>/canvases/cursor-usage.canvas.tsx`
+   Prefer that stable name for the live dashboard (not placement-smoke files).
 4. Use layout from `references/canvas-layout.md` (stacked `UsageBar`s; theme tokens only).
 5. Tone bars by **percentUsed**: green &lt; 50, yellow &lt; 80, orange otherwise.
 6. Caption: source `quota-axi --provider cursor`, `generatedAt`, and reset date if present.

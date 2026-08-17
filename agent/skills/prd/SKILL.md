@@ -2,8 +2,8 @@
 name: prd
 description: >-
   GATE-style PRD interview (what/why), then write a product PRD. Explicit invoke
-  only: /prd, /production-planning, "write a PRD". Do not use for solo features,
-  interview drills, or ordinary implement/fix/plan requests.
+  only: /prd, /production-planning, "write a PRD". Do not use for solo features
+  or ordinary implement/fix/plan requests.
   disable-model-invocation keeps this human-gated.
 disable-model-invocation: true
 ---

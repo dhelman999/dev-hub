@@ -3,9 +3,8 @@ name: prime
 description: >-
   Load relevant codebase context for a named production ticket or spec before
   implementing. Explicit invoke only: /prime, "prime this ticket", "prime the
-  codebase for T03". Do not run at the start of ordinary chats, interview drills,
-  or generic implement/fix requests. disable-model-invocation keeps this
-  human-gated.
+  codebase for T03". Do not run at the start of ordinary chats or generic
+  implement/fix requests. disable-model-invocation keeps this human-gated.
 disable-model-invocation: true
 ---
 

@@ -13,7 +13,7 @@ description: >-
 
 # no-mistakes (soft gate)
 
-Cursor-native pre-ship validation for David Helman. Inspired by
+Cursor-native pre-ship validation. Inspired by
 [kunchenguid/no-mistakes](https://github.com/kunchenguid/no-mistakes); the Go
 git-proxy binary is **not** required (see `references/upstream-tool.md`).
 
@@ -21,7 +21,7 @@ git-proxy binary is **not** required (see `references/upstream-tool.md`).
 work, **run this gate** unless the user explicitly bypasses.
 
 **Prefer this over Cursor "Agent review on commit"** (Quick/Deep auto-review).
-David keeps that product setting **off** - quality control goes through this soft
+Keep that product setting **off** — quality control goes through this soft
 gate, not light mid-task/commit auto-reviews. Do not suggest enabling it.
 
 **Destructive ops:** orthogonal skill `destructive-actions`. Run an **early
@@ -31,10 +31,10 @@ green never authorizes Tier C (`yes authorize permanent deletion` still required
 **Security review (planned, not implemented):** optional step, **default OFF**.
 When implemented: run only on **risk heuristics** (auth/crypto/network/secrets/
 permissions/PII stores) or **explicit user ask**; allow `skip security review`.
-Do not enable for every drill/hub ship. Full policy: plan
-`context_and_phase2` → Optional later → Security scan policy. Until then, use
-`/review-security` manually when needed; secrets/PII remain ask-you in the
-normal diff review.
+Do not enable for every ship by default. Until a dedicated security-scan
+step exists, use `/review-security` when the user asks or when the diff
+touches auth, crypto, network, secrets, or permissions. Secrets and PII
+remain **ask-you** in the normal diff review.
 
 ## Announce (required)
 
@@ -71,7 +71,7 @@ The gate always runs first (auto-fix capped at **5** cycles). Ship action is cho
 | Posture | Say / trigger | After green |
 |---------|---------------|-------------|
 | **push** | **“push”** or **“ship it”** | Commit (if needed) → **push**. No PR unless they also said create the PR. If the gate is **blocked**, do not push. |
-| **pr** | **“create the PR”** or **“open a PR”** | Commit (if needed) → push → **`gh pr create`** (rich body when complex per `java-coding-style`). If the gate is **blocked**, do not push or open a PR. |
+| **pr** | **“create the PR”** or **“open a PR”** | Commit (if needed) → push → **`gh pr create`**. If the gate is **blocked**, do not push or open a PR. |
 | **hold** | **“ready for review”**, **“gate”**, **“don’t push yet”** (also: bare `/no-mistakes`, “run the gate”, “run the soft gate”, “validate before push” with no ship verb) | **Stop.** No push, no PR. Outcome summary + wait for an explicit follow-up (`push` / `ship it` / `create the PR` / further edits). |
 
 - If push/PR and hold cues both appear, **hold** wins.
@@ -94,16 +94,16 @@ the **5-cycle** auto-fix cap. Interactive step-by-step only if the user asks
 for that run.
 
 **Diff review** must use a **dedicated review subagent** (not this chat’s
-implementation context) — see soft-gate §5. Default model:
-`cursor-grok-4.5-high-fast` (or `composer-2.5-fast`); escalate to
-`claude-opus-4-8-thinking-high` only for unusually hard reviews.
+implementation context) — see soft-gate §5. Default: **latest** fast
+Grok or Composer on the Task tool’s allowed list. Escalate to the **latest**
+Claude Opus thinking tier only for unusually hard reviews. Never pin a
+numeric slug in this skill — slugs go stale.
 
 ## When to load references
 
 | Need | Read |
 |------|------|
-| Checklist, project test recipes, outcome format | `references/soft-gate.md` |
+| Checklist, build/test discovery, outcome format | `references/soft-gate.md` |
 | auto-fix vs ask-you vs no-op | `references/finding-classes.md` |
 | Deletes / wipes / force-push / history rewrite | Skill `destructive-actions` |
 | Kun binary install later | `references/upstream-tool.md` |
-| Gate diagram (REVIEW zoom) | `C:\Projects\dev-hub\docs\diagrams\no-mistakes-soft-gate.excalidraw` |

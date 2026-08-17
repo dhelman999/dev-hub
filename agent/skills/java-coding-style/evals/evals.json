@@ -14,7 +14,7 @@
     },
     {
       "id": 2,
-      "prompt": "Several assignment lines then if (size > capacity) evict — apply Helman blank-line rules and Spring this. field rules.",
+      "prompt": "Several assignment lines then if (size > capacity) evict — apply the local blank-line rules and Spring this. field rules.",
       "expected_output": "Blank line before if; fields referenced with this. if shown.",
       "files": [],
       "expectations": [
@@ -26,7 +26,7 @@
     {
       "id": 3,
       "prompt": "In production Java for our style, may I use var? Should I write this.doWork() or doWork()? Tabs or spaces?",
-      "expected_output": "No var in production; no this. on methods; 4 spaces (Helman tweak vs Spring tabs).",
+      "expected_output": "No var in production; no this. on methods; 4 spaces (local tweak vs Spring tabs).",
       "files": [],
       "expectations": [
         "Disallows var in production/main code",

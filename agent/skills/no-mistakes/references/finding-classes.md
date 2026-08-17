@@ -11,7 +11,8 @@ Mirror Kun’s gate split for the Cursor soft gate.
 ## auto-fix examples
 
 - Failing unit/integration tests caused by the change (and fixable in scope)
-- Java style: braces/`else` layout, Spring injected-collaborator `this.`, related-constant blank lines, import order, trailing whitespace
+- Java style: braces, indent, import order, unused imports, trailing whitespace
+  (follow the repo's style skill or formatter if present)
 - Unused imports, obvious compile errors from the edit
 - Test mocks missing a new constructor dependency the agent introduced
 - **False-green tests** (see below) where tightening the assertion is mechanical
@@ -27,16 +28,16 @@ Mirror Kun’s gate split for the Cursor soft gate.
 
 ## ask-you: personal / identifying information (PII)
 
-Treat as **ask-you** (and block ship to public remotes) when the diff or commit would expose personal data, especially into `dev-hub` or any public repo. Examples:
+Treat as **ask-you** (and block ship to public remotes) when the diff or commit would expose personal data. Examples:
 
 - Home / mailing address, phone, personal email used as identity, full legal name in claimant/medical context
-- Government IDs, claim IDs, case numbers, SSN/tax IDs, driver’s license / VIN when tied to the person
+- Government IDs, claim IDs, case numbers, SSN/tax IDs, driver’s license / VIN when tied to a person
 - Financial figures tied to a person (bank balances, benefit amounts, account numbers)
-- Medical / unemployment / legal narrative that identifies David or household members
-- Vehicle or property identifiers combined with personal context (e.g. maintenance notes with VIN + address)
-- Private skill content that belongs in `dev-hub-personal` (or similar) leaking into a public hub
+- Medical, legal, or benefits narrative that identifies a real person or household
+- Vehicle or property identifiers combined with personal context
+- Private notes or skills that belong in a personal/private repo leaking into a public one
 
-**Correct handling:** stop, quote the finding, do **not** push/PR. Prefer moving the content to `C:\Projects\dev-hub-personal` (or redacting) after user direction. Aligns with hub `AGENTS.md` Privacy hard rule.
+**Correct handling:** stop, quote the finding, do **not** push/PR. Redact or move the content to a private location after user direction.
 
 This is separate from **secrets** (credentials/tokens): both are ask-you; PII is about identity/personal life, secrets are about auth/access.
 

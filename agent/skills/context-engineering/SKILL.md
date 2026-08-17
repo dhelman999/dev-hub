@@ -71,14 +71,14 @@ Anti-patterns: whole-repo `@` dumps, reading every matcher “just in case,” e
 
 **(Cursor Pro+)** Exact cost-per-solved-task is usually unavailable. Prefer:
 
-- Quota / usage windows (future: `quota-axi` — Phase 2)
+- Quota / usage windows (skill `usage-canvas` / `/usage` when available)
 - Qualitative labels: phase, model, rough scope (files touched)
 
 Do **not** invent dollar figures. Workplace API workloads can log real tokens later.
 
 ## Batch / overnight lanes
 
-Interactive chat is a bad batch API. Defer non-interactive bulk work to overnight/SDK patterns (`gnhf`-class — still Phase 4 in this hub). For now: do not spin huge unattended loops inside a single Cursor chat without the user asking.
+Interactive chat is a bad batch API. Defer non-interactive bulk work to overnight/SDK patterns when the user asks. Do not spin huge unattended loops inside a single Cursor chat without that ask.
 
 ## Workplace portability
 

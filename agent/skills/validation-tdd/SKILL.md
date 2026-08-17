@@ -4,7 +4,7 @@ description: >-
   Write a tests-first validation plan (and failing tests when implementing) for
   a production ticket. Explicit invoke only: /validation-tdd, "validation first",
   "TDD this ticket", "write the failing tests first". Complements no-mistakes
-  (this is before code; that is at ship). Do not use on solo drills or ordinary
+  (this is before code; that is at ship). Do not use on ordinary
   implement/fix requests. disable-model-invocation keeps this human-gated.
 disable-model-invocation: true
 ---

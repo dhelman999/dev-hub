@@ -24,7 +24,7 @@ Follow skill **`grounding`** when a claim might come from training data: look up
 
 ## Solo vs production planning
 
-**Default is the solo lane:** Cursor Plan or Agent → implement → **no-mistakes**. Do **not** start a PRD, spec, slice-tickets, prime, or validation-tdd interview because a task looks large or “like a feature.” Interview drills, hub tweaks, and one-person work stay on that loop.
+**Default is the solo lane:** Cursor Plan or Agent → implement → **no-mistakes**. Do **not** start a PRD, spec, slice-tickets, prime, or validation-tdd interview because a task looks large or “like a feature.” One-person work stays on that loop.
 
 Use the production-planning skills **only** when the user explicitly invokes them: `/production-planning`, `/prd`, `/spec`, `/tickets`, `/prime`, `/validation-tdd`, or phrases like “production planning,” “sprint plan,” “write a PRD,” “slice this epic,” “team planning.” Those skills are opt-in (`disable-model-invocation`). Size of the task is not a trigger.
 
@@ -40,8 +40,8 @@ Visual HTML annotate loops: follow skill **`lavish`** (`npx -y lavish-axi`). Pre
 
 If the work changes the **dev environment**, **agent harness**, or **agentic** setup (skills, Cursor rules/commands, Cmder, packages, rebuild scripts, global memory):
 
-1. Put it in **`C:\Projects\dev-hub`** (or personal hub for PII) — not only on this machine.
-2. Wire `machine\*.ps1` / `packages.yaml` / `link.ps1` / docs so **`rebuild.ps1`** can recreate it.
+1. Put it in the version-controlled hub (or personal hub for PII) — not only on this machine.
+2. Wire apply/rebuild scripts so another machine can recreate it.
 3. Follow skill **`agentic-harness`** reproducibility checklist.
 
 One-off local tweaks without hub + scripts are a miss.
@@ -60,12 +60,10 @@ Follow skill **`destructive-actions`** (tiers A/B/C). Tier C (repo delete, mass 
 
 File edits, refactors, new projects, installs they asked for, and normal commits/pushes **they requested** are not "ask first" — execute them.
 
-Editing **skills**, **AGENTS.md**, and **Cursor rules** (including under `C:\Projects\dev-hub`) is ordinary in-scope work when conventions/workflow should change — never pause for chat permission. A Smart Mode / Auto-review card is a product gate, not a reason to ask in chat.
+Editing **skills**, **AGENTS.md**, and **Cursor rules** (including under the agent hub) is ordinary in-scope work when conventions/workflow should change — never pause for chat permission. A Smart Mode / Auto-review card is a product gate, not a reason to ask in chat.
 
 Commits/pushes: only when the user asked for them (per git rules); if they asked, do not re-ask for permission.
 
 **Never** add `Co-authored-by: Cursor <cursoragent@cursor.com>` (or any agent co-author trailer) to commits.
 
-## java-interview-drills compile
-
-When working in that repo, use skill `java-coding-style` / project docs — never bare `javac` dumping into `src/`. Do not park project-specific compile recipes in global `AGENTS.md`.
+When working in a repo, use that project's docs and `java-coding-style` for Java — never bare `javac` dumping into `src/`. Do not park project-specific compile recipes in global `AGENTS.md`.

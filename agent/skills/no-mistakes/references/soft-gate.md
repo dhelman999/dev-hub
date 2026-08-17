@@ -35,19 +35,23 @@ Load skill **`destructive-actions`**. Before build/test/review:
 - **ask-you** if about to force large WIP onto `main`/`master`/`develop` in an unusual way, push secrets, or push **PII / personal identifying information**.
 - History rewrite / force-push / mass delete → skill `destructive-actions` (early scan + execute-time).
 
-### 3. Build and test (by project)
+### 3. Build and test
 
-| Project | Command |
-|---------|---------|
-| McWendyQueen | `.\mvnw.cmd test` from repo root |
-| java-interview-drills | JDK **21** `javac -d out\classes` all `src/**/*.java`, then run drill mains (`LruCache*Test`, `SlidingWindowRateLimiterTest`, `Main`) — never bare `javac` dumping into `src/` |
-| Other | If present: `mvnw`/`mvn test`, `npm test`/`pnpm test`, `go test ./...`, project `scripts\` helpers |
+Discover how **this repo** proves the change. Do not keep a project-name
+command table in this skill.
+
+1. Prefer the project's own docs (`README`, `AGENTS.md`, `CONTRIBUTING`, `scripts/`).
+2. Else run the standard command for the stack that is actually present:
+   `mvnw`/`mvn test`, `npm test`/`pnpm test`/`yarn test`, `go test ./...`,
+   `dotnet test`, `cargo test`, `pytest`, and similar.
+3. If no test/build command is discoverable, say so in the outcome summary
+   (`build/test: n/a — no project recipe`) rather than inventing one.
 
 Failing tests from this change → **auto-fix** → re-run. Cannot fix → **ask-you** or block ship.
 
 ### 4. Style
 
-- Java → skill `java-coding-style` (Spring `this.` rules, related constants, braces).
+- Follow the repo's formatter and style skill/docs if present.
 - Mechanical style violations → **auto-fix**.
 - Parent agent may apply style; do not rely on this for deep review.
 
@@ -62,10 +66,10 @@ Launch a **Task** subagent for review:
 |---------|--------|
 | `subagent_type` | `generalPurpose` (or `explore`) |
 | review-only | No `readonly` parameter exists — say it in the prompt: **read and report, do not edit files**. Parent applies fixes |
-| `model` | **Default:** fastest available Grok/Composer tier (currently `cursor-grok-4.6-high-fast`, else `composer-2.5-fast`). **Escalation only:** top Claude thinking tier (currently `claude-opus-5-thinking-high`) when the diff is large, cross-cutting, or security-sensitive, or the user asks for a deep review — not for routine gates |
+| `model` | **Default:** latest fast Grok or Composer on the Task tool’s **current** allowed list. **Escalation only:** latest Claude Opus thinking tier on that list when the diff is large, cross-cutting, or security-sensitive, or the user asks for a deep review — not for routine gates. Do **not** copy a versioned slug from this file |
 | `run_in_background` | `false` unless the user wants async |
 
-Model slugs drift. Check the Task tool's current allowed list before dispatching and pick the nearest tier rather than passing a stale slug.
+**How to pick:** read the Task tool’s allowed `model` list in this session. Choose the newest matching family (fast Grok, else fast Composer; escalate to newest Opus thinking). If a listed slug is rejected, pick the next newest in that family — never keep a hardcoded older version from memory or this skill.
 
 Prefer Grok or Composer for normal no-mistakes runs (cost/quota). Do not default to Claude Sonnet/Opus or OpenAI models for the review subagent unless the user asks or the escalation bar above is met.
 
