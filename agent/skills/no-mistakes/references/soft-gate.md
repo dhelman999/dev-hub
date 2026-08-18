@@ -100,10 +100,16 @@ Launch a **Task** subagent for review:
 |---------|--------|
 | `subagent_type` | `generalPurpose` (or `explore`) |
 | review-only | No `readonly` parameter exists — say it in the prompt: **read and report, do not edit files**. Parent applies fixes |
-| `model` | **Default:** latest fast Grok or Composer on the Task tool’s **current** allowed list. **Escalation only:** latest Claude Opus thinking tier on that list when the diff is large, cross-cutting, or security-sensitive, or the user asks for a deep review — not for routine gates. Do **not** copy a versioned slug from this file |
+| `model` | **Default:** newest Grok on this session’s Task `model` list (prefer a `fast` slug of that same version if both exist). Else newest Composer. **Escalation only:** newest Claude Opus thinking tier on that list when the diff is large, cross-cutting, or security-sensitive, or the user asks for a deep review. **Never** copy a versioned slug from this file or from a prior chat |
 | `run_in_background` | `false` unless the user wants async |
 
-**How to pick:** read the Task tool’s allowed `model` list in this session. Choose the newest matching family (fast Grok, else fast Composer; escalate to newest Opus thinking). If a listed slug is rejected, pick the next newest in that family — never keep a hardcoded older version from memory or this skill.
+**How to pick** (do this every gate; do not reuse last week’s slug):
+
+1. Read the Task tool’s `model` enum **in this session**. Only those strings are legal.
+2. Collect Grok slugs (`cursor-grok-*` or similar). If any exist, pick the **highest version number** (4.6 beats 4.5). If that version has both `fast` and `high`, prefer `fast` for a routine gate. **Do not** pick an older Grok because it has `fast` or `high` in the name.
+3. If no Grok, pick the newest Composer slug the same way.
+4. Escalate to the newest Opus thinking slug only when the bar above is met.
+5. If a chosen slug is rejected, take the next newest in that family. Never fall back to a remembered slug that is not on this session’s list (`cursor-grok-4.5-high` is wrong once 4.6 is listed).
 
 Prefer Grok or Composer for normal no-mistakes runs (cost/quota). Do not default to Claude Sonnet/Opus or OpenAI models for the review subagent unless the user asks or the escalation bar above is met.
 

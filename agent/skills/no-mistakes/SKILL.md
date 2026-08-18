@@ -98,10 +98,12 @@ for that run.
 **Diff review** must use a **dedicated review subagent** (not this chat’s
 implementation context) — see soft-gate §5 — **unless** the parent already
 confirmed secrets or PII. Then skip §5 (`Diff review: skipped-early-safety`);
-do not launch a reviewer for a second look. Default: **latest** fast
-Grok or Composer on the Task tool’s allowed list. Escalate to the **latest**
-Claude Opus thinking tier only for unusually hard reviews. Never pin a
-numeric slug in this skill — slugs go stale.
+do not launch a reviewer for a second look. Default: **newest Grok** on
+this session’s Task `model` list (prefer `fast` of that same version if
+listed). Else newest Composer. Escalate to the **newest** Claude Opus
+thinking tier only for unusually hard reviews. Never pin a numeric slug
+in this skill — slugs go stale. Never pick an older Grok (e.g. 4.5) when
+a newer one (e.g. 4.6) is on the list.
 
 ## When to load references
 
