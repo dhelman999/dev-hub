@@ -34,6 +34,7 @@ Never commit passwords, tokens, claim IDs, financial figures, medical data, home
 
 ## Technical decisions
 
+- **Reuse before invent (any language):** search the repo and its current dependencies for an existing helper, utility, abstraction, algorithm, or pattern before writing a new one; extend it and match the surrounding style instead of forking a near-duplicate. Procedure: skill `java-coding-style` → "Reuse before invent".
 - Do not overweight human-era development cost when choosing designs. Agents can implement ambitious options quickly; bias toward quality, clarity, and maintainability.
 - For bugfixes: reproduce end-to-end in a setting close to the user experience before patching. Prefer E2E checks over unit tests alone when guarding product behavior.
 
@@ -46,6 +47,7 @@ Never commit passwords, tokens, claim IDs, financial figures, medical data, home
 - Parallel agents (Cursor captain/crew): skill `captain-crew`.
 - Skill catalog reminder: `/skills` or `/list` (skill `skills`).
 - Java formatting / compile conventions: skill `java-coding-style`.
+- Unfamiliar language / framework (live coding, take-home, new repo): skill `stack-context` (`/stack-context`).
 - Hub layout and tooling: skill `agentic-harness` (canonical: `C:\Projects\dev-hub`).
 - Deletes / wipes / force-push: skill `destructive-actions`.
 - Personal GitHub: **dhelman999** (`gh` already authenticated). Clone/commit/push only when asked; see `agentic-harness` → `references/github-dhelman999.md`.

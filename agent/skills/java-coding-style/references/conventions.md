@@ -18,7 +18,7 @@ These **override** the Spring wiki where they conflict:
 ### Engineering conventions
 
 1. Keep methods/functions **under ~50 lines** unless there is a strong reason; otherwise split into smaller helpers.
-2. **Search for existing** helpers, patterns, static utility classes, and related workflows before inventing new code in the file under edit — prefer extending shared helpers.
+2. **Reuse before invent:** search the repo *and its current dependencies* for an existing helper, utility class, abstraction, algorithm, or pattern before writing a new one; extend the existing one instead of forking a near-duplicate. Full procedure in `SKILL.md` → "Reuse before invent".
 3. **Complex PRs** need a thorough review body (description, expected behavior, change summary, other reviewer context). Small PRs can be brief.
 4. **Never** add `Co-authored-by: Cursor <cursoragent@cursor.com>` (or other Cursor/agent co-author trailers) to commits.
 
@@ -256,4 +256,5 @@ For leetcode drills: short class/method comments are enough; full Spring Javadoc
 - [ ] No `var` in main code; `@Override` present
 - [ ] Lines mostly ≤90–105; none >120
 - [ ] Imports ordered if the file has nontrivial imports
+- [ ] Searched for an existing helper / pattern / dependency utility before adding a new one; matched the neighbors
 - [ ] Did not reformat unrelated code

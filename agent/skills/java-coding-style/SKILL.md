@@ -3,12 +3,13 @@ name: java-coding-style
 description: >-
   Spring Framework Code Style (official wiki rules) with local tweaks:
   4-space indent, blank line before if after dense code, blank after locals,
-  ~50-line functions, prefer existing helpers, no Cursor Co-authored-by
-  trailers, rich PR bodies for complex changes. Use whenever writing, editing,
-  reformatting, or reviewing Java — Spring apps, interview drills, or
-  reference solutions — even if the user only says "fix this Java," "match my
-  style," "Spring style," "coding style," or asks about commit trailers / PR
-  description depth. Prefer this over Google 2-space style when these
+  ~50-line functions, reuse before invent (search the repo and existing
+  dependencies instead of writing a duplicate helper/util/pattern), no Cursor
+  Co-authored-by trailers, rich PR bodies for complex changes. Use whenever
+  writing, editing, reformatting, or reviewing Java — Spring apps, interview
+  drills, or reference solutions — even if the user only says "fix this Java,"
+  "match my style," "Spring style," "coding style," "don't reinvent it," or asks
+  about commit trailers / PR description depth. Prefer this over Google 2-space style when these
   conventions are in scope.
 ---
 
@@ -36,9 +37,21 @@ Full digest: `references/conventions.md`.
 These apply to code work and shipping (Java first; same intent for non-Java when this skill is in play):
 
 1. **Function size:** Methods/functions should generally stay **under ~50 lines**. If longer, split into smaller focused helpers unless there is a clear reason not to (e.g. a single tight algorithm that is harder to follow when scattered).
-2. **Prefer existing code:** Before adding new helpers, styles, or designs, **search the repo** for similar functions, workflows, helper classes, static utility classes, or shared libraries. Prefer extending those over inventing parallel code in the file you are editing.
+2. **Reuse before invent:** Never add a helper, utility class, abstraction, algorithm, or pattern without first searching for one that already exists — in the repo or in its current dependencies. See below.
 3. **PR descriptions:** For **complex** PRs, write a thorough body for reviewers: description, expected behavior, summary of changes, and any other context a reviewer needs. For small/obvious PRs, a short description/summary is enough.
 4. **Never Cursor Co-authored-by:** Do **not** add `Co-authored-by: Cursor <cursoragent@cursor.com>` (or any Cursor/agent co-author trailer) to commits. Commit messages stay human-authored only. Also avoid enabling Cursor "attribute commits to agent" / Attribution features that inject that trailer.
+
+## Reuse before invent (search first)
+
+Two helpers that do the same job are the defect — not the formatting. Before adding a helper, utility class, abstraction, algorithm, config pattern, or test fixture:
+
+1. **Search for the behavior, not the name you would have picked.** Grep the operation (`isBlank`, `retry`, `toDto`, `truncate`, `parseDuration`) and the likely homes: `*Utils`, `*Helper`, `*Support`, `*Factory`, `*Mapper`, and `common/` `shared/` `core/` `internal/` packages.
+2. **Check what is already on the classpath.** Never hand-roll what a current dependency provides: `Objects`, `Optional`, `Collectors`, `Comparator`, Spring's `StringUtils` / `CollectionUtils` / `ObjectUtils` / `Assert`, plus Guava or Commons **if already a dependency**. Do not add a dependency to avoid five lines, and do not write fifty lines to avoid a dependency that is already there.
+3. **Match the neighbors.** Read how the nearest existing service, controller, repository, or test solves the same shape of problem and follow that pattern, even if you would have designed it differently.
+4. **Extend, do not fork.** If the existing helper is close but not quite right, generalize or fix it in place. Creating a second near-identical helper is worse than a slightly wider signature on the first.
+5. **Justify anything new in one line** — what you searched for and why nothing fit (no existing equivalent, or reuse would force an unrelated module to depend on this code).
+
+If the existing pattern is genuinely deprecated or wrong, **say so** and get direction. Do not quietly start a third pattern.
 
 ## Non-negotiables (every Java edit)
 

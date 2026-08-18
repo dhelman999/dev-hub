@@ -17,6 +17,12 @@ Do **not** wait for approve after each step unless the user said “gate step by
 State in 2–4 sentences what the user set out to accomplish (goal + tradeoffs),
 not a file list. Use this when classifying ask-you vs deliberate choices.
 
+### 1a. Ground (non-blocking)
+
+Load skill **`grounding`** only if the intent rests on a claim that could be wrong: an API/CLI signature, product behavior, framework version, or a design decision this ship locks in.
+
+Look it up, or write `Assumption (unverified): …` and continue. This is **never** a stop, and it is not a research phase — it runs here, before expensive checks, so a wrong premise is caught before tests and a review subagent are spent on it.
+
 ### 1b. Early destructive plan scan (required)
 
 Load skill **`destructive-actions`**. Before build/test/review:
@@ -76,6 +82,8 @@ Failing tests from this change → **auto-fix** → re-run. Cannot fix → **ask
 
 - Follow the repo's formatter and style skill/docs if present.
 - Mechanical style violations → **auto-fix**.
+- The style skill's conventions include **reuse before invent** — catch obvious duplicates of an existing helper, utility, or pattern here and swap in the existing one (**auto-fix**). The §5 reviewer scans deeper (`finding-classes.md` → Reinvented code).
+  - A reuse swap **changes behavior**, unlike formatting: **re-run build/test** after it (counts as a fix cycle). Never leave a swap as the last edit before ship with stale green tests.
 - Parent agent may apply style; do not rely on this for deep review.
 
 ### 5. Diff review (dedicated subagent)
@@ -105,6 +113,7 @@ Prefer Grok or Composer for normal no-mistakes runs (cost/quota). Do not default
 - User **intent** (from step 1)
 - How to get the diff (`git diff` / `git diff base...HEAD` / PR range)
 - Finding classes from `finding-classes.md` (auto-fix / ask-you / no-op) — explicitly scan for **secrets** and **PII / personal identifying information** (ask-you; see finding-classes)
+- **Reinvented-code scan** (required): for every new helper, utility, abstraction, algorithm, or pattern in the diff, check whether the repo or an existing dependency already provides it, and whether it matches how neighboring code solves the same problem (`finding-classes.md` → Reinvented code)
 - **False-green test scan** (required): for every new/changed test, judge whether it would still pass if the production change were reverted or the expected value inverted. Report weak assertions, mock-asserting-mock, tautologies, swallowed failures, over-mocked units, skipped/empty tests (`finding-classes.md` → False-green tests)
 - Required return format: a list of findings `{class, severity, file, line?, description}` plus a one-line overall verdict
 
@@ -133,6 +142,10 @@ When a ship or auto-fix step **executes** a delete/wipe/force/history rewrite, f
 
 Always end a no-mistakes run with a compact block so the captain can see that the
 gate ran and what it did. Fill every field (use `0` / `n/a` / `none` when empty).
+
+**Ordering:** compose the block **before** shipping (posture `pr` needs it for the
+PR body), then fill `Ship:` with the actual result. The PR-body copy cannot contain
+its own URL — write `Ship: PR (this one)` there and keep the URL in the chat copy.
 
 **Durability:** chat is not a record. On ship posture **pr**, include this block in
 the PR body. On **push** to a shared branch, include it in the commit body or the

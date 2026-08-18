@@ -89,7 +89,8 @@ Load `references/finding-classes.md`.
 ## Soft gate steps
 
 Load `references/soft-gate.md`. **Run-then-report** (not a per-step wizard).
-After intent: **early destructive plan scan** (`destructive-actions`) before
+After intent: **ground** load-bearing assumptions (skill `grounding`, never a
+stop), then the **early destructive plan scan** (`destructive-actions`) before
 build/test/review. Pause for **ask-you**, Tier B/C destructive permission, or
 the **5-cycle** auto-fix cap. Interactive step-by-step only if the user asks
 for that run.

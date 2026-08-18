@@ -16,6 +16,7 @@ Mirror Kun’s gate split for the Cursor soft gate.
 - Unused imports, obvious compile errors from the edit
 - Test mocks missing a new constructor dependency the agent introduced
 - **False-green tests** (see below) where tightening the assertion is mechanical
+- **Reinvented code** (see below) where the new helper can simply be replaced by an existing one
 
 ## ask-you examples
 
@@ -60,6 +61,18 @@ Agent-written tests fail most often by **passing no matter what the code does**.
 - Test that still passes when the production change is reverted or the value is inverted
 
 **Handling:** tightening a weak assertion is **auto-fix**. Deleting coverage, or a test that only passes because the contract itself is wrong, is **ask-you**. Cheapest proof: invert the expected value (or revert the production line) and confirm the test actually fails.
+
+## Reinvented code (always scanned)
+
+Agents also fail by writing code that already exists. Every diff review must check new helpers, utilities, abstractions, algorithms, and patterns for:
+
+- A repo helper that already does it (`*Utils`, `*Helper`, `*Support`, `*Factory`, `common/` `shared/` `core/`)
+- A **current dependency** or stdlib call that already does it (hand-rolled null/blank checks, string joins, sorting, retry, date math, DTO mapping)
+- A second pattern for something the repo already solves one way (new config style, new error-handling shape, a parallel test fixture)
+- A copy-pasted block that should have been extracted or called
+- A new dependency added for something already available
+
+**Handling:** swapping the new code for the existing helper or stdlib call is **auto-fix**. Where the existing thing needs a small generalization to fit, extending it is **auto-fix** only if it does not change existing callers' behavior. Removing a whole parallel abstraction, changing shared helper semantics, or migrating existing callers is **ask-you** (scope). If the existing pattern looks deprecated, raise it as **ask-you** rather than allowing a third pattern to ship.
 
 ## Auto-fix iteration cap
 

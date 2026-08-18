@@ -24,6 +24,7 @@ Canonical directory: `C:\Projects\dev-hub\agent\skills`
 
 - `agent-workflow`
 - `java-coding-style`
+- `stack-context` (unfamiliar language/stack: detect, pin verify loop, prune rule packs; `/stack-context`)
 - `agentic-harness`
 - `context-engineering` (cost / cache / retrieval / phase routing)
 - `grounding` (risk-based RAG / assumption trail; not a hard gate)
