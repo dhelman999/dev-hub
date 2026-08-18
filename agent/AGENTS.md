@@ -1,4 +1,4 @@
-# Global agent memory (David Helman)
+# Global agent memory
 
 Keep this file short. Everything here is loaded into every session across projects.
 Put procedural / conditional knowledge in skills under `C:\Projects\dev-hub\agent\skills\`, not here.
@@ -50,5 +50,5 @@ Never commit passwords, tokens, claim IDs, financial figures, medical data, home
 - Unfamiliar language / framework (live coding, take-home, new repo): skill `stack-context` (`/stack-context`).
 - Hub layout and tooling: skill `agentic-harness` (canonical: `C:\Projects\dev-hub`).
 - Deletes / wipes / force-push: skill `destructive-actions`.
-- Personal GitHub: **dhelman999** (`gh` already authenticated). Clone/commit/push only when asked; see `agentic-harness` → `references/github-dhelman999.md`.
+- GitHub: `gh` is already authenticated for this clone. Clone/commit/push only when asked; account details live in `agentic-harness` → `references/github-dhelman999.md` (operator identity, not a portable playbook).
 - **Do not put project-specific rules here** (paths, compile recipes, repo quirks, one-off workflows). Keep this file global and short. Put those in the **local project's** `AGENTS.md` / docs, or in a **skill** that loads when that context is needed.

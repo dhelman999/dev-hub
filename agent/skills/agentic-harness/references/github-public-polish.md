@@ -1,4 +1,6 @@
-# Public GitHub presentation (dhelman999)
+# Public GitHub presentation
+
+Operator-specific conventions for this clone's public repos. Not a portable playbook.
 
 Conventions for public-facing repo polish (not code style).
 

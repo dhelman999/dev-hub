@@ -1,7 +1,7 @@
 ---
 name: agentic-harness
 description: >-
-  David Helman's agentic engineering hub on Windows: C:\Projects\dev-hub layout,
+  Windows agentic engineering hub: C:\Projects\dev-hub layout,
   Dev/Agent rebuild targets, shared AGENTS.md memory, OpenWhispr voice, npx skills
   install policy, reproducibility (hub + scripts for wipe/regenerate), context-engineering /
   captain-crew skills, and Phase 2+ backlog (lavish, quota-axi/usage-canvas, treehouse live;

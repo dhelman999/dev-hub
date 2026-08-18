@@ -30,7 +30,7 @@ Capped on purpose — one lookup pass, not a research project. If nothing author
 
 1. **Repo evidence** — existing code, formatter/linter config, CI workflow, `README` / `AGENTS.md`. In someone else's repo, house style beats personal preference.
 2. **Official guide / framework docs** for the pinned version.
-3. **Local style skill** (`java-coding-style`) — authority for Java in your own repos and drills; a community pack never overrides it.
+3. **Local style skill** (`java-coding-style`) — authority for Java in this hub's own repos and drills; a community pack never overrides it.
 4. **Community rule packs** — draft material, prune before use (`references/rule-pack-sources.md`).
 5. **Nothing found** — assumption line, keep moving.
 
@@ -54,11 +54,11 @@ Keep a rule only if it is **decidable** (a reviewer could point at a violation),
 
 Never paste a 1k+ token pack into always-on rules — that cost is paid every turn (skill `context-engineering`).
 
-## 4. Say it out loud (interview / demo lane)
+## 4. Say it out loud (when demonstrating the harness)
 
 Two or three sentences before implementing: the stack and version you detected, the commands you will gate on, the conventions you pinned and where each came from. Then implement and let the gate run.
 
-The point being demonstrated is that the agent's rules are **derived and checkable**, not vibes.
+The point is that the agent's rules are **derived and checkable**, not vibes.
 
 ## Do not
 
@@ -73,4 +73,4 @@ The point being demonstrated is that the agent's rules are **derived and checkab
 | Need | Read |
 |------|------|
 | Detect + verify commands per stack | `references/verify-loop.md` |
-| Where to find packs, how to prune (Java worked example) | `references/rule-pack-sources.md` |
+| Where to find packs, how to prune (Java packs as a pruning demo, not rules to install) | `references/rule-pack-sources.md` |

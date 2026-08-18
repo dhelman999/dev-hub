@@ -1,4 +1,6 @@
-# GitHub identity (David Helman)
+# GitHub identity (this clone)
+
+Operator-specific. Not a portable playbook. Forks replace this file with their own account.
 
 Account: **[dhelman999](https://github.com/dhelman999)**
 

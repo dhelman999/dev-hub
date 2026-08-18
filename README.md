@@ -1,6 +1,6 @@
 # dev-hub
 
-Reproducible Windows development + agentic engineering hub for [dhelman999](https://github.com/dhelman999).
+Reproducible Windows development + agentic engineering hub.
 
 One public repo, two apply **layers** (plus `All`):
 
@@ -91,7 +91,7 @@ This hub is a Windows + Cursor port of [Kun Chen](https://github.com/kunchenguid
 
 Talks that shaped the layout: [harness from scratch](https://www.youtube.com/watch?v=5N-okeDdIuI), [context engineering](https://www.youtube.com/watch?v=2TgYw9wXv5s), [full-stack agent workflow](https://www.youtube.com/watch?v=kPN564Kol14), [ByteByteGo writeup](https://blog.bytebytego.com/p/an-ex-meta-l8s-agentic-engineering). Line-by-line Windows map: [docs/TOOL-MAP.md](docs/TOOL-MAP.md).
 
-Helman-only playbooks (not from Kun): `grounding`, opt-in `production-planning` / PRD / spec / tickets.
+Hub-original playbooks (not from Kun): `grounding`, opt-in `production-planning` / PRD / spec / tickets, `stack-context`.
 
 ## Author
 
