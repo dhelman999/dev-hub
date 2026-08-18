@@ -147,9 +147,10 @@ gate ran and what it did. Fill every field (use `0` / `n/a` / `none` when empty)
 PR body), then fill `Ship:` with the actual result. The PR-body copy cannot contain
 its own URL — write `Ship: PR (this one)` there and keep the URL in the chat copy.
 
-**Durability:** chat is not a record. On ship posture **pr**, include this block in
-the PR body. On **push** to a shared branch, include it in the commit body or the
-follow-up PR. On **hold**, leave it in chat until the captain decides.
+**Durability:** chat is not a record. On ship posture **pr**, paste this block into
+the **PR body** (not the commit message). On **push** or **hold**, leave it in
+chat only. **Never** append the block to a commit message — it is noisy and the
+model slug goes stale.
 
 ```
 no-mistakes: PASS | FIXED | BLOCKED | BYPASSED

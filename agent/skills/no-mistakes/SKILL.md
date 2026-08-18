@@ -72,7 +72,7 @@ The gate always runs first (auto-fix capped at **5** cycles). Ship action is cho
 | Posture | Say / trigger | After green |
 |---------|---------------|-------------|
 | **push** | **“push”** or **“ship it”** | Commit (if needed) → **push**. No PR unless they also said create the PR. If the gate is **blocked**, do not push. |
-| **pr** | **“create the PR”** or **“open a PR”** | Commit (if needed) → push → **`gh pr create`**. If the gate is **blocked**, do not push or open a PR. |
+| **pr** | **“create the PR”** or **“open a PR”** | Commit (if needed) → push → **`gh pr create`** with the outcome summary in the **PR body** (never the commit message). If the gate is **blocked**, do not push or open a PR. |
 | **hold** | **“ready for review”**, **“gate”**, **“don’t push yet”** (also: bare `/no-mistakes`, “run the gate”, “run the soft gate”, “validate before push” with no ship verb) | **Stop.** No push, no PR. Outcome summary + wait for an explicit follow-up (`push` / `ship it` / `create the PR` / further edits). |
 
 - If push/PR and hold cues both appear, **hold** wins.
