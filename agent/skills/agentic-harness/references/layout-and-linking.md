@@ -13,6 +13,8 @@ C:\Projects\dev-hub\
 
 C:\Projects\dev-hub-personal\   # optional, private
   skills\<name>\           # junctioned into agent\skills\<name> when present
+  agent\AGENTS.overlay.md  # appended into matching ## sections on Agent apply
+  generated\AGENTS.md      # gitignored compose; ~/AGENTS.md hardlinks here
 ```
 
 ## Skills junctions
@@ -35,7 +37,7 @@ C:\Projects\dev-hub\machine\rebuild.ps1 -Target Agent -SkipPackages
 
 | Path | Target |
 |------|--------|
-| `~\AGENTS.md` | `dev-hub\agent\AGENTS.md` |
+| `~\AGENTS.md` | `dev-hub-personal\generated\AGENTS.md` when overlay exists; else `dev-hub\agent\AGENTS.md` |
 | `~\.claude\CLAUDE.md` | same |
 | `~\.claude\AGENTS.md` | same |
 

@@ -23,6 +23,7 @@
 | Hack Nerd Font | `%LOCALAPPDATA%\Microsoft\Windows\Fonts` | `Install-HackNerdFont.ps1` |
 | Notepad++ | Prefer `C:\Programs\Notepad++` (`winget --location`); often `C:\Program Files\Notepad++` | winget may ignore `--location` |
 | OpenWhispr | `%LOCALAPPDATA%\Programs\OpenWhispr\OpenWhispr.exe` | Electron / vendor installer |
+| OpenWhispr user data | `%APPDATA%\open-whispr\` (`transcriptions.db` holds custom dictionary) | App-local; merged by `Apply-OpenWhisprDictionary.ps1` |
 | Lavish CLI | `npx -y lavish-axi` (Node) | Soft-checked by `Ensure-Lavish.ps1`; skill in `agent\skills\lavish` |
 | quota-axi | `npx -y quota-axi` (Node) | Soft-checked by `Ensure-QuotaAxi.ps1`; skill `usage-canvas` |
 | sqlite3 | WinGet `SQLite.SQLite` | Required for Cursor quota via quota-axi |
@@ -37,16 +38,16 @@
 | `~\.cursor\skills` | `C:\Projects\dev-hub\agent\skills` (directory junction) |
 | `~\.claude\skills` | same |
 | `~\.agents\skills` | same |
-| `~\AGENTS.md` | `C:\Projects\dev-hub\agent\AGENTS.md` (hardlink) |
+| `~\AGENTS.md` | `dev-hub-personal\generated\AGENTS.md` when overlay exists; else `dev-hub\agent\AGENTS.md` (hardlink) |
 | `~\.claude\CLAUDE.md` | same hardlink |
 | `~\.claude\AGENTS.md` | same hardlink |
 | `~\.cursor\rules\*.mdc` | copied from `dotfiles\cursor\rules\` |
 
-When `dev-hub-personal` is present, each personal skill is an **extra** junction:
+When `dev-hub-personal` is present, each personal skill **without** `hide-from-catalog: true` is an **extra** junction:
 
 `dev-hub\agent\skills\<name>` → `dev-hub-personal\skills\<name>`
 
-Those names therefore appear under `~\.cursor\skills\` via the skills-folder junction. They must not be committed into the public `dev-hub` git tree (junctions/reparse points are local).
+Those linked names therefore appear under `~\.cursor\skills\` via the skills-folder junction. They must not be committed into the public `dev-hub` git tree (junctions/reparse points are local). Catalog-hidden skills are not junctioned and must not be named in public hub files.
 
 ## Windows QoL
 

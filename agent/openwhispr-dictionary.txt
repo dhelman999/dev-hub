@@ -1,0 +1,23 @@
+# OpenWhispr custom dictionary - portable words only
+# Official: https://docs.openwhispr.com/help/customise/custom-dictionary
+# These are Whisper initial-prompt hints (the spelling you want), not hotwords.
+# Keep this list short. A long list dilutes the hint. Skip lines starting with #.
+#
+# Applied to %APPDATA%\open-whispr\transcriptions.db by
+# machine/Apply-OpenWhisprDictionary.ps1, which also reads the optional private
+# list at dev-hub-personal\agent\openwhispr-dictionary.txt.
+#
+# Employer names, recruiter/contact names, and anything else tied to a live
+# pipeline belong in the PRIVATE list, never here.
+#
+# Snippet syntax (exact post-transcript replace), usable in either file:
+#   trigger => Replacement
+# Only for tokens you would never say in a normal sentence.
+
+# Tooling / domain
+OpenWhispr
+Kubernetes
+FedRAMP
+Veracode
+Terraform
+Excalidraw

@@ -27,7 +27,7 @@ cd C:\Projects\dev-hub
 | Layer | Auto |
 |-------|------|
 | Dev | winget packages from `packages.yaml` (Notepad++ prefers `C:\Programs\Notepad++`, often falls back to Program Files); Scoop CLIs if Scoop is installed; **Cmder** to `C:\Programs\cmder` if missing; **Update-Clink** (latest Clink + `themes\`); **Hack Nerd Font**; Apply-Cmder configs + Startup shortcut; classic Win11 context menu; PowerShell 7+ profile copy |
-| Agent | skills junctions + `AGENTS.md` hardlinks; optional personal skill junctions; Cursor `settings.json` + `rules\*.mdc` (and `keybindings.json` if present in the hub); soft OpenWhispr check |
+| Agent | skills junctions + `AGENTS.md` hardlinks (generated file if personal overlay exists); optional personal skill junctions; Cursor `settings.json` + `rules\*.mdc` (and `keybindings.json` if present in the hub); soft OpenWhispr check |
 
 5. Optional: clone private personal skills (skip if you do not have access):
 
@@ -66,8 +66,9 @@ Details: [PERSONAL-HUB.md](PERSONAL-HUB.md).
 
 | Change | Edit here | Then |
 |--------|-----------|------|
-| Public skill or `AGENTS.md` | `dev-hub\agent\` | Usually live via junctions/hardlinks; re-run Agent apply if links were never created |
-| Personal / PII skill | `dev-hub-personal\skills\<name>\` | Live via junction; re-run Agent apply only when **adding a new skill folder** |
+| Public skill or `AGENTS.md` | `dev-hub\agent\` | Skills are live via junctions. Public `AGENTS.md` is the template; if a personal overlay exists, re-run Agent apply to refresh `~\AGENTS.md` |
+| Personal / PII skill | `dev-hub-personal\skills\<name>\` | Linked skills are live via junction; `hide-from-catalog` stays private-hub-only. Re-run Agent apply when adding a folder or changing that flag |
+| Personal global memory | `dev-hub-personal\agent\AGENTS.overlay.md` | Agent apply composes gitignored `generated\AGENTS.md` and hardlinks `~\AGENTS.md` to it |
 | Context / cost playbook | skill `context-engineering` | Live under `agent\skills\` |
 | Risk-based RAG / assumptions | skill `grounding` | Live under `agent\skills\` |
 | Parallel captain/crew | skill `captain-crew` | Live; full Firstmate deferred |
@@ -95,8 +96,10 @@ Details: [PERSONAL-HUB.md](PERSONAL-HUB.md).
 
 ## After editing skills or AGENTS.md
 
-Edit under `agent\` in this repo. Junctions already point here after the first Agent apply, so skill body edits are live immediately.
+Skill body edits under `agent\skills` are live immediately (junctions).
+
+Public `agent\AGENTS.md` is the portable template. If `dev-hub-personal\agent\AGENTS.overlay.md` exists, `~\AGENTS.md` is a generated compose - re-run Agent apply after either file changes:
 
 ```powershell
-.\machine\rebuild.ps1 -Target Agent -SkipPackages   # repair links / re-copy Cursor files
+.\machine\rebuild.ps1 -Target Agent -SkipPackages   # repair links / re-copy Cursor files / recompose AGENTS.md
 ```

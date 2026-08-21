@@ -8,12 +8,13 @@ Put procedural / conditional knowledge in skills under `C:\Projects\dev-hub\agen
 - Prefer plain ASCII dashes (`-`) over em dashes in prose you write for me (PR descriptions, commit messages, docs).
 - Be direct and concise. Do not pad responses.
 - Never add `Co-authored-by: Cursor <cursoragent@cursor.com>` (or any agent co-author trailer) to commits. See skill `java-coding-style`.
+- I dictate via OpenWhispr; proper nouns get mangled. If a name is close to this conversation, silently correct it and continue. Only ask if it could be a genuinely new company or person.
 
 ## How to work with me
 
 - Prefer outcomes and the why over micro-instructions. Act like a capable engineer given a goal, not a typist given keystrokes.
 - In Agent mode: **never ask permission to edit files** — just do the work. For deletes/wipes/history rewrite, follow skill `destructive-actions` (Tier C needs `yes authorize permanent deletion`).
-- When I correct a mistake, update the relevant project `AGENTS.md` or extract a skill so it does not repeat.
+- When I correct a mistake, update the relevant project `AGENTS.md` or extract a skill so it does not repeat. Portable global prefs go in public `dev-hub\agent\AGENTS.md`. Pipeline names, PII, or this-machine-only rules go in `dev-hub-personal\agent\AGENTS.overlay.md`, then `.\machine\rebuild.ps1 -Target Agent -SkipPackages`.
 - Do not take back control by doing work manually that an agent should retry with better guidance.
 
 ## Path conventions
@@ -52,3 +53,7 @@ Never commit passwords, tokens, claim IDs, financial figures, medical data, home
 - Deletes / wipes / force-push: skill `destructive-actions`.
 - GitHub: `gh` is already authenticated for this clone. Clone/commit/push only when asked; account details live in `agentic-harness` → `references/github-dhelman999.md` (operator identity, not a portable playbook).
 - **Do not put project-specific rules here** (paths, compile recipes, repo quirks, one-off workflows). Keep this file global and short. Put those in the **local project's** `AGENTS.md` / docs, or in a **skill** that loads when that context is needed.
+
+## Personal overlay
+
+Private bullets are not stored in this file. If `dev-hub-personal\agent\AGENTS.overlay.md` exists, Agent apply appends them into matching sections of the generated `~\AGENTS.md`. See `docs\PERSONAL-HUB.md`. Do not edit `~\AGENTS.md` by hand; it is generated when the overlay is present.

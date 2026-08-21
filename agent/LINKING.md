@@ -18,7 +18,7 @@ Prefer:
 | `~\.claude\skills` | same |
 | `~\.agents\skills` | same |
 
-Optional personal skills (when `C:\Projects\dev-hub-personal` exists) are **extra** junctions inside that folder:
+Optional personal skills (when `C:\Projects\dev-hub-personal` exists) are **extra** junctions inside that folder, except skills with `hide-from-catalog: true` (those stay in the personal hub only):
 
 `agent\skills\<name>` → `dev-hub-personal\skills\<name>`
 
@@ -32,18 +32,14 @@ mklink /J "%USERPROFILE%\.agents\skills" "C:\Projects\dev-hub\agent\skills"
 
 ## Memory hard links
 
+Cursor loads `~\AGENTS.md` only. It does not read the overlay file.
+
 | Path | Target |
 |------|--------|
-| `~\AGENTS.md` | `C:\Projects\dev-hub\agent\AGENTS.md` |
+| `~\AGENTS.md` | `dev-hub-personal\generated\AGENTS.md` if `agent\AGENTS.overlay.md` exists; else public `dev-hub\agent\AGENTS.md` |
 | `~\.claude\CLAUDE.md` | same |
 | `~\.claude\AGENTS.md` | same |
 
-```powershell
-$src = 'C:\Projects\dev-hub\agent\AGENTS.md'
-New-Item -ItemType HardLink -Path "$env:USERPROFILE\AGENTS.md" -Target $src -Force
-New-Item -ItemType Directory -Path "$env:USERPROFILE\.claude" -Force | Out-Null
-New-Item -ItemType HardLink -Path "$env:USERPROFILE\.claude\CLAUDE.md" -Target $src -Force
-New-Item -ItemType HardLink -Path "$env:USERPROFILE\.claude\AGENTS.md" -Target $src -Force
-```
+`generated\AGENTS.md` is gitignored. Overlay bullets are appended into matching `##` sections at Agent apply (`machine\Merge-AgentsMd.ps1`). Do not edit `~\AGENTS.md` by hand.
 
 True file **symlinks** need Windows Developer Mode. Junctions and hard links do not.

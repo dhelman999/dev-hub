@@ -8,7 +8,7 @@ If not, fix that in the same task (or the same PR series).
 
 | Kind of change | Put it here |
 |----------------|-------------|
-| Skills / global memory | `agent\skills\`, `agent\AGENTS.md` |
+| Skills / global memory | `agent\skills\`, `agent\AGENTS.md` (portable). Personal bullets: `dev-hub-personal\agent\AGENTS.overlay.md` |
 | Cursor rules / slash commands / settings templates | `dotfiles\cursor\` |
 | Cmder / PowerShell / IntelliJ notes | `dotfiles\` |
 | Install / ensure / link / rebuild | `machine\*.ps1`, `machine\packages.yaml` |

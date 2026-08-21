@@ -6,7 +6,8 @@
 #>
 [CmdletBinding()]
 param(
-    [string]$HubRoot
+    [string]$HubRoot,
+    [string]$PersonalHubRoot = 'C:\Projects\dev-hub-personal'
 )
 
 $ErrorActionPreference = 'Stop'
@@ -26,9 +27,14 @@ $checklist = Join-Path $HubRoot 'agent\OPENWHISPR-SETUP.md'
 
 if (Test-Path -LiteralPath $exe) {
     Write-Host "OK OpenWhispr: $exe"
-    Write-Host 'No hub-managed OpenWhispr config to copy (settings live in the app Control Panel).'
+    Write-Host 'Checklist: agent\OPENWHISPR-SETUP.md'
     if (Test-Path -LiteralPath $checklist) {
         Write-Host "Checklist: $checklist"
+    }
+
+    $apply = Join-Path $PSScriptRoot 'Apply-OpenWhisprDictionary.ps1'
+    if (Test-Path -LiteralPath $apply) {
+        & $apply -HubRoot $HubRoot -PersonalHubRoot $PersonalHubRoot
     }
     return
 }

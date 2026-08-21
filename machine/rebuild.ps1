@@ -11,7 +11,7 @@
 .PARAMETER SkipAutostart
   Do not create Cmder Startup shortcut
 .PARAMETER PersonalHubRoot
-  Optional private skills hub (default C:\Projects\dev-hub-personal). If missing, Agent apply skips personal skills.
+  Optional private hub (default C:\Projects\dev-hub-personal). If missing, Agent apply skips personal skills and AGENTS overlay.
 #>
 [CmdletBinding()]
 param(
@@ -212,7 +212,7 @@ function Invoke-Agent {
         Apply-Packages -Section 'agent'
     }
 
-    & (Join-Path $PSScriptRoot 'Ensure-OpenWhispr.ps1') -HubRoot $HubRoot
+    & (Join-Path $PSScriptRoot 'Ensure-OpenWhispr.ps1') -HubRoot $HubRoot -PersonalHubRoot $PersonalHubRoot
     & (Join-Path $PSScriptRoot 'Ensure-Lavish.ps1') -HubRoot $HubRoot
     & (Join-Path $PSScriptRoot 'Ensure-QuotaAxi.ps1') -HubRoot $HubRoot
     & (Join-Path $PSScriptRoot 'Ensure-Treehouse.ps1') -HubRoot $HubRoot

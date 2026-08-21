@@ -68,9 +68,9 @@ Any change to the machine/agent harness must be hub-backed so `bootstrap` / `reb
 ## Quick facts
 
 - Apply: `C:\Projects\dev-hub\machine\rebuild.ps1 -Target Dev|Agent|All` (see `docs\GETTING-STARTED.md`)
-- Personal PII skills: optional `C:\Projects\dev-hub-personal` → per-skill junctions into `agent\skills` (`docs\PERSONAL-HUB.md`)
+- Personal PII skills: optional `C:\Projects\dev-hub-personal` → per-skill junctions into `agent\skills`, skipping `hide-from-catalog` (`docs\PERSONAL-HUB.md`)
 - Skills junctions: `~\.cursor\skills`, `~\.claude\skills`, `~\.agents\skills` → `dev-hub\agent\skills`
-- Memory: `dev-hub\agent\AGENTS.md` hard-linked as `~\AGENTS.md` and `~\.claude\CLAUDE.md`
+- Memory: `~\AGENTS.md` hard-linked to `dev-hub-personal\generated\AGENTS.md` when overlay exists, else public `agent\AGENTS.md`
 - Cursor rules: `dotfiles\cursor\rules\*.mdc` → `~\.cursor\rules\` on Agent apply
 - Voice: OpenWhispr soft-checked (manual install if missing); checklist in `agent\OPENWHISPR-SETUP.md`
 - Terminal: Cmder via `Install-Cmder.ps1` + configs in `dotfiles\cmder`; `Update-Clink.ps1` on that path (not on `-SkipPackages`); Hack Nerd Font + classic context menu on Dev apply

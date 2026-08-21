@@ -33,6 +33,6 @@ downloads/
 .lavish/
 
 # Optional personal skill junctions (content lives only in private dev-hub-personal).
-# Git on Windows follows junctions, so these names must stay ignored.
-agent/skills/sc-unemployment-help/
-agent/skills/honda-accord-2008-maintenance/
+# Git on Windows follows junctions, so each linked folder must be excluded - but the
+# names are personal, so Agent apply writes them to .git/info/exclude (untracked)
+# instead of this file. See machine/link.ps1 -> Update-PersonalSkillExcludes.

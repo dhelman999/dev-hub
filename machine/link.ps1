@@ -89,6 +89,80 @@ function Set-FileHardLink {
     Write-Host "Hardlinked: $LinkPath -> $TargetPath"
 }
 
+function Test-HideFromCatalog {
+    param([Parameter(Mandatory)][string]$SkillDir)
+
+    $skillMd = Join-Path $SkillDir 'SKILL.md'
+    if (-not (Test-Path -LiteralPath $skillMd)) {
+        return $false
+    }
+
+    $head = Get-Content -LiteralPath $skillMd -TotalCount 40 -ErrorAction SilentlyContinue
+    return [bool]($head -match '^\s*hide-from-catalog:\s*true\s*$')
+}
+
+function Remove-DirectoryJunction {
+    param([Parameter(Mandatory)][string]$LinkPath)
+
+    if (-not (Test-Path -LiteralPath $LinkPath)) {
+        return
+    }
+
+    $item = Get-Item -LiteralPath $LinkPath -Force
+    $isJunction = ($item.Attributes -band [IO.FileAttributes]::ReparsePoint) -ne 0
+    if (-not $isJunction) {
+        throw "Refusing to remove non-junction path: $LinkPath"
+    }
+
+    cmd /c "rmdir `"$LinkPath`""
+    if ($LASTEXITCODE -ne 0) { throw "Failed to remove junction: $LinkPath" }
+    Write-Host "Removed junction (hide-from-catalog): $LinkPath"
+}
+
+# Junctioned personal skill names are PII, so they are excluded locally instead of
+# in the tracked .gitignore. Git on Windows would otherwise walk into the junction.
+function Update-PersonalSkillExcludes {
+    param([string[]]$LinkedNames)
+
+    $excludeFile = Join-Path $HubRoot '.git\info\exclude'
+    if (-not (Test-Path -LiteralPath (Split-Path -Parent $excludeFile))) {
+        return
+    }
+
+    $beginMarker = '# BEGIN personal skill junctions (managed by machine/link.ps1)'
+    $endMarker = '# END personal skill junctions'
+
+    $existing = @()
+    if (Test-Path -LiteralPath $excludeFile) {
+        $existing = @(Get-Content -LiteralPath $excludeFile)
+    }
+
+    $kept = New-Object System.Collections.Generic.List[string]
+    $inBlock = $false
+    foreach ($line in $existing) {
+        if ($line -eq $beginMarker) { $inBlock = $true; continue }
+        if ($line -eq $endMarker) { $inBlock = $false; continue }
+        if (-not $inBlock) { $kept.Add($line) }
+    }
+
+    while ($kept.Count -gt 0 -and [string]::IsNullOrWhiteSpace($kept[$kept.Count - 1])) {
+        $kept.RemoveAt($kept.Count - 1)
+    }
+
+    $block = New-Object System.Collections.Generic.List[string]
+    if ($LinkedNames.Count -gt 0) {
+        $block.Add('')
+        $block.Add($beginMarker)
+        foreach ($name in ($LinkedNames | Sort-Object)) {
+            $block.Add("agent/skills/$name/")
+        }
+        $block.Add($endMarker)
+    }
+
+    Set-Content -LiteralPath $excludeFile -Value @($kept + $block) -Encoding ascii
+    Write-Host "Local git exclude updated for $($LinkedNames.Count) personal skill junction(s)"
+}
+
 function Link-PersonalSkills {
     param(
         [string]$PublicSkillsDir,
@@ -114,16 +188,27 @@ function Link-PersonalSkills {
         return
     }
 
+    $linked = New-Object System.Collections.Generic.List[string]
+
     foreach ($name in $names) {
         $target = Join-Path $personalSkills $name
         $link = Join-Path $PublicSkillsDir $name
+
+        if (Test-HideFromCatalog -SkillDir $target) {
+            Remove-DirectoryJunction -LinkPath $link
+            Write-Host "Skip catalog-hidden personal skill (not linked into agent discovery)"
+            continue
+        }
+
         Set-DirectoryJunction -LinkPath $link -TargetPath $target
+        $linked.Add($name)
     }
+
+    Update-PersonalSkillExcludes -LinkedNames @($linked)
 }
 
 function Link-Agent {
     $skills = Join-Path $HubRoot 'agent\skills'
-    $agentsMd = Join-Path $HubRoot 'agent\AGENTS.md'
 
     Write-Step 'Agent skills junctions'
     Set-DirectoryJunction -LinkPath (Join-Path $env:USERPROFILE '.cursor\skills') -TargetPath $skills
@@ -133,6 +218,8 @@ function Link-Agent {
     Link-PersonalSkills -PublicSkillsDir $skills -PersonalRoot $PersonalHubRoot
 
     Write-Step 'Agent memory hardlinks'
+    . (Join-Path $PSScriptRoot 'Merge-AgentsMd.ps1')
+    $agentsMd = Resolve-AgentsMdLivePath -HubRoot $HubRoot -PersonalHubRoot $PersonalHubRoot
     Ensure-Dir (Join-Path $env:USERPROFILE '.claude')
     Set-FileHardLink -LinkPath (Join-Path $env:USERPROFILE 'AGENTS.md') -TargetPath $agentsMd
     Set-FileHardLink -LinkPath (Join-Path $env:USERPROFILE '.claude\CLAUDE.md') -TargetPath $agentsMd

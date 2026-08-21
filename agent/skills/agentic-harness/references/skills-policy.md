@@ -42,7 +42,4 @@ Canonical directory: `C:\Projects\dev-hub\agent\skills`
 
 Canonical directory: `C:\Projects\dev-hub-personal\skills` (optional)
 
-- `sc-unemployment-help`
-- `honda-accord-2008-maintenance`
-
-Linked into the public skills folder by `link.ps1` only when the personal hub is present. Never commit these into `dev-hub`.
+`link.ps1` junctions a personal skill into `agent\skills` only when the personal hub is present **and** the skill is not `hide-from-catalog`. Never commit these into `dev-hub`. Do **not** enumerate personal skill names in this public file (interview / screen-share).
